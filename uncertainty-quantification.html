@@ -99,104 +99,30 @@
                 <div class="article-content">
 
                     <p class="lead">
-                        Your worklist shows a notification: "Possible PE detected—prioritize for review." You click on
-                        the study. The AI triage tool has flagged it, but provides no probability, no confidence score,
-                        no indication of <em>which</em> images triggered the alert. Just a binary flag: positive or
-                        negative. Finding present or not.
+                        A radiology worklist notification indicates "Possible pulmonary embolism detected—prioritize for review," prompting immediate attention to the flagged study. Upon accessing the examination, the radiologist encounters an AI triage tool that has generated an alert but provides no probability estimate, no confidence metric, and no indication of which specific images or anatomical regions triggered the classification. The system outputs only a binary decision—positive or negative, finding present or absent—without any quantification of the certainty underlying this determination. This scenario does not represent a research prototype or experimental system but rather reflects the operational reality of the majority of FDA-cleared AI devices currently deployed in clinical radiology practice. These systems function as triage tools designed to flag examinations for priority review or automatically route them to specialized worklists, and the vast majority provide nothing beyond binary classifications because such limited output is what current regulatory clearances permit. When these AI systems generate erroneous classifications—an inevitability given that no algorithm achieves perfect accuracy—clinicians have no mechanism to assess how confident the system was in its incorrect prediction. A normal anatomical variant such as a growth plate or nutrient canal misclassified as a fracture receives the identical binary "fracture detected" flag as an unambiguous displaced femur fracture with gross displacement and cortical disruption. The triage system treats these cases identically despite the vastly different levels of diagnostic certainty that should attach to these classifications.
                     </p>
-
-                    <p>
-                        This isn't a research prototype. This is the reality of most FDA-cleared AI devices deployed in
-                        radiology today. They're triage tools—designed to flag studies for priority review or route them
-                        to specific worklists. And the vast majority provide nothing beyond a binary decision because
-                        that is what the FDA clearance allows.
-                    </p>
-
-                    <p>
-                        When the AI is wrong—and it will be wrong—you have no way to know <em>how confident</em> it was
-                        about that wrong answer. A growth plate or nutrient canal gets misclassified as a fracture gets
-                        the same binary "fracture detected" flag as a obvious displaced femur fracture. The triage
-                        system treats them identically.
-                    </p>
-
-                    <blockquote class="article-quote">
-                        "An AI that can't communicate uncertainty is like a doctor who says you are disease free or
-                        not—whether they're certain, concerned, a bit puzzled or just guessing."
-                    </blockquote>
 
                     <h2>The Binary Triage Problem</h2>
 
                     <p>
-                        Most FDA-cleared AI devices function as triage tools. They analyze imaging studies in the
-                        background and generate binary alerts:
-                    </p>
-
-                    <ul>
-                        <li>"Intracranial hemorrhage detected"</li>
-                        <li>"Large vessel occlusion"</li>
-                        <li>"Pneumothorax detected"</li>
-                        <li>"Rib fracture identified"</li>
-                    </ul>
-
-                    <p>
-                        The study moves up on your worklist but critically, they provide <strong>no indication of
-                            confidence</strong>. You don't get a probability. You don't get an uncertainty measure. You
-                        often don't even get to see which image or which finding triggered the alert.
+                        The predominant category of FDA-cleared AI devices deployed in clinical radiology consists of triage tools that analyze imaging examinations in the background and generate binary classification alerts such as "intracranial hemorrhage detected," "large vessel occlusion present," "pneumothorax identified," or "rib fracture detected." These systems automatically reprioritize flagged examinations on radiologist worklists or route them to specialized reading queues, but critically, they provide no quantitative indication of the confidence or certainty underlying their classifications. Radiologists reviewing flagged cases receive no probability estimates, no uncertainty quantification, and frequently no visualization indicating which specific images, anatomical regions, or imaging features triggered the alert. Behind the user interface, the underlying machine learning model has computed some continuous-valued internal score that was compared against a fixed classification threshold to generate the binary output. However, this threshold and the model's internal confidence score remain hidden from the clinical user. Consequently, a case that barely exceeded the classification threshold—perhaps with a model-internal score of 0.51 on a scale from 0 to 1—receives the identical "positive" classification flag as an unambiguous case with a model-internal score of 0.99, despite these scores representing fundamentally different levels of algorithmic certainty about the presence of pathology.
                     </p>
 
                     <p>
-                        Behind the scenes, the model computed some internal score that crossed a threshold. But that
-                        threshold is hidden from you. A case that barely exceeded the threshold (model internal score:
-                        51%) gets the same "detected" flag as an obvious case (model internal score: 99%).
-                    </p>
-
-                    <p>
-                        <strong>Result:</strong> Every positive alert is treated as equally urgent. You have no way to
-                        know which alerts are reliable and which are edge cases. When the AI flags a growth plate as a
-                        fracture, you get the same urgent notification as you do for a displaced femur fracture.
+                        The clinical consequence of this opacity is that every positive alert is treated as equally urgent regardless of the algorithm's actual confidence in its classification. Clinicians have no mechanism to distinguish between highly reliable alerts that merit immediate attention and edge-case classifications where the algorithm was highly uncertain but exceeded the threshold by a minimal margin. When the AI incorrectly flags a normal anatomical structure such as a growth plate as a fracture, this false positive generates the same urgent notification and workflow interruption as a true positive detection of a displaced fracture requiring emergent orthopedic consultation. The inability to access underlying confidence metrics prevents rational prioritization based on classification certainty.
                     </p>
 
 
                     <h3>Why This Matters Clinically</h3>
 
                     <p>
-                        Consider two scenarios with a pneumothorax triage tool:
-                    </p>
-
-                    <ul>
-                        <li><strong>Case A:</strong> Large tension pneumothorax on an upright chest X-ray. Obvious to
-                            any human observer. The AI model's internal score: 0.95 (highly confident).</li>
-                        <li><strong>Case B:</strong> Skin fold artifact on a supine portable chest X-ray that vaguely
-                            resembles a pneumothorax. The AI model's internal score: 0.52 (barely above threshold,
-                            highly uncertain).</li>
-                    </ul>
-
-                    <p>
-                        <strong>What you see in both cases:</strong> "Pneumothorax detected—exam moved to top of list."
-                    </p>
-
-                    <p>
-                        Without uncertainty information, you treat both identically. You might immediately interrupt a
-                        procedure to review Case B, only to find it's artifact. As a result, alert fatigue from false
-                        positives means you might delay reviewing Case A.
+                        The clinical implications of missing uncertainty quantification become apparent through consideration of representative scenarios encountered with automated pneumothorax detection systems. Case A involves a large tension pneumothorax visualized on an upright posteroanterior chest radiograph, presenting with obvious findings including mediastinal shift, lung collapse, and tracheal deviation that would be immediately recognizable to any trained observer. The AI system's internal classification score for this case is 0.95, reflecting high algorithmic confidence in the presence of pneumothorax based on clear, unambiguous imaging features. Case B involves a skin fold artifact visible on a supine portable chest radiograph obtained in an intensive care unit patient, where the linear density created by the skin fold superficially resembles the pleural line displacement seen in pneumothorax. The AI system's internal classification score for this case is 0.52, barely exceeding the system's classification threshold of 0.50 and reflecting substantial uncertainty about whether true pathology is present. However, the output presented to the radiologist for both cases is identical: "Pneumothorax detected—examination moved to top of list." Without access to uncertainty information differentiating these scenarios, clinicians must treat both alerts identically. This may lead to inappropriate workflow interruptions, such as immediately stopping a procedure to review Case B only to determine it represents artifact, while the lack of prioritization information may paradoxically delay review of Case A, the genuinely urgent case requiring immediate intervention. The accumulation of false positive alerts with high uncertainty scores contributes to alert fatigue, potentially leading clinicians to develop reduced responsiveness to all alerts from the system including the high-confidence, clinically critical detections.
                     </p>
 
                     <h2>What Uncertainty Quantification Actually Means</h2>
 
                     <p>
-                        Uncertainty quantification (UQ) is the AI equivalent of a radiologist saying "I'm not sure about
-                        this one."
-                    </p>
-
-                    <p>
-                        Instead of a simple binary flag, a UQ-enabled triage system could provide:
-                    </p>
-
-                    <p>
-                        Uncertainty represents the <em>trustworthiness</em> of the model's decision. High uncertainty
-                        means the model doesn't have enough information to make a reliable call. Low uncertainty means
-                        the prediction is likely trustworthy.<sup><a href="#ref1"
-                                style="color: var(--teal-primary);">1</a></sup>
+                        Uncertainty quantification (UQ) in medical AI represents the computational analog of a radiologist explicitly communicating diagnostic doubt—the ability to convey not only a classification or prediction but also a quantitative assessment of the confidence or reliability of that prediction. In human expert practice, radiologists routinely communicate varying levels of certainty through report language ranging from definitive statements ("large pneumothorax is present") to qualified interpretations ("findings are suspicious for" or "compatible with") to explicit acknowledgment of uncertainty ("differential diagnosis includes" or "correlation with additional imaging is recommended"). Uncertainty quantification enables AI systems to similarly communicate the degree of confidence underlying their predictions, transforming opaque binary classifications into nuanced assessments that convey trustworthiness. Instead of presenting only a binary flag indicating the presence or absence of a finding, a UQ-enabled triage system could provide radiologists with quantitative confidence metrics, probability distributions over possible diagnoses, uncertainty estimates indicating the reliability of the classification, and visual overlays highlighting image regions contributing most substantially to the prediction—all information that enables more informed clinical interpretation and appropriate calibration of trust in algorithmic outputs. Uncertainty in this context represents the trustworthiness or reliability of the model's prediction: high uncertainty indicates the model lacks sufficient information to generate a reliable classification and the prediction should be treated with skepticism, while low uncertainty suggests the prediction is likely accurate and can be trusted with greater confidence.<sup><a href="#ref1" style="color: var(--teal-primary);">1</a></sup>
                     </p>
 
                     <p>
