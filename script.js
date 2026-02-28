@@ -344,6 +344,43 @@ window.addEventListener('load', () => {
 });
 
 // ==========================================
+// ARTICLE SHARE BUTTONS
+// ==========================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    const shareButtons = document.querySelectorAll('.share-btn');
+    
+    shareButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            const url = window.location.href;
+            const title = document.title;
+            const type = button.getAttribute('aria-label');
+            
+            if (type === 'Share on Twitter') {
+                window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`, '_blank');
+            } else if (type === 'Share on LinkedIn') {
+                window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
+            } else if (type === 'Copy link') {
+                navigator.clipboard.writeText(url).then(() => {
+                    const originalText = button.textContent;
+                    button.textContent = 'Copied!';
+                    button.style.background = 'var(--teal-primary)';
+                    button.style.color = 'var(--white-neural)';
+                    
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.style.background = '';
+                        button.style.color = '';
+                    }, 2000);
+                });
+            }
+        });
+    });
+});
+
+// ==========================================
 // CONSOLE EASTER EGG
 // ==========================================
 
