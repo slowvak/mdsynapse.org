@@ -1,0 +1,488 @@
+{
+  "name": "Paper to Blog Post Pipeline",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 1
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Check Every Hour",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "operation": "list",
+        "folderId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $vars.GDRIVE_FOLDER_ID }}"
+        },
+        "filter": {
+          "foldersOnly": false
+        },
+        "options": {
+          "fields": ["id", "name", "mimeType", "createdTime", "modifiedTime"]
+        }
+      },
+      "id": "list-drive-files",
+      "name": "List Drive Files",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [220, 0],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "REPLACE_WITH_YOUR_CREDENTIAL_ID",
+          "name": "Google Drive OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "filter-new-files",
+              "leftValue": "={{ $json.createdTime }}",
+              "rightValue": "={{ $now.minus(1, 'hour').toISO() }}",
+              "operator": {
+                "type": "dateTime",
+                "operation": "after"
+              }
+            },
+            {
+              "id": "filter-pdf-only",
+              "leftValue": "={{ $json.mimeType }}",
+              "rightValue": "application/pdf",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "filter-new-pdfs",
+      "name": "Filter New PDFs",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2,
+      "position": [440, 0]
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $json.id }}"
+        },
+        "options": {}
+      },
+      "id": "download-pdf",
+      "name": "Download PDF",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [660, 0],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "REPLACE_WITH_YOUR_CREDENTIAL_ID",
+          "name": "Google Drive OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "options": {}
+      },
+      "id": "extract-pdf-text",
+      "name": "Extract PDF Text",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [880, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={{ $vars.GEMINI_API_KEY }}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"contents\": [\n    {\n      \"parts\": [\n        {\n          \"text\": {{ JSON.stringify($vars.BLOG_POST_PROMPT + '\\n\\n---\\n\\nHere is the research paper to summarize:\\n\\n' + $json.data) }}\n        }\n      ]\n    }\n  ],\n  \"generationConfig\": {\n    \"temperature\": 0.7,\n    \"maxOutputTokens\": 16384,\n    \"topP\": 0.95\n  }\n}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "gemini-blog-post",
+      "name": "Gemini: Generate Blog Post",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1100, 0]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse the Gemini response to extract HTML and metadata\nconst geminiResponse = $input.first().json;\nconst text = geminiResponse.candidates[0].content.parts[0].text;\n\n// Split on the metadata separator\nconst parts = text.split('---METADATA---');\nconst htmlContent = parts[0].trim();\n\n// Parse the metadata JSON\nlet metadata = {};\ntry {\n  const jsonMatch = parts[1].match(/\\{[\\s\\S]*\\}/);\n  if (jsonMatch) {\n    metadata = JSON.parse(jsonMatch[0]);\n  }\n} catch (e) {\n  // Fallback: generate metadata from the HTML\n  const titleMatch = htmlContent.match(/<h1[^>]*>([^<]+)<\\/h1>/);\n  const title = titleMatch ? titleMatch[1] : 'New Article';\n  const kebab = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');\n  metadata = {\n    filename: kebab + '.html',\n    infographic_filename: kebab + '-infographic.png',\n    title: title,\n    subtitle: '',\n    tag: 'AI',\n    pr_title: 'Add article: ' + title,\n    pr_body: 'Auto-generated blog post summary of a research paper.'\n  };\n}\n\nreturn [{\n  json: {\n    htmlContent,\n    ...metadata\n  }\n}];"
+      },
+      "id": "parse-blog-response",
+      "name": "Parse Blog Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1320, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp-image-generation:generateContent?key={{ $vars.GEMINI_API_KEY }}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"contents\": [\n    {\n      \"parts\": [\n        {\n          \"text\": {{ JSON.stringify($vars.INFOGRAPHIC_PROMPT.replace('{{PAPER_SUMMARY}}', $json.title + ': ' + $json.subtitle + '\\n\\n' + $json.pr_body)) }}\n        }\n      ]\n    }\n  ],\n  \"generationConfig\": {\n    \"responseModalities\": [\"TEXT\", \"IMAGE\"],\n    \"temperature\": 0.8\n  }\n}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "gemini-infographic",
+      "name": "Gemini: Generate Infographic",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1540, 0]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract the image from Gemini's response and prepare for GitHub\nconst blogData = $('Parse Blog Response').first().json;\nconst infographicResponse = $input.first().json;\n\n// Extract base64 image from Gemini image generation response\nlet imageBase64 = '';\ntry {\n  const parts = infographicResponse.candidates[0].content.parts;\n  for (const part of parts) {\n    if (part.inlineData) {\n      imageBase64 = part.inlineData.data;\n      break;\n    }\n  }\n} catch (e) {\n  // If image generation fails, we'll create the PR without the infographic\n  imageBase64 = '';\n}\n\n// Base64 encode the HTML content for GitHub API\nconst htmlBase64 = Buffer.from(blogData.htmlContent).toString('base64');\n\nreturn [{\n  json: {\n    ...blogData,\n    htmlBase64,\n    imageBase64,\n    branchName: 'article/' + blogData.filename.replace('.html', ''),\n    hasInfographic: imageBase64.length > 0\n  }\n}];"
+      },
+      "id": "prepare-github-payload",
+      "name": "Prepare GitHub Payload",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1760, 0]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://api.github.com/repos/slowvak/neosynapse/git/ref/heads/main",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "get-main-sha",
+      "name": "Get Main Branch SHA",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1980, 0],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "REPLACE_WITH_GITHUB_CREDENTIAL_ID",
+          "name": "GitHub Token"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.github.com/repos/slowvak/neosynapse/git/refs",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"ref\": \"refs/heads/{{ $('Prepare GitHub Payload').first().json.branchName }}\",\n  \"sha\": \"{{ $json.object.sha }}\"\n}",
+        "options": {}
+      },
+      "id": "create-branch",
+      "name": "Create Branch",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [2200, 0],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "REPLACE_WITH_GITHUB_CREDENTIAL_ID",
+          "name": "GitHub Token"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://api.github.com/repos/slowvak/neosynapse/contents/{{ $('Prepare GitHub Payload').first().json.filename }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"message\": \"Add article: {{ $('Prepare GitHub Payload').first().json.title }}\",\n  \"content\": \"{{ $('Prepare GitHub Payload').first().json.htmlBase64 }}\",\n  \"branch\": \"{{ $('Prepare GitHub Payload').first().json.branchName }}\"\n}",
+        "options": {}
+      },
+      "id": "upload-html",
+      "name": "Upload HTML to GitHub",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [2420, 0],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "REPLACE_WITH_GITHUB_CREDENTIAL_ID",
+          "name": "GitHub Token"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "has-infographic",
+              "leftValue": "={{ $('Prepare GitHub Payload').first().json.hasInfographic }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "check-infographic",
+      "name": "Has Infographic?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [2640, 0]
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://api.github.com/repos/slowvak/neosynapse/contents/{{ $('Prepare GitHub Payload').first().json.infographic_filename }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"message\": \"Add infographic: {{ $('Prepare GitHub Payload').first().json.title }}\",\n  \"content\": \"{{ $('Prepare GitHub Payload').first().json.imageBase64 }}\",\n  \"branch\": \"{{ $('Prepare GitHub Payload').first().json.branchName }}\"\n}",
+        "options": {}
+      },
+      "id": "upload-infographic",
+      "name": "Upload Infographic",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [2860, -100],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "REPLACE_WITH_GITHUB_CREDENTIAL_ID",
+          "name": "GitHub Token"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.github.com/repos/slowvak/neosynapse/pulls",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"title\": \"{{ $('Prepare GitHub Payload').first().json.pr_title }}\",\n  \"body\": \"## Auto-generated Article Summary\\n\\n{{ $('Prepare GitHub Payload').first().json.pr_body }}\\n\\n### Files\\n- `{{ $('Prepare GitHub Payload').first().json.filename }}` — Blog post HTML\\n- `{{ $('Prepare GitHub Payload').first().json.infographic_filename }}` — Sketchbook infographic\\n\\n---\\n*Generated automatically by the NeoSynapse paper-to-blog pipeline*\",\n  \"head\": \"{{ $('Prepare GitHub Payload').first().json.branchName }}\",\n  \"base\": \"main\"\n}",
+        "options": {}
+      },
+      "id": "create-pr",
+      "name": "Create Pull Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [3080, 0],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "REPLACE_WITH_GITHUB_CREDENTIAL_ID",
+          "name": "GitHub Token"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Check Every Hour": {
+      "main": [
+        [
+          {
+            "node": "List Drive Files",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List Drive Files": {
+      "main": [
+        [
+          {
+            "node": "Filter New PDFs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter New PDFs": {
+      "main": [
+        [
+          {
+            "node": "Download PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download PDF": {
+      "main": [
+        [
+          {
+            "node": "Extract PDF Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract PDF Text": {
+      "main": [
+        [
+          {
+            "node": "Gemini: Generate Blog Post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini: Generate Blog Post": {
+      "main": [
+        [
+          {
+            "node": "Parse Blog Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Blog Response": {
+      "main": [
+        [
+          {
+            "node": "Gemini: Generate Infographic",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini: Generate Infographic": {
+      "main": [
+        [
+          {
+            "node": "Prepare GitHub Payload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare GitHub Payload": {
+      "main": [
+        [
+          {
+            "node": "Get Main Branch SHA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Main Branch SHA": {
+      "main": [
+        [
+          {
+            "node": "Create Branch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Branch": {
+      "main": [
+        [
+          {
+            "node": "Upload HTML to GitHub",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload HTML to GitHub": {
+      "main": [
+        [
+          {
+            "node": "Has Infographic?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Infographic?": {
+      "main": [
+        [
+          {
+            "node": "Upload Infographic",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create Pull Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Infographic": {
+      "main": [
+        [
+          {
+            "node": "Create Pull Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "name": "neosynapse",
+      "createdAt": "2026-03-02T00:00:00.000Z",
+      "updatedAt": "2026-03-02T00:00:00.000Z"
+    }
+  ],
+  "triggerCount": 1
+}

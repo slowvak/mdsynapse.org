@@ -1,0 +1,27 @@
+Create a sketchbook-style scientific infographic summarizing the main findings of this research paper.
+
+## STYLE:
+- Hand-drawn / sketch aesthetic with clean lines
+- Warm color palette: teal (#06B6D4) as primary accent, navy (#1E1B4B) for text, coral (#F43F5E) for highlights
+- White or light cream background
+- Mix of simple icons, arrows, flowcharts, and handwritten-style text
+- Think "whiteboard brainstorm" or "research notebook page" aesthetic
+- Include small doodle-style illustrations relevant to the topic
+
+## CONTENT TO INCLUDE:
+1. Paper title at the top in bold hand-lettered style
+2. 3-5 key findings as visual callouts with icons
+3. A simple flowchart or diagram showing the main methodology
+4. Key numbers/statistics in large, emphasized text
+5. A "bottom line" takeaway at the bottom
+
+## LAYOUT:
+- Portrait orientation (roughly 3:4 aspect ratio)
+- Clear visual hierarchy — the eye should flow top to bottom
+- Use boxes, circles, and arrows to connect related concepts
+- Leave some "breathing room" — don't overcrowd
+
+## PAPER SUMMARY:
+{{PAPER_SUMMARY}}
+
+Generate a single infographic image that captures the essence of this paper in a visually engaging, sketchbook style. The image should be informative enough that someone could understand the paper's key contributions just from the infographic.

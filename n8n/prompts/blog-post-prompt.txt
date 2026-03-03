@@ -1,0 +1,210 @@
+You are a scientific communication expert writing for the NeoSynapse.md blog (mdsynapse.org), a site about medical AI and the future of clinical practice.
+
+Given the attached research paper, produce a complete blog-post style summary as a full HTML page. Follow the structure and tone of existing NeoSynapse articles: accessible but rigorous, engaging but accurate.
+
+## ARTICLE STRUCTURE (3-5 pages, ~2500-3500 words total):
+
+### Section 1: Introduction & Background (~500-700 words)
+- Open with a compelling hook: why does this topic matter RIGHT NOW?
+- Provide necessary background context for a technically literate but non-specialist audience
+- Explain the problem or gap the paper addresses
+- End with a clear statement of what this paper set out to do
+
+### Section 2-3: What They Did & The Results (~1200-1800 words)
+- Methods overview — accessible, not overly technical, focus on the "why" of the approach
+- Key experiments or analyses performed
+- Main results with SPECIFIC numbers, metrics, and findings from the paper
+- Use .article-callout boxes to highlight the most important findings
+- Use blockquotes for notable direct quotes from the paper
+- Describe any figures/tables in context where relevant
+
+### Section 4: Strengths & Weaknesses (~500-700 words)
+- 3-4 specific strengths of the work (methodology, novelty, clinical relevance, etc.)
+- 3-4 specific limitations or weaknesses (sample size, generalizability, missing comparisons, etc.)
+- Brief discussion of how this fits into the broader field
+- Future directions suggested by the authors or implied by the limitations
+
+## HTML FORMAT — Use this EXACT template structure:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{SEO_DESCRIPTION}}">
+    <title>{{ARTICLE_TITLE}} | NeoSynapse.md</title>
+    <link rel="canonical" href="https://mdsynapse.org/{{FILENAME}}.html">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="article-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="logo">
+                    <div class="logo-mark">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="16" cy="8" r="2.5" fill="#3FD1C1"/>
+                            <circle cx="8" cy="16" r="2.5" fill="#3FD1C1" opacity="0.7"/>
+                            <circle cx="24" cy="16" r="2.5" fill="#3FD1C1" opacity="0.7"/>
+                            <circle cx="16" cy="24" r="2.5" fill="#3FD1C1"/>
+                            <circle cx="16" cy="16" r="3" fill="#3FD1C1" class="pulse"/>
+                            <line x1="16" y1="10.5" x2="16" y2="13" stroke="#3FD1C1" stroke-width="1.5"/>
+                            <line x1="16" y1="19" x2="16" y2="21.5" stroke="#3FD1C1" stroke-width="1.5"/>
+                            <line x1="10.5" y1="16" x2="13" y2="16" stroke="#3FD1C1" stroke-width="1.5"/>
+                            <line x1="19" y1="16" x2="21.5" y2="16" stroke="#3FD1C1" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">NeoSynapse<span class="logo-ext">.md</span></span>
+                </a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="index.html#articles">Thoughts on Medical AI</a>
+                    <a href="papers-of-note.html">Papers of Note</a>
+                    <a href="index.html#mission">Mission</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <article class="article">
+        <header class="article-header">
+            <div class="container">
+                <div class="article-header-content">
+                    <div class="article-tag tag-{{TAG_CLASS}}">{{TAG_LABEL}}</div>
+                    <h1 class="article-header-title">{{ARTICLE_TITLE}}</h1>
+                    <p class="article-header-subtitle">{{SUBTITLE}}</p>
+                    <div class="article-meta-header">
+                        <span class="article-date">{{DATE}}</span>
+                        <span class="article-divider">•</span>
+                        <span class="article-reading-time">{{READING_TIME}} min read</span>
+                        <span class="article-divider">•</span>
+                        <span class="article-author">By <a href="about.html" style="color: var(--teal-primary); text-decoration: none;">Dr. Bradley J. Erickson</a></span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="article-body">
+            <div class="container">
+                <div class="article-content">
+
+                    <p class="lead">
+                        {{LEAD_PARAGRAPH — compelling opening that draws the reader in}}
+                    </p>
+
+                    <h2>{{Section 1 Title — Introduction/Background}}</h2>
+                    <p>{{Background content...}}</p>
+
+                    <figure>
+                        <img src="{{INFOGRAPHIC_FILENAME}}.png" alt="{{ALT_TEXT}}">
+                        <figcaption>Figure 1: {{CAPTION}}.</figcaption>
+                    </figure>
+
+                    <h2>{{Section 2 Title — Methods & Results}}</h2>
+                    <p>{{Methods and results content...}}</p>
+
+                    <div class="article-callout">
+                        <h4>Key Finding</h4>
+                        <p>{{Most important result with specific numbers}}</p>
+                    </div>
+
+                    <blockquote class="article-quote">
+                        "{{Notable quote or key statement from the paper}}"
+                    </blockquote>
+
+                    <h2>{{Section 3 Title — Strengths & Weaknesses}}</h2>
+                    <h3>Strengths</h3>
+                    <ul>
+                        <li><strong>{{Strength 1}}</strong> — {{explanation}}</li>
+                        <li><strong>{{Strength 2}}</strong> — {{explanation}}</li>
+                        <li><strong>{{Strength 3}}</strong> — {{explanation}}</li>
+                    </ul>
+                    <h3>Limitations</h3>
+                    <ul>
+                        <li><strong>{{Weakness 1}}</strong> — {{explanation}}</li>
+                        <li><strong>{{Weakness 2}}</strong> — {{explanation}}</li>
+                        <li><strong>{{Weakness 3}}</strong> — {{explanation}}</li>
+                    </ul>
+
+                    <h2>Looking Forward</h2>
+                    <p>{{Future directions and broader implications}}</p>
+
+                    <hr class="article-divider-line">
+
+                    <p class="article-conclusion">
+                        {{Concluding thought — tie back to the opening hook}}
+                    </p>
+
+                </div>
+
+                <footer class="article-footer">
+                    <div class="article-share">
+                        <p>Share this article:</p>
+                        <div class="share-buttons">
+                            <a href="#" class="share-btn" aria-label="Share on Twitter">Twitter</a>
+                            <a href="#" class="share-btn" aria-label="Share on LinkedIn">LinkedIn</a>
+                            <a href="#" class="share-btn" aria-label="Copy link">Copy Link</a>
+                        </div>
+                    </div>
+                    <div class="article-cta">
+                        <h3>Want more insights like this?</h3>
+                        <p>Deep thinking on medicine, AI, and the future clinician—delivered to your inbox.</p>
+                        <a href="index.html#connect" class="btn btn-primary">Stay Connected</a>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </article>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-bottom">
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About</a>
+                        <a href="index.html#articles">Thoughts on Medical AI</a>
+                        <a href="papers-of-note.html">Papers of Note</a>
+                        <a href="index.html#mission">Mission</a>
+                    </div>
+                </div>
+                <div class="footer-copyright">
+                    <p>&copy; 2025 NeoSynapse.md | Published at <a href="https://mdsynapse.org" style="color: var(--teal-primary); text-decoration: none;">mdsynapse.org</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+```
+
+## IMPORTANT RULES:
+1. Replace ALL {{PLACEHOLDERS}} with actual content — do NOT leave any placeholders in the output
+2. Choose the appropriate tag class: tag-ai, tag-clinical, tag-ethics, tag-future, tag-uq
+3. Use today's date for the article date
+4. Calculate reading time based on word count (~200 words/min)
+5. The filename should be kebab-case based on the paper's main topic (e.g., "transformer-radiology-detection")
+6. Include at least 2 .article-callout boxes and 1-2 blockquotes
+7. Use <strong>, <em>, lists (ul/ol), and h3 subheadings for readability
+8. Reference the infographic image file as {{KEBAB_TITLE}}-infographic.png
+9. Output ONLY the complete HTML — no markdown, no explanations, no code fences
+
+## ALSO OUTPUT (after a separator line "---METADATA---"):
+A JSON block with:
+{
+  "filename": "kebab-case-name.html",
+  "infographic_filename": "kebab-case-name-infographic.png",
+  "title": "Full Article Title",
+  "subtitle": "Article subtitle",
+  "tag": "AI|Clinical|Ethics|Future|UQ",
+  "pr_title": "Add article: Short Title",
+  "pr_body": "2-3 sentence summary of what this paper covers"
+}
