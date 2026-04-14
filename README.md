@@ -289,4 +289,4 @@ A: Yes! Just add your content, test on multiple devices, and deploy.
 
 **Built with intention. Designed for thinking.**
 
-*— NeoSsynapse.md*
+*— NeoSynapse.md*
