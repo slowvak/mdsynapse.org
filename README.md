@@ -1,4 +1,4 @@
-# NeoSynapse.md
+# MDSynapse
 
 **Think deep. Know more. Heal well.**
 
@@ -8,10 +8,9 @@ A modern, responsive website exploring the intersection of medicine, intelligenc
 
 ## 🚀 Quick Start
 
-1. Open `index.html` in your browser to view the homepage
-2. Open `article-template.html` to see a sample blog article
-3. All styling is in `styles.css` and `article-styles.css`
-4. Interactive features are in `script.js`
+1. Open `MDSynapse.org` in your browser to view the homepage
+2. All styling is in `styles.css` and `article-styles.css`
+3. Interactive features are in `script.js`
 
 ---
 
@@ -55,47 +54,6 @@ NextGenDoc/
 The neural cross logo is embedded as inline SVG in both `index.html` and `article-template.html`. The central node pulses using CSS animation.
 
 ---
-
-## ✨ Features
-
-### Homepage (`index.html`)
-
-1. **Hero Section**
-   - Animated neural network background (canvas)
-   - Responsive tagline
-   - Scroll indicator
-
-2. **Three Pillars**
-   - Deep Thinking
-   - Intelligent Tools
-   - Better Healing
-
-3. **Featured Articles**
-   - Card-based layout
-   - Color-coded tags (AI, Clinical, Future, Ethics)
-   - Hover effects
-
-4. **Philosophy/Manifesto**
-   - Inspirational quote section
-   - Dark background with subtle gradients
-
-5. **About Section**
-   - Mission statement
-   - Call-to-action
-
-6. **Footer**
-   - Newsletter signup form
-   - Social links
-   - Navigation
-
-### Article Template (`article-template.html`)
-
-- Rich typography for long-form content
-- Styled headings, lists, blockquotes
-- Callout boxes for key insights
-- Tags and sharing functionality
-- Related articles section
-
 ### Interactive Features (`script.js`)
 
 - Neural network canvas animation
@@ -169,26 +127,8 @@ The site is fully responsive with breakpoints at:
 
 ## 🚢 Deployment
 
-### Option 1: Static Hosting (Recommended)
-
-Upload to any of these free services:
-
-- **Netlify** (easiest): Drag & drop folder
-- **Vercel**: Connect GitHub repo
 - **GitHub Pages**: Push to `gh-pages` branch
-- **Cloudflare Pages**: Connect repo
 
-### Option 2: Traditional Web Hosting
-
-Upload all files via FTP to your web host (GoDaddy, Bluehost, etc.)
-
-### Domain Setup
-
-Your `.md` domain (if you register `neosynapse.md`):
-1. Point DNS to your hosting provider
-2. Configure HTTPS (most hosts do this automatically)
-
----
 
 ## 📝 Content Strategy
 
@@ -289,4 +229,4 @@ A: Yes! Just add your content, test on multiple devices, and deploy.
 
 **Built with intention. Designed for thinking.**
 
-*— NeoSynapse.md*
+*— MDSynapse.org*
