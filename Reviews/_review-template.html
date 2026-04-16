@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{META_DESCRIPTION}}">
+    <title>{{REVIEW_TITLE}} | NeoSynapse.md</title>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://mdsynapse.org/Reviews/{{SLUG}}.html">
+    <meta property="og:title" content="{{REVIEW_TITLE}}">
+    <meta property="og:description" content="{{META_DESCRIPTION}}">
+    <meta property="og:image" content="https://mdsynapse.org/og-image-papers.png">
+    <meta property="article:author" content="Dr. Bradley J. Erickson">
+    <meta property="article:published_time" content="{{ISO_DATE}}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://mdsynapse.org/Reviews/{{SLUG}}.html">
+    <meta property="twitter:title" content="{{REVIEW_TITLE}}">
+    <meta property="twitter:description" content="{{META_DESCRIPTION}}">
+    <meta property="twitter:image" content="https://mdsynapse.org/og-image-papers.png">
+
+    <link rel="canonical" href="https://mdsynapse.org/Reviews/{{SLUG}}.html">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../article-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="../index.html" class="logo">
+                    <div class="logo-mark">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="16" cy="8" r="2.5" fill="#3FD1C1"/>
+                            <circle cx="8" cy="16" r="2.5" fill="#3FD1C1" opacity="0.7"/>
+                            <circle cx="24" cy="16" r="2.5" fill="#3FD1C1" opacity="0.7"/>
+                            <circle cx="16" cy="24" r="2.5" fill="#3FD1C1"/>
+                            <circle cx="16" cy="16" r="3" fill="#3FD1C1" class="pulse"/>
+                            <line x1="16" y1="10.5" x2="16" y2="13" stroke="#3FD1C1" stroke-width="1.5"/>
+                            <line x1="16" y1="19" x2="16" y2="21.5" stroke="#3FD1C1" stroke-width="1.5"/>
+                            <line x1="10.5" y1="16" x2="13" y2="16" stroke="#3FD1C1" stroke-width="1.5"/>
+                            <line x1="19" y1="16" x2="21.5" y2="16" stroke="#3FD1C1" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">NeoSynapse<span class="logo-ext">.md</span></span>
+                </a>
+                <div class="nav-links">
+                    <a href="../index.html">Home</a>
+                    <a href="../about.html">About</a>
+                    <a href="../index.html#articles">Thoughts on Medical AI</a>
+                    <a href="../papers-of-note.html">Papers of Note</a>
+                    <a href="../index.html#mission">Mission</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <article class="article">
+        <header class="article-header">
+            <div class="container">
+                <div class="article-header-content">
+                    <!-- Category tag — see tag classes: tag-ai, tag-clinical, tag-ethics, tag-future -->
+                    <div class="article-tag {{TAG_CLASS}}">{{CATEGORY}}</div>
+                    <h1 class="article-header-title">{{REVIEW_TITLE}}</h1>
+                    <p class="article-header-subtitle">{{SUBTITLE}}</p>
+                    <div class="article-meta-header">
+                        <span class="article-date">{{DISPLAY_DATE}}</span>
+                        <span class="article-divider">•</span>
+                        <span class="article-reading-time">{{READ_TIME}} min read</span>
+                        <span class="article-divider">•</span>
+                        <span class="article-author">By <a href="../about.html" style="color: var(--teal-primary); text-decoration: none;">Dr. Bradley J. Erickson</a></span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Article Content -->
+        <div class="article-body">
+            <div class="container">
+                <div class="article-content">
+
+                    <!-- ── PAPER CITATION BLOCK ── -->
+                    <div style="background: var(--navy-dark); border-radius: var(--border-radius); padding: 1.75rem 2rem; margin-bottom: 2.5rem; border-left: 4px solid var(--teal-primary);">
+                        <p style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--teal-primary); margin-bottom: 0.75rem;">Paper Under Review</p>
+                        <p style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; color: var(--white-neural); line-height: 1.4; margin-bottom: 0.75rem;">{{PAPER_TITLE}}</p>
+                        <p style="font-size: 0.95rem; color: var(--gray-silver); margin-bottom: 0.5rem; font-style: italic;">{{AUTHORS}}</p>
+                        <p style="font-size: 0.875rem; color: var(--gray-silver); margin-bottom: 1.25rem;">{{VENUE}} &middot; {{YEAR}}</p>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <a href="{{PAPER_URL}}" target="_blank" rel="noopener noreferrer"
+                               style="display: inline-block; padding: 0.5rem 1.25rem; background: var(--teal-primary); color: var(--navy-dark); border-radius: 6px; font-size: 0.875rem; font-weight: 600; text-decoration: none;">
+                                View Paper →
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- ── WHY THIS PAPER MATTERS ── -->
+                    <!-- Maps from Google Doc H2: "Why This Paper Matters" -->
+                    <p class="lead">{{WHY_IT_MATTERS_LEAD}}</p>
+
+                    {{WHY_IT_MATTERS_BODY}}
+
+                    <hr class="article-divider-line">
+
+                    <!-- ── WHAT THEY DID ── -->
+                    <!-- Maps from Google Doc H2: "What They Did" -->
+                    <h2>What They Did</h2>
+
+                    {{WHAT_THEY_DID}}
+
+                    <hr class="article-divider-line">
+
+                    <!-- ── KEY FINDINGS ── -->
+                    <!-- Maps from Google Doc H2: "Key Findings"
+                         Each H3 under this section becomes a subsection with an optional callout.
+                         The script wraps each H3 group in the pattern below. -->
+                    <h2>Key Findings</h2>
+
+                    {{KEY_FINDINGS}}
+
+                    <hr class="article-divider-line">
+
+                    <!-- ── WHAT THIS MEANS ── -->
+                    <!-- Maps from Google Doc H2: "What This Means" -->
+                    <h2>What This Means</h2>
+
+                    {{WHAT_THIS_MEANS}}
+
+                    <hr class="article-divider-line">
+
+                    <!-- ── BOTTOM LINE ── -->
+                    <!-- Maps from Google Doc H2: "Bottom Line"
+                         Rendered as a prominent dark callout box. -->
+                    <div class="article-callout">
+                        <h4>Bottom Line</h4>
+                        {{BOTTOM_LINE}}
+                    </div>
+
+                    <!-- ── REFERENCES (optional) ── -->
+                    <!-- Omit this block entirely if the doc has no "References" section. -->
+                    {{#if REFERENCES}}
+                    <h2>References</h2>
+                    {{REFERENCES}}
+                    {{/if REFERENCES}}
+
+                </div>
+
+                <!-- Article Footer -->
+                <div class="article-footer">
+                    <div class="article-tags">
+                        {{ARTICLE_TAGS}}
+                    </div>
+                    <div class="article-share">
+                        <p>Share this review</p>
+                        <div class="share-buttons">
+                            <a href="https://twitter.com/intent/tweet?url=https://mdsynapse.org/Reviews/{{SLUG}}.html&text={{REVIEW_TITLE}}"
+                               target="_blank" rel="noopener noreferrer" class="share-btn">Twitter / X</a>
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://mdsynapse.org/Reviews/{{SLUG}}.html"
+                               target="_blank" rel="noopener noreferrer" class="share-btn">LinkedIn</a>
+                            <a href="../papers-of-note.html" class="share-btn">← All Reviews</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <!-- Related Content -->
+    <section class="related-articles">
+        <div class="container">
+            <h2 class="section-title">Recent Articles</h2>
+            <div class="articles-grid">
+                <article class="article-card">
+                    <div class="article-tag tag-ai">AI</div>
+                    <h3 class="article-title">Foundation Models in Healthcare: The Misnomer and the Promise</h3>
+                    <p class="article-excerpt">Despite their 'foundation' label, most medical AI models are remarkably narrow—one imaging modality, one body part. Here's why that matters.</p>
+                    <div class="article-meta">
+                        <span class="read-time">10 min read</span>
+                        <a href="../BlogPosts/foundation-models.html" class="article-link">Read more →</a>
+                    </div>
+                </article>
+                <article class="article-card">
+                    <div class="article-tag tag-ethics">Ethics</div>
+                    <h3 class="article-title">When Algorithms Inherit Bias: Fairness Challenges in Medical AI</h3>
+                    <p class="article-excerpt">The algorithm is 92% accurate for white patients and 78% accurate for Black patients. Do you use it?</p>
+                    <div class="article-meta">
+                        <span class="read-time">9 min read</span>
+                        <a href="../BlogPosts/algorithm-bias.html" class="article-link">Read more →</a>
+                    </div>
+                </article>
+                <article class="article-card">
+                    <div class="article-tag tag-ai">AI</div>
+                    <h3 class="article-title">From Lab to Ward: Why Most Medical AI Fails at Deployment</h3>
+                    <p class="article-excerpt">The validation study was flawless. The deployment was a disaster. Here's why impressive AI tools never make it to the bedside.</p>
+                    <div class="article-meta">
+                        <span class="read-time">8 min read</span>
+                        <a href="../BlogPosts/from-lab-to-ward.html" class="article-link">Read more →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-bottom">
+                    <div class="footer-links">
+                        <a href="../index.html">Home</a>
+                        <a href="../about.html">About</a>
+                        <a href="../index.html#articles">Thoughts on Medical AI</a>
+                        <a href="../papers-of-note.html">Papers of Note</a>
+                        <a href="../index.html#mission">Mission</a>
+                    </div>
+                </div>
+                <div class="footer-copyright">
+                    <p>&copy; 2025 NeoSynapse.md | Published at <a href="https://mdsynapse.org" style="color: var(--teal-primary); text-decoration: none;">mdsynapse.org</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
