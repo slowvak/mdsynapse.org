@@ -18,7 +18,7 @@
   </head>
   <body>
     <h1>Unpacking Multimodal AI in Healthcare: When Does Fusing EHR and X-Rays Really Help?</h1>
-    <h2>Section 1: The Promise and Perils of Multimodal AI in Healthcare</h2>
+    <h2>1: The Promise and Perils of Multimodal AI in Healthcare</h2>
     <p class="lead">Artificial intelligence is transforming medicine, promising to revolutionize how we diagnose diseases, predict patient outcomes, and personalize treatment. At the forefront of this revolution is multimodal learning – the powerful idea of combining different types of patient data, such as Electronic Health Records (EHR) and medical images, to create a more comprehensive and accurate picture of a patient's health. Imagine an AI system that doesn't just look at a patient's lab results, but also simultaneously analyzes their chest X-ray, their medical history, and their vital signs, all at once. This holistic approach holds immense potential to unlock deeper insights and provide superior clinical decision support.</p>
 
     <p>In the complex landscape of healthcare, patients generate vast amounts of heterogeneous data. Electronic Health Records (EHRs) are a treasure trove of structured information, including demographics, diagnoses, medications, lab results, and physiological measurements, often captured over time. Complementing this are medical images, such as Chest X-rays (CXR), which offer critical visual insights into anatomical structures and pathological changes, especially in the cardiopulmonary system. Each modality provides unique, yet often interconnected, information about a patient's condition. The intuitive appeal of multimodal learning lies in its ability to fuse these disparate data sources, theoretically allowing AI models to leverage the strengths of each and compensate for the weaknesses of others.</p>
@@ -36,7 +36,7 @@
     </ul>
     <p>By providing an open-source framework and meticulously detailed analyses, CareBench offers unprecedented clarity into the intricate interplay of multimodal data, fusion strategies, missingness, and fairness, paving the way for more effective and equitable AI in healthcare.</p>
 
-    <h2>Section 2: Building CareBench: What They Did</h2>
+    <h2>2: Building CareBench: What They Did</h2>
     <p>The researchers developed CareBench as a robust platform to systematically investigate multimodal learning by integrating Electronic Health Records (EHR) and Chest X-rays (CXR). Their methodology involved constructing standardized patient cohorts, extracting a rich set of features, implementing a diverse array of unimodal and multimodal models, and evaluating them across clinically relevant tasks under various conditions, including realistic data missingness and fairness considerations.</p>
 
     <h3>Data Sources and Cohort Construction</h3>
@@ -69,10 +69,10 @@
     </ul>
     <p>All tasks used patient-level train/validation/test splits. To ensure fair comparison, Bayesian hyperparameter optimization was performed, and permutation tests were used to assess statistical significance of improvements over unimodal baselines.</p>
 
-    <h2>Section 3: Key Findings and Insights</h2>
+    <h2>3: Key Findings and Insights</h2>
     <p>CareBench's rigorous evaluation yielded several critical insights into the behavior of multimodal learning, particularly concerning its benefits, the effectiveness of different fusion strategies, robustness to missing data, and algorithmic fairness.</p>
 
-    <h3>When Multimodal Fusion Helps (RQ1)</h3>
+    <h3>When Multimodal Fusion Helps (Q1)</h3>
     <div class="article-callout">
       <h4>Key Finding</h4>
       <p>Multimodal fusion generally improves predictive performance when all data modalities are complete, with gains concentrated in diseases that require complementary information from both EHR and CXR. However, these benefits rapidly degrade under realistic missingness conditions unless models are explicitly designed to handle incomplete inputs.</p>
@@ -81,7 +81,7 @@
 
     <p>A deeper dive into phenotyping revealed that multimodal benefits were not uniform across all conditions but rather <span style="font-weight: bold;">concentrated in "modality-distributed phenotypes."</span> Diseases such as congestive heart failure, coronary heart disease, COPD, and liver disease benefited most. These conditions are characterized by manifestations that require both structural insights from CXR (e.g., pulmonary infiltrates, cardiac enlargement) and longitudinal risk factors, lab measurements, and comorbidity history from EHR. This highlights how multimodal models can effectively leverage complementary signals that neither modality could access alone. In contrast, conditions like sepsis, primarily driven by acute physiological changes, showed more limited fusion benefits, as CXR offers only indirect or nonspecific cues for such rapidly evolving states.</p>
 
-    <h3>Comparing Fusion Strategies (RQ2)</h3>
+    <h3>Comparing Fusion Strategies (Q2)</h3>
     <div class="article-callout">
       <h4>Key Finding</h4>
       <p>Advanced cross-modal learning mechanisms that facilitate information exchange significantly outperform simple concatenation (late fusion), capturing clinically meaningful dependencies. However, the rich temporal structure of EHR often creates a strong modality imbalance that complex architectures alone cannot overcome; methods explicitly designed to balance modalities perform best.</p>
@@ -94,7 +94,7 @@
       <p>&#8220;The success of InfoReg... and AUG... demonstrates that addressing this clinical data imbalance is more critical than architectural sophistication.&#8221;</p>
     </blockquote>
 
-    <h3>Robustness to Modality Missingness (RQ3)</h3>
+    <h3>Robustness to Modality Missingness (Q3)</h3>
     <div class="article-callout">
       <h4>Key Finding</h4>
       <p>In real-world settings with prevalent missing modalities, naive application of complete-data models often fails. Specialized architectures explicitly designed for handling incomplete inputs are essential and significantly outperform both unimodal baselines and complete-data models in these scenarios. Severe missingness amplifies modality imbalance, highlighting the need for explicit balancing mechanisms.</p>
@@ -103,7 +103,7 @@
     <p>However, multimodal models <span style="font-weight: bold;">explicitly designed to handle incomplete inputs</span>, such as <span style="font-weight: bold;">MedFuse</span>, <span style="font-weight: bold;">M3Care</span>, and <span style="font-weight: bold;">HEALNet</span>, significantly outperformed both the unimodal baseline and complete-case fusion methods in the base cohort. For mortality prediction, MedFuse achieved the highest AUROC of <span style="font-weight: bold;">0.874</span>, and for LoS prediction, it led with the best Kappa (<span style="font-weight: bold;">0.213</span>) and F1-score (<span style="font-weight: bold;">0.203</span>), surpassing the strong EHR Transformer.</p>
     <p>The pervasive missingness of CXR data (~25% availability in the base cohort) further <span style="font-weight: bold;">amplifies the inherent modality imbalance</span>, leading to EHR-driven gradients dominating the learning process. Controlled experiments varying CXR missingness from 0% to 80% showed that models like InfoReg and AUG degraded notably slower than others. This resilience stems from their explicit mechanisms to counteract modality imbalance, ensuring that CXR features still learn discriminative patterns even when scarce.</p>
 
-    <h3>Algorithmic Fairness Across Subgroups (RQ4)</h3>
+    <h3>Algorithmic Fairness Across Subgroups (Q4)</h3>
     <div class="article-callout">
       <h4>Key Finding</h4>
       <p>Multimodal fusion does not inherently improve algorithmic fairness; in fact, it can exacerbate subgroup disparities. These disparities primarily manifest as unequal sensitivity (under-detection) across demographic groups, rather than false positive rates.</p>
@@ -116,7 +116,7 @@
 
     <p>This suggests that performance gains from multimodal fusion do not automatically translate into improved fairness and may, in some cases, worsen subgroup disparities. Further analysis revealed that these <span style="font-weight: bold;">fairness violations are driven more by unequal sensitivity (under-detection) than false positives (over-detection)</span>. TPR gaps were consistently larger than FPR gaps across nearly all models, highlighting that certain demographic groups are more prone to under-detection of conditions. This has critical implications for clinical deployment, as under-detection can lead to delayed or missed diagnoses for vulnerable populations.</p>
 
-    <h2>Section 4: Strengths, Limitations, and Future Directions</h2>
+    <h2>4: Strengths, Limitations, and Future Directions</h2>
     <p>The CareBench study provides a foundational and much-needed systematic analysis of multimodal learning in healthcare, offering both rigorous evaluation and practical insights. However, like all research, it operates within certain constraints that also point towards exciting avenues for future work.</p>
 
     <h3>Strengths of CareBench</h3>
