@@ -1,6 +1,6 @@
 # Blog Post — Google Doc Structure Guide
 
-Free-form Google Docs are converted into NeoSynapse blog posts by `publish.py
+Free-form Google Docs are converted into MDSynapse blog posts by `publish.py
 --mode blog`. Unlike paper reviews, **no metadata table is required** — the script
 infers what it needs from the document. Add a metadata table only when you want
 to override the defaults.

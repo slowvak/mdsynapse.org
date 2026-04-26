@@ -220,7 +220,7 @@ A: Edit the Google Fonts link in `<head>` and update the CSS variables.
 A: Yes! Either duplicate `article-template.html` or integrate a static site generator.
 
 **Q: How do I make the logo a file instead of inline SVG?**
-A: Export your logo as SVG, save it as `logo.svg`, and replace the SVG code with `<img src="logo.svg" alt="NeoSynapse">`.
+A: Export your logo as SVG, save it as `logo.svg`, and replace the SVG code with `<img src="logo.svg" alt="MDSynapse">`.
 
 **Q: Is this production-ready?**
 A: Yes! Just add your content, test on multiple devices, and deploy.

@@ -1,6 +1,6 @@
-# NeoSynapse Paper-to-Blog Pipeline — n8n Setup Guide
+# MDSynapse Paper-to-Blog Pipeline — n8n Setup Guide
 
-Automated pipeline that monitors a Google Drive folder for new research papers, generates a blog-post summary + infographic via Gemini, and creates a PR on `slowvak/neosynapse`.
+Automated pipeline that monitors a Google Drive folder for new research papers, generates a blog-post summary + infographic via Gemini, and creates a PR on `slowvak/mdsynapse.org`.
 
 ## Pipeline Flow
 
@@ -22,13 +22,13 @@ OAuth2 scopes may be restricted by your Google Workspace admin. Use a **Service 
 
 2. **Create Service Account** (IAM & Admin → Service Accounts)
    - Click **Create Service Account**
-   - Name: `neosynapse-pipeline` (or similar)
+   - Name: `mdsynapse-pipeline` (or similar)
    - Skip optional permissions → click **Done**
    - Click into the new service account → **Keys** tab → **Add Key → Create New Key → JSON**
    - Save the downloaded JSON key file securely
 
 3. **Share your Drive folder** with the service account
-   - Copy the service account email (e.g., `neosynapse-pipeline@your-project.iam.gserviceaccount.com`)
+   - Copy the service account email (e.g., `mdsynapse-pipeline@your-project.iam.gserviceaccount.com`)
    - In Google Drive, right-click your target folder → **Share**
    - Paste the service account email → set to **Viewer** → Send
    - The service account can only see folders explicitly shared with it
@@ -54,7 +54,7 @@ OAuth2 scopes may be restricted by your Google Workspace admin. Use a **Service 
 
 1. Go to [github.com/settings/tokens](https://github.com/settings/tokens)
 2. Create a **Fine-grained personal access token**:
-   - Repository access: Select `slowvak/neosynapse`
+   - Repository access: Select `slowvak/mdsynapse.org`
    - Permissions:
      - Contents: **Read and write**
      - Pull requests: **Read and write**
@@ -101,7 +101,7 @@ In n8n → Settings → Variables, create these:
 1. Upload a research paper PDF to your monitored Google Drive folder
 2. Either wait for the hourly trigger, or click **"Test Workflow"** manually
 3. Check the execution log in n8n for any errors
-4. Verify a PR appears on [github.com/slowvak/neosynapse/pulls](https://github.com/slowvak/neosynapse/pulls)
+4. Verify a PR appears on [github.com/slowvak/mdsynapse.org/pulls](https://github.com/slowvak/mdsynapse.org/pulls)
 
 ---
 

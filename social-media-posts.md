@@ -1,4 +1,4 @@
-# Social Media Posts for NeoSynapse.md Articles
+# Social Media Posts for MDSynapse.org Articles
 
 ## Article: "From Lab to Ward: Why Most Medical AI Fails at Deployment"
 
@@ -301,7 +301,7 @@ Full breakdown of what deployment actually requires (link in bio)
 
 Because the real test isn't the validation study—it's whether you're still using it 6 months later.
 
-#MedicalAI #HealthcareInnovation #ClinicalAI #DigitalHealth #MedEd #FutureOfMedicine #AIinHealthcare #MedicalTechnology #HealthTech #NeoSynapse
+#MedicalAI #HealthcareInnovation #ClinicalAI #DigitalHealth #MedEd #FutureOfMedicine #AIinHealthcare #MedicalTechnology #HealthTech #MDSynapse
 ```
 
 **Image Suggestions:**
@@ -375,7 +375,7 @@ What AI tools at your institution actually get used? Reply below 👇
 
 **For newsletter signups:**
 ```
-Want more insights on medicine, AI, and the future clinician? Join the NeoSynapse newsletter: [link]
+Want more insights on medicine, AI, and the future clinician? Join the MDSynapse newsletter: [link]
 ```
 
 **For discussion:**
@@ -390,4 +390,4 @@ If this resonates, share it with someone involved in AI procurement at your hosp
 
 ---
 
-*These posts are designed for the NeoSynapse.md brand voice: intelligent, direct, clinician-focused, and solutions-oriented rather than purely critical.*
+*These posts are designed for the MDSynapse.org brand voice: intelligent, direct, clinician-focused, and solutions-oriented rather than purely critical.*

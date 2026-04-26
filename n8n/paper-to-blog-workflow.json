@@ -172,7 +172,7 @@
     {
       "parameters": {
         "method": "GET",
-        "url": "https://api.github.com/repos/slowvak/neosynapse/git/ref/heads/main",
+        "url": "https://api.github.com/repos/slowvak/mdsynapse.org/git/ref/heads/main",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "options": {}
@@ -192,7 +192,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "https://api.github.com/repos/slowvak/neosynapse/git/refs",
+        "url": "https://api.github.com/repos/slowvak/mdsynapse.org/git/refs",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
@@ -215,7 +215,7 @@
     {
       "parameters": {
         "method": "PUT",
-        "url": "=https://api.github.com/repos/slowvak/neosynapse/contents/{{ $('Prepare GitHub Payload').first().json.filename }}",
+        "url": "=https://api.github.com/repos/slowvak/mdsynapse.org/contents/{{ $('Prepare GitHub Payload').first().json.filename }}",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
@@ -266,7 +266,7 @@
     {
       "parameters": {
         "method": "PUT",
-        "url": "=https://api.github.com/repos/slowvak/neosynapse/contents/{{ $('Prepare GitHub Payload').first().json.infographic_filename }}",
+        "url": "=https://api.github.com/repos/slowvak/mdsynapse.org/contents/{{ $('Prepare GitHub Payload').first().json.infographic_filename }}",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
@@ -289,12 +289,12 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "https://api.github.com/repos/slowvak/neosynapse/pulls",
+        "url": "https://api.github.com/repos/slowvak/mdsynapse.org/pulls",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"title\": \"{{ $('Prepare GitHub Payload').first().json.pr_title }}\",\n  \"body\": \"## Auto-generated Article Summary\\n\\n{{ $('Prepare GitHub Payload').first().json.pr_body }}\\n\\n### Files\\n- `{{ $('Prepare GitHub Payload').first().json.filename }}` — Blog post HTML\\n- `{{ $('Prepare GitHub Payload').first().json.infographic_filename }}` — Sketchbook infographic\\n\\n---\\n*Generated automatically by the NeoSynapse paper-to-blog pipeline*\",\n  \"head\": \"{{ $('Prepare GitHub Payload').first().json.branchName }}\",\n  \"base\": \"main\"\n}",
+        "jsonBody": "={\n  \"title\": \"{{ $('Prepare GitHub Payload').first().json.pr_title }}\",\n  \"body\": \"## Auto-generated Article Summary\\n\\n{{ $('Prepare GitHub Payload').first().json.pr_body }}\\n\\n### Files\\n- `{{ $('Prepare GitHub Payload').first().json.filename }}` — Blog post HTML\\n- `{{ $('Prepare GitHub Payload').first().json.infographic_filename }}` — Sketchbook infographic\\n\\n---\\n*Generated automatically by the MDSynapse paper-to-blog pipeline*\",\n  \"head\": \"{{ $('Prepare GitHub Payload').first().json.branchName }}\",\n  \"base\": \"main\"\n}",
         "options": {}
       },
       "id": "create-pr",
@@ -479,7 +479,7 @@
   "staticData": null,
   "tags": [
     {
-      "name": "neosynapse",
+      "name": "mdsynapse",
       "createdAt": "2026-03-02T00:00:00.000Z",
       "updatedAt": "2026-03-02T00:00:00.000Z"
     }

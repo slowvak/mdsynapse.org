@@ -1,6 +1,6 @@
 # Publishing Pipeline
 
-`publish.py` converts Google Docs into NeoSynapse pages. It has two modes:
+`publish.py` converts Google Docs into MDSynapse pages. It has two modes:
 
 - **review** — paper reviews from the Reviews Drive folder, written to
   `Reviews/{slug}.html`, with a card injected into `papers-of-note.html`.

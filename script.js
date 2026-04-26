@@ -384,6 +384,6 @@ document.addEventListener('DOMContentLoaded', () => {
 // CONSOLE EASTER EGG
 // ==========================================
 
-console.log('%c🧠 NeoSynapse.md', 'color: #8B5CF6; font-size: 24px; font-weight: bold;');
+console.log('%c🧠 MDSynapse.org', 'color: #8B5CF6; font-size: 24px; font-weight: bold;');
 console.log('%cThink deep. Know more. Heal well.', 'color: #06B6D4; font-size: 14px;');
 console.log('%cInterested in the code? Check out the repo!', 'color: #1E1B4B; font-size: 12px;');

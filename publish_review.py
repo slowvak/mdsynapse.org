@@ -8,7 +8,7 @@
 # ]
 # ///
 """
-publish_review.py — Convert Google Docs paper reviews into NeoSynapse HTML pages.
+publish_review.py — Convert Google Docs paper reviews into MDSynapse HTML pages.
 
 Workflow:
   1. Scan a Google Drive folder for Google Docs not yet published
@@ -616,7 +616,7 @@ def run(args: argparse.Namespace) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Publish Google Docs paper reviews to NeoSynapse.",
+        description="Publish Google Docs paper reviews to MDSynapse.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 examples:
