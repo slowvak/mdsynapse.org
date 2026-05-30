@@ -1,0 +1,780 @@
+diff --git a/BlogPosts/_blog-guide.md b/BlogPosts/_blog-guide.md
+index 39b75fc..da3b6bf 100644
+--- a/BlogPosts/_blog-guide.md
++++ b/BlogPosts/_blog-guide.md
+@@ -1,6 +1,6 @@
+ # Blog Post — Google Doc Structure Guide
+ 
+-Free-form Google Docs are converted into NeoSynapse blog posts by `publish.py
++Free-form Google Docs are converted into MDSynapse blog posts by `publish.py
+ --mode blog`. Unlike paper reviews, **no metadata table is required** — the script
+ infers what it needs from the document. Add a metadata table only when you want
+ to override the defaults.
+diff --git a/BlogPosts/_blog-template.html b/BlogPosts/_blog-template.html
+index b0572cc..c0b8880 100644
+--- a/BlogPosts/_blog-template.html
++++ b/BlogPosts/_blog-template.html
+@@ -4,7 +4,7 @@
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="description" content="{{META_DESCRIPTION}}">
+-    <title>{{TITLE}} | NeoSynapse.md</title>
++    <title>{{TITLE}} | MDSynapse.org</title>
+ 
+     <!-- Open Graph -->
+     <meta property="og:type" content="article">
+@@ -48,7 +48,7 @@
+                             <line x1="19" y1="16" x2="21.5" y2="16" stroke="#3FD1C1" stroke-width="1.5"/>
+                         </svg>
+                     </div>
+-                    <span class="logo-text">NeoSynapse<span class="logo-ext">.md</span></span>
++                    <span class="logo-text">MDSynapse<span class="logo-ext">.org</span></span>
+                 </a>
+                 <div class="nav-links">
+                     <a href="../index.html">Home</a>
+@@ -132,7 +132,7 @@
+                     </div>
+                 </div>
+                 <div class="footer-copyright">
+-                    <p>&copy; 2025 NeoSynapse.md | Published at <a href="https://mdsynapse.org" style="color: var(--teal-primary); text-decoration: none;">mdsynapse.org</a></p>
++                    <p>&copy; 2025–2026 MDSynapse.org | Published at <a href="https://mdsynapse.org" style="color: var(--teal-primary); text-decoration: none;">mdsynapse.org</a></p>
+                 </div>
+             </div>
+         </div>
+diff --git a/BlogPosts/algorithm-bias.html b/BlogPosts/algorithm-bias.html
+index 1de599f..8ee1e19 100644
+--- a/BlogPosts/algorithm-bias.html
++++ b/BlogPosts/algorithm-bias.html
+@@ -4,7 +4,7 @@
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="description" content="Understanding and addressing algorithmic bias in medical AI. By Dr. Bradley J. Erickson at mdsynapse.org">
+-    <title>When Algorithms Inherit Bias: Fairness Challenges in Medical AI | NeoSynapse.md</title>
++    <title>When Algorithms Inherit Bias: Fairness Challenges in Medical AI | MDSynapse.org</title>
+ 
+     <!-- Open Graph / Facebook -->
+     <meta property="og:type" content="article">
+@@ -49,7 +49,7 @@
+                             <line x1="19" y1="16" x2="21.5" y2="16" stroke="#3FD1C1" stroke-width="1.5"/>
+                         </svg>
+                     </div>
+-                    <span class="logo-text">NeoSynapse<span class="logo-ext">.md</span></span>
++                    <span class="logo-text">MDSynapse<span class="logo-ext">.org</span></span>
+                 </a>
+                 <div class="nav-links">
+                     <a href="../index.html">Home</a>
+@@ -576,7 +576,7 @@
+                     </div>
+                 </div>
+                 <div class="footer-copyright">
+-                    <p>&copy; 2025 NeoSynapse.md | Published at <a href="https://mdsynapse.org" style="color: var(--teal-primary); text-decoration: none;">mdsynapse.org</a></p>
++                    <p>&copy; 2025–2026 MDSynapse.org | Published at <a href="https://mdsynapse.org" style="color: var(--teal-primary); text-decoration: none;">mdsynapse.org</a></p>
+                 </div>
+             </div>
+         </div>
+diff --git a/BlogPosts/bio-ai.html b/BlogPosts/bio-ai.html
+index cfb1b3a..f94c93b 100644
+--- a/BlogPosts/bio-ai.html
++++ b/BlogPosts/bio-ai.html
+@@ -4,7 +4,7 @@
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="description" content="Why the next explosion in intelligence won't happen on your phone, but inside your cells. By Dr. Bradley J. Erickson at mdsynapse.org">
+-    <title>Beyond the Screen: The Biological AI Revolution | NeoSynapse.md</title>
++    <title>Beyond the Screen: The Biological AI Revolution | MDSynapse.org</title>
+ 
+     <!-- Canonical URL -->
+     <link rel="canonical" href="https://mdsynapse.org/bio-ai.html">
+@@ -33,7 +33,7 @@
+                             <line x1="19" y1="16" x2="21.5" y2="16" stroke="#3FD1C1" stroke-width="1.5"/>
+                         </svg>
+                     </div>
+-                    <span class="logo-text">NeoSynapse<span class="logo-ext">.md</span></span>
++                    <span class="logo-text">MDSynapse<span class="logo-ext">.org</span></span>
+                 </a>
+                 <div class="nav-links">
+                     <a href="../index.html">Home</a>
+@@ -198,7 +198,7 @@
+                     </div>
+                 </div>
+                 <div class="footer-copyright">
+-                    <p>&copy; 2025 NeoSynapse.md | Published at <a href="https://mdsynapse.org" style="color: var(--teal-primary); text-decoration: none;">mdsynapse.org</a></p>
++                    <p>&copy; 2025–2026 MDSynapse.org | Published at <a href="https://mdsynapse.org" style="color: var(--teal-primary); text-decoration: none;">mdsynapse.org</a></p>
+                 </div>
+             </div>
+         </div>
+diff --git a/BlogPosts/foundation-models.html b/BlogPosts/foundation-models.html
+index 69073ed..5d4dab5 100644
+--- a/BlogPosts/foundation-models.html
++++ b/BlogPosts/foundation-models.html
+@@ -4,7 +4,7 @@
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="description" content="Understanding medical foundation models: why they're more narrow than their name suggests and how demographics shape their utility. By Dr. Bradley J. Erickson at mdsynapse.org">
+-    <title>Foundation Models in Healthcare: The Misnomer and the Promise | NeoSynapse.md</title>
++    <title>Foundation Models in Healthcare: The Misnomer and the Promise | MDSynapse.org</title>
+ 
+     <!-- Open Graph / Facebook -->
+     <meta property="og:type" content="article">
+@@ -49,7 +49,7 @@
+                             <line x1="19" y1="16" x2="21.5" y2="16" stroke="#3FD1C1" stroke-width="1.5"/>
+                         </svg>
+                     </div>
+-                    <span class="logo-text">NeoSynapse<span class="logo-ext">.md</span></span>
++                    <span class="logo-text">MDSynapse<span class="logo-ext">.org</span></span>
+                 </a>
+                 <div class="nav-links">
+                     <a href="../index.html">Home</a>
+@@ -550,7 +550,7 @@
+                     </div>
+                 </div>
+                 <div class="footer-copyright">
+-                    <p>&copy; 2025 NeoSynapse.md | Published at <a href="https://mdsynapse.org" style="color: var(--teal-primary); text-decoration: none;">mdsynapse.org</a></p>
++                    <p>&copy; 2025–2026 MDSynapse.org | Published at <a href="https://mdsynapse.org" style="color: var(--teal-primary); text-decoration: none;">mdsynapse.org</a></p>
+                 </div>
+             </div>
+         </div>
+diff --git a/BlogPosts/from-lab-to-ward.html b/BlogPosts/from-lab-to-ward.html
+index 0b29ccd..df1fc64 100644
+--- a/BlogPosts/from-lab-to-ward.html
++++ b/BlogPosts/from-lab-to-ward.html
+@@ -4,7 +4,7 @@
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="description" content="Why most medical AI fails at deployment and what physicians need to demand before adoption. By Dr. Bradley J. Erickson at mdsynapse.org">
+-    <title>From Lab to Ward: Why Most Medical AI Fails at Deployment | NeoSynapse.md</title>
++    <title>From Lab to Ward: Why Most Medical AI Fails at Deployment | MDSynapse.org</title>
+ 
+     <!-- Open Graph / Facebook -->
+     <meta property="og:type" content="article">
+@@ -49,7 +49,7 @@
+                             <line x1="19" y1="16" x2="21.5" y2="16" stroke="#3FD1C1" stroke-width="1.5"/>
+                         </svg>
+                     </div>
+-                    <span class="logo-text">NeoSynapse<span class="logo-ext">.md</span></span>
++                    <span class="logo-text">MDSynapse<span class="logo-ext">.org</span></span>
+                 </a>
+                 <div class="nav-links">
+                     <a href="../index.html">Home</a>
+@@ -425,7 +425,7 @@
+                     </div>
+                 </div>
+                 <div class="footer-copyright">
+-                    <p>&copy; 2025 NeoSynapse.md | Published at <a href="https://mdsynapse.org" style="color: var(--teal-primary); text-decoration: none;">mdsynapse.org</a></p>
++                    <p>&copy; 2025–2026 MDSynapse.org | Published at <a href="https://mdsynapse.org" style="color: var(--teal-primary); text-decoration: none;">mdsynapse.org</a></p>
+                 </div>
+             </div>
+         </div>
+diff --git a/BlogPosts/hybrid-ai-workflows.html b/BlogPosts/hybrid-ai-workflows.html
+index a2c2642..040c8a7 100644
+--- a/BlogPosts/hybrid-ai-workflows.html
++++ b/BlogPosts/hybrid-ai-workflows.html
+@@ -4,7 +4,7 @@
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="description" content="Why pure AI agent workflows are unsafe for healthcare, and why hybrid rules-based and agent-based systems provide the right balance of flexibility and reliability. By Dr. Bradley J. Erickson at mdsynapse.org">
+-    <title>Don't Let the Agent Drive Alone: The Safety Case for Hybrid AI Workflows | NeoSynapse.md</title>
++    <title>Don't Let the Agent Drive Alone: The Safety Case for Hybrid AI Workflows | MDSynapse.org</title>
+ 
+     <!-- Open Graph / Facebook -->
+     <meta property="og:type" content="article">
+@@ -49,7 +49,7 @@
+                             <line x1="19" y1="16" x2="21.5" y2="16" stroke="#3FD1C1" stroke-width="1.5"/>
+                         </svg>
+                     </div>
+-                    <span class="logo-text">NeoSynapse<span class="logo-ext">.md</span></span>
++                    <span class="logo-text">MDSynapse<span class="logo-ext">.org</span></span>
+                 </a>
+                 <div class="nav-links">
+                     <a href="../index.html">Home</a>
+@@ -443,7 +443,7 @@
+                     </div>
+                 </div>
+                 <div class="footer-copyright">
+-                    <p>&copy; 2026 NeoSynapse.md | Published at <a href="https://mdsynapse.org" style="color: var(--teal-primary); text-decoration: none;">mdsynapse.org</a></p>
++                    <p>&copy; 2025–2026 MDSynapse.org | Published at <a href="https://mdsynapse.org" style="color: var(--teal-primary); text-decoration: none;">mdsynapse.org</a></p>
+                 </div>
+             </div>
+         </div>
+diff --git a/BlogPosts/model-drift.html b/BlogPosts/model-drift.html
+index 3e46049..bbfdcdb 100644
+--- a/BlogPosts/model-drift.html
++++ b/BlogPosts/model-drift.html
+@@ -4,7 +4,7 @@
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="description" content="When AI quietly gets worse: Understanding model drift in medical AI. By Dr. Bradley J. Erickson at mdsynapse.org">
+-    <title>Model Drift in Medicine: When AI Quietly Gets Worse | NeoSynapse.md</title>
++    <title>Model Drift in Medicine: When AI Quietly Gets Worse | MDSynapse.org</title>
+ 
+     <!-- Open Graph / Facebook -->
+     <meta property="og:type" content="article">
+@@ -49,7 +49,7 @@
+                             <line x1="19" y1="16" x2="21.5" y2="16" stroke="#3FD1C1" stroke-width="1.5"/>
+                         </svg>
+                     </div>
+-                    <span class="logo-text">NeoSynapse<span class="logo-ext">.md</span></span>
++                    <span class="logo-text">MDSynapse<span class="logo-ext">.org</span></span>
+                 </a>
+                 <div class="nav-links">
+                     <a href="../index.html">Home</a>
+@@ -557,7 +557,7 @@
+                     </div>
+                 </div>
+                 <div class="footer-copyright">
+-                    <p>&copy; 2025 NeoSynapse.md | Published at <a href="https://mdsynapse.org" style="color: var(--teal-primary); text-decoration: none;">mdsynapse.org</a></p>
++                    <p>&copy; 2025–2026 MDSynapse.org | Published at <a href="https://mdsynapse.org" style="color: var(--teal-primary); text-decoration: none;">mdsynapse.org</a></p>
+                 </div>
+             </div>
+         </div>
+diff --git a/BlogPosts/uncertainty-quantification.html b/BlogPosts/uncertainty-quantification.html
+index 43646f6..70258fc 100644
+--- a/BlogPosts/uncertainty-quantification.html
++++ b/BlogPosts/uncertainty-quantification.html
+@@ -6,7 +6,7 @@
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="description"
+         content="Why AI needs to communicate doubt: the critical role of uncertainty quantification in medical decision-making. By Dr. Bradley J. Erickson at mdsynapse.org">
+-    <title>The Confidence Problem: Why Your AI Needs to Learn to Say "I Don't Know" | NeoSynapse.md</title>
++    <title>The Confidence Problem: Why Your AI Needs to Learn to Say "I Don't Know" | MDSynapse.org</title>
+ 
+     <!-- Open Graph / Facebook -->
+     <meta property="og:type" content="article">
+@@ -56,7 +56,7 @@
+                             <line x1="19" y1="16" x2="21.5" y2="16" stroke="#3FD1C1" stroke-width="1.5" />
+                         </svg>
+                     </div>
+-                    <span class="logo-text">NeoSynapse<span class="logo-ext">.md</span></span>
++                    <span class="logo-text">MDSynapse<span class="logo-ext">.org</span></span>
+                 </a>
+                 <div class="nav-links">
+                     <a href="../index.html">Home</a>
+@@ -689,7 +689,7 @@
+                     </div>
+                 </div>
+                 <div class="footer-copyright">
+-                    <p>&copy; 2025 NeoSynapse.md | Published at <a href="https://mdsynapse.org"
++                    <p>&copy; 2025–2026 MDSynapse.org | Published at <a href="https://mdsynapse.org"
+                             style="color: var(--teal-primary); text-decoration: none;">mdsynapse.org</a></p>
+                 </div>
+             </div>
+diff --git a/PublishInstructions.md b/PublishInstructions.md
+index b3ebad2..87ac09a 100644
+--- a/PublishInstructions.md
++++ b/PublishInstructions.md
+@@ -1,6 +1,6 @@
+ # Publishing Pipeline
+ 
+-`publish.py` converts Google Docs into NeoSynapse pages. It has two modes:
++`publish.py` converts Google Docs into MDSynapse pages. It has two modes:
+ 
+ - **review** — paper reviews from the Reviews Drive folder, written to
+   `Reviews/{slug}.html`, with a card injected into `papers-of-note.html`.
+diff --git a/README.md b/README.md
+index 7dfc024..2d89c5c 100644
+--- a/README.md
++++ b/README.md
+@@ -220,7 +220,7 @@ A: Edit the Google Fonts link in `<head>` and update the CSS variables.
+ A: Yes! Either duplicate `article-template.html` or integrate a static site generator.
+ 
+ **Q: How do I make the logo a file instead of inline SVG?**
+-A: Export your logo as SVG, save it as `logo.svg`, and replace the SVG code with `<img src="logo.svg" alt="NeoSynapse">`.
++A: Export your logo as SVG, save it as `logo.svg`, and replace the SVG code with `<img src="logo.svg" alt="MDSynapse">`.
+ 
+ **Q: Is this production-ready?**
+ A: Yes! Just add your content, test on multiple devices, and deploy.
+diff --git a/Reviews/_review-template.html b/Reviews/_review-template.html
+index ef21c44..df87f6d 100644
+--- a/Reviews/_review-template.html
++++ b/Reviews/_review-template.html
+@@ -4,7 +4,7 @@
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="description" content="{{META_DESCRIPTION}}">
+-    <title>{{REVIEW_TITLE}} | NeoSynapse.md</title>
++    <title>{{REVIEW_TITLE}} | MDSynapse.org</title>
+ 
+     <!-- Open Graph -->
+     <meta property="og:type" content="article">
+@@ -49,7 +49,7 @@
+                             <line x1="19" y1="16" x2="21.5" y2="16" stroke="#3FD1C1" stroke-width="1.5"/>
+                         </svg>
+                     </div>
+-                    <span class="logo-text">NeoSynapse<span class="logo-ext">.md</span></span>
++                    <span class="logo-text">MDSynapse<span class="logo-ext">.org</span></span>
+                 </a>
+                 <div class="nav-links">
+                     <a href="../index.html">Home</a>
+@@ -222,7 +222,7 @@
+                     </div>
+                 </div>
+                 <div class="footer-copyright">
+-                    <p>&copy; 2025 NeoSynapse.md | Published at <a href="https://mdsynapse.org" style="color: var(--teal-primary); text-decoration: none;">mdsynapse.org</a></p>
++                    <p>&copy; 2025–2026 MDSynapse.org | Published at <a href="https://mdsynapse.org" style="color: var(--teal-primary); text-decoration: none;">mdsynapse.org</a></p>
+                 </div>
+             </div>
+         </div>
+diff --git a/about.html b/about.html
+index b32531d..d0ec0f1 100644
+--- a/about.html
++++ b/about.html
+@@ -4,19 +4,19 @@
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="description" content="Dr. Bradley J. Erickson, MD, PhD - Radiologist, AI researcher, and CEO of FlowSigma. 30+ years pioneering medical imaging informatics at mdsynapse.org">
+-    <title>About Dr. Bradley J. Erickson | NeoSynapse.md</title>
++    <title>About Dr. Bradley J. Erickson | MDSynapse.org</title>
+ 
+     <!-- Open Graph / Facebook -->
+     <meta property="og:type" content="profile">
+     <meta property="og:url" content="https://mdsynapse.org/about.html">
+-    <meta property="og:title" content="About Dr. Bradley J. Erickson | NeoSynapse.md">
++    <meta property="og:title" content="About Dr. Bradley J. Erickson | MDSynapse.org">
+     <meta property="og:description" content="Radiologist, AI researcher, and CEO of FlowSigma. 30+ years pioneering medical imaging informatics and artificial intelligence.">
+     <meta property="og:image" content="https://mdsynapse.org/og-image-about.png">
+ 
+     <!-- Twitter -->
+     <meta property="twitter:card" content="summary_large_image">
+     <meta property="twitter:url" content="https://mdsynapse.org/about.html">
+-    <meta property="twitter:title" content="About Dr. Bradley J. Erickson | NeoSynapse.md">
++    <meta property="twitter:title" content="About Dr. Bradley J. Erickson | MDSynapse.org">
+     <meta property="twitter:description" content="Radiologist, AI researcher, and CEO of FlowSigma. 30+ years pioneering medical imaging informatics and artificial intelligence.">
+     <meta property="twitter:image" content="https://mdsynapse.org/og-image-about.png">
+ 
+@@ -369,7 +369,7 @@
+                             </defs>
+                         </svg>
+                     </div>
+-                    <span class="logo-text">NeoSynapse<span class="logo-ext">.md</span></span>
++                    <span class="logo-text">MDSynapse<span class="logo-ext">.org</span></span>
+                 </a>
+                 <div class="nav-links">
+                     <a href="index.html">Home</a>
+@@ -642,7 +642,7 @@
+                     <strong>My mission is to bridge the gap between cutting-edge AI research and practical clinical implementation.</strong> Too many promising AI tools fail at deployment—not because the algorithms are inadequate, but because they ignore the realities of clinical workflows, physician trust, and patient safety.
+                 </p>
+                 <p>
+-                    Through NeoSynapse.md, I aim to educate the next generation of clinicians on how to critically evaluate AI, demand transparency from vendors, and advocate for tools that genuinely improve patient care—not just boost metrics in research papers.
++                    Through MDSynapse.org, I aim to educate the next generation of clinicians on how to critically evaluate AI, demand transparency from vendors, and advocate for tools that genuinely improve patient care—not just boost metrics in research papers.
+                 </p>
+                 <p>
+                     At FlowSigma, we're building the infrastructure to make medical AI work in practice: embedded workflows, automated quality checks, and systems that respect how physicians actually work. Because the future of medicine isn't about replacing clinicians—it's about empowering them with intelligent, reliable tools that let them focus on what matters most: healing.
+@@ -687,7 +687,7 @@
+                     </div>
+                 </div>
+                 <div class="footer-copyright">
+-                    <p>&copy; 2025 NeoSynapse.md | Published at <a href="https://mdsynapse.org" style="color: var(--teal-primary); text-decoration: none;">mdsynapse.org</a></p>
++                    <p>&copy; 2025–2026 MDSynapse.org | Published at <a href="https://mdsynapse.org" style="color: var(--teal-primary); text-decoration: none;">mdsynapse.org</a></p>
+                 </div>
+             </div>
+         </div>
+diff --git a/article-template.html b/article-template.html
+index 992132d..8571bf9 100644
+--- a/article-template.html
++++ b/article-template.html
+@@ -4,7 +4,7 @@
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="description" content="Article description for SEO">
+-    <title>Article Title | NeoSynapse.md</title>
++    <title>Article Title | MDSynapse.org</title>
+     <link rel="stylesheet" href="styles.css">
+     <link rel="stylesheet" href="article-styles.css">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+@@ -30,7 +30,7 @@
+                             <line x1="19" y1="16" x2="21.5" y2="16" stroke="#3FD1C1" stroke-width="1.5"/>
+                         </svg>
+                     </div>
+-                    <span class="logo-text">NeoSynapse<span class="logo-ext">.md</span></span>
++                    <span class="logo-text">MDSynapse<span class="logo-ext">.org</span></span>
+                 </a>
+                 <div class="nav-links">
+                     <a href="index.html">Home</a>
+@@ -55,7 +55,7 @@
+                         <span class="article-divider">•</span>
+                         <span class="article-reading-time">6 min read</span>
+                         <span class="article-divider">•</span>
+-                        <span class="article-author">NeoSynapse</span>
++                        <span class="article-author">MDSynapse</span>
+                     </div>
+                 </div>
+             </div>
+@@ -255,7 +255,7 @@
+                     </div>
+                 </div>
+                 <div class="footer-copyright">
+-                    <p>&copy; 2025 NeoSynapse.md. All rights reserved.</p>
++                    <p>&copy; 2025–2026 MDSynapse.org. All rights reserved.</p>
+                 </div>
+             </div>
+         </div>
+diff --git a/index.html b/index.html
+index 1abcb11..fda1477 100644
+--- a/index.html
++++ b/index.html
+@@ -3,20 +3,20 @@
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-    <meta name="description" content="NeoSynapse.md - Exploring the intersection of medicine, intelligence, and the future clinician. Medical AI insights from Dr. Bradley J. Erickson at mdsynapse.org">
+-    <title>NeoSynapse.md | Think deep. Know more. Heal well.</title>
++    <meta name="description" content="MDSynapse.org - Exploring the intersection of medicine, intelligence, and the future clinician. Medical AI insights from Dr. Bradley J. Erickson at mdsynapse.org">
++    <title>MDSynapse.org | Think deep. Know more. Heal well.</title>
+ 
+     <!-- Open Graph / Facebook -->
+     <meta property="og:type" content="website">
+     <meta property="og:url" content="https://mdsynapse.org/">
+-    <meta property="og:title" content="NeoSynapse.md | Think deep. Know more. Heal well.">
++    <meta property="og:title" content="MDSynapse.org | Think deep. Know more. Heal well.">
+     <meta property="og:description" content="Exploring the intersection of medicine, intelligence, and the future clinician. Medical AI insights from Dr. Bradley J. Erickson.">
+     <meta property="og:image" content="https://mdsynapse.org/og-image.png">
+ 
+     <!-- Twitter -->
+     <meta property="twitter:card" content="summary_large_image">
+     <meta property="twitter:url" content="https://mdsynapse.org/">
+-    <meta property="twitter:title" content="NeoSynapse.md | Think deep. Know more. Heal well.">
++    <meta property="twitter:title" content="MDSynapse.org | Think deep. Know more. Heal well.">
+     <meta property="twitter:description" content="Exploring the intersection of medicine, intelligence, and the future clinician. Medical AI insights from Dr. Bradley J. Erickson.">
+     <meta property="twitter:image" content="https://mdsynapse.org/og-image.png">
+ 
+@@ -71,7 +71,7 @@
+                             </defs>
+                         </svg>
+                     </div>
+-                    <span class="logo-text">NeoSynapse<span class="logo-ext">.md</span></span>
++                    <span class="logo-text">MDSynapse<span class="logo-ext">.org</span></span>
+                 </div>
+                 <div class="nav-links">
+                     <a href="about.html">About</a>
+@@ -91,7 +91,7 @@
+         </div>
+         <div class="container">
+             <div class="hero-content">
+-                <h1 class="hero-title">NeoSynapse<span class="hero-ext">.md</span></h1>
++                <h1 class="hero-title">MDSynapse<span class="hero-ext">.org</span></h1>
+                 <p class="hero-tagline">Think deep. Know more. Heal well.</p>
+                 <p class="hero-subtitle">Exploring the intersection of medicine, intelligence, and the future clinician.</p>
+                 <a href="#explore" class="btn btn-primary">Explore the Future of Medicine</a>
+@@ -102,7 +102,7 @@
+         </div>
+     </section>
+ 
+-    <!-- What NeoSynapse Is -->
++    <!-- What MDSynapse Is -->
+     <section id="explore" class="pillars">
+         <div class="container">
+             <div class="pillars-grid">
+@@ -244,7 +244,7 @@
+             <div class="about-content">
+                 <h2 class="about-title">Built for Thinkers</h2>
+                 <div class="about-text">
+-                    <p>NeoSynapse.md is a space for future clinicians, medical Ai researchers, and anyone curious about the intersection of medicine and intelligence.</p>
++                    <p>MDSynapse.org is a space for future clinicians, medical Ai researchers, and anyone curious about the intersection of medicine and intelligence.</p>
+                     <p>This isn't about hype. It's about <strong>clarity</strong>—exploring how AI, data, and emerging technology reshape clinical practice while staying grounded in what matters: the patient, the decision, the healing.</p>
+                     <p>If you're preparing for a future where medicine demands both <em>deeper thinking</em> and <em>smarter tools</em>, you're in the right place.</p>
+                 </div>
+@@ -291,7 +291,7 @@
+                                     </defs>
+                                 </svg>
+                             </div>
+-                            <span class="logo-text">NeoSynapse<span class="logo-ext">.md</span></span>
++                            <span class="logo-text">MDSynapse<span class="logo-ext">.org</span></span>
+                         </div>
+                         <p class="footer-tagline">Think deep. Know more. Heal well.</p>
+                     </div>
+@@ -336,7 +336,7 @@
+                 </div>
+ 
+                 <div class="footer-copyright">
+-                    <p>&copy; 2025 NeoSynapse.md | Published at <a href="https://mdsynapse.org" style="color: var(--teal-primary); text-decoration: none;">mdsynapse.org</a></p>
++                    <p>&copy; 2025–2026 MDSynapse.org | Published at <a href="https://mdsynapse.org" style="color: var(--teal-primary); text-decoration: none;">mdsynapse.org</a></p>
+                 </div>
+             </div>
+         </div>
+diff --git a/n8n/README-setup.md b/n8n/README-setup.md
+index 4a69bef..82e2473 100644
+--- a/n8n/README-setup.md
++++ b/n8n/README-setup.md
+@@ -1,6 +1,6 @@
+-# NeoSynapse Paper-to-Blog Pipeline — n8n Setup Guide
++# MDSynapse Paper-to-Blog Pipeline — n8n Setup Guide
+ 
+-Automated pipeline that monitors a Google Drive folder for new research papers, generates a blog-post summary + infographic via Gemini, and creates a PR on `slowvak/neosynapse`.
++Automated pipeline that monitors a Google Drive folder for new research papers, generates a blog-post summary + infographic via Gemini, and creates a PR on `slowvak/mdsynapse.org`.
+ 
+ ## Pipeline Flow
+ 
+@@ -22,13 +22,13 @@ OAuth2 scopes may be restricted by your Google Workspace admin. Use a **Service
+ 
+ 2. **Create Service Account** (IAM & Admin → Service Accounts)
+    - Click **Create Service Account**
+-   - Name: `neosynapse-pipeline` (or similar)
++   - Name: `mdsynapse-pipeline` (or similar)
+    - Skip optional permissions → click **Done**
+    - Click into the new service account → **Keys** tab → **Add Key → Create New Key → JSON**
+    - Save the downloaded JSON key file securely
+ 
+ 3. **Share your Drive folder** with the service account
+-   - Copy the service account email (e.g., `neosynapse-pipeline@your-project.iam.gserviceaccount.com`)
++   - Copy the service account email (e.g., `mdsynapse-pipeline@your-project.iam.gserviceaccount.com`)
+    - In Google Drive, right-click your target folder → **Share**
+    - Paste the service account email → set to **Viewer** → Send
+    - The service account can only see folders explicitly shared with it
+@@ -54,7 +54,7 @@ OAuth2 scopes may be restricted by your Google Workspace admin. Use a **Service
+ 
+ 1. Go to [github.com/settings/tokens](https://github.com/settings/tokens)
+ 2. Create a **Fine-grained personal access token**:
+-   - Repository access: Select `slowvak/neosynapse`
++   - Repository access: Select `slowvak/mdsynapse.org`
+    - Permissions:
+      - Contents: **Read and write**
+      - Pull requests: **Read and write**
+@@ -101,7 +101,7 @@ In n8n → Settings → Variables, create these:
+ 1. Upload a research paper PDF to your monitored Google Drive folder
+ 2. Either wait for the hourly trigger, or click **"Test Workflow"** manually
+ 3. Check the execution log in n8n for any errors
+-4. Verify a PR appears on [github.com/slowvak/neosynapse/pulls](https://github.com/slowvak/neosynapse/pulls)
++4. Verify a PR appears on [github.com/slowvak/mdsynapse.org/pulls](https://github.com/slowvak/mdsynapse.org/pulls)
+ 
+ ---
+ 
+diff --git a/n8n/paper-to-blog-workflow.json b/n8n/paper-to-blog-workflow.json
+index 42ef73a..2862497 100644
+--- a/n8n/paper-to-blog-workflow.json
++++ b/n8n/paper-to-blog-workflow.json
+@@ -172,7 +172,7 @@
+     {
+       "parameters": {
+         "method": "GET",
+-        "url": "https://api.github.com/repos/slowvak/neosynapse/git/ref/heads/main",
++        "url": "https://api.github.com/repos/slowvak/mdsynapse.org/git/ref/heads/main",
+         "authentication": "genericCredentialType",
+         "genericAuthType": "httpHeaderAuth",
+         "options": {}
+@@ -192,7 +192,7 @@
+     {
+       "parameters": {
+         "method": "POST",
+-        "url": "https://api.github.com/repos/slowvak/neosynapse/git/refs",
++        "url": "https://api.github.com/repos/slowvak/mdsynapse.org/git/refs",
+         "authentication": "genericCredentialType",
+         "genericAuthType": "httpHeaderAuth",
+         "sendBody": true,
+@@ -215,7 +215,7 @@
+     {
+       "parameters": {
+         "method": "PUT",
+-        "url": "=https://api.github.com/repos/slowvak/neosynapse/contents/{{ $('Prepare GitHub Payload').first().json.filename }}",
++        "url": "=https://api.github.com/repos/slowvak/mdsynapse.org/contents/{{ $('Prepare GitHub Payload').first().json.filename }}",
+         "authentication": "genericCredentialType",
+         "genericAuthType": "httpHeaderAuth",
+         "sendBody": true,
+@@ -266,7 +266,7 @@
+     {
+       "parameters": {
+         "method": "PUT",
+-        "url": "=https://api.github.com/repos/slowvak/neosynapse/contents/{{ $('Prepare GitHub Payload').first().json.infographic_filename }}",
++        "url": "=https://api.github.com/repos/slowvak/mdsynapse.org/contents/{{ $('Prepare GitHub Payload').first().json.infographic_filename }}",
+         "authentication": "genericCredentialType",
+         "genericAuthType": "httpHeaderAuth",
+         "sendBody": true,
+@@ -289,12 +289,12 @@
+     {
+       "parameters": {
+         "method": "POST",
+-        "url": "https://api.github.com/repos/slowvak/neosynapse/pulls",
++        "url": "https://api.github.com/repos/slowvak/mdsynapse.org/pulls",
+         "authentication": "genericCredentialType",
+         "genericAuthType": "httpHeaderAuth",
+         "sendBody": true,
+         "specifyBody": "json",
+-        "jsonBody": "={\n  \"title\": \"{{ $('Prepare GitHub Payload').first().json.pr_title }}\",\n  \"body\": \"## Auto-generated Article Summary\\n\\n{{ $('Prepare GitHub Payload').first().json.pr_body }}\\n\\n### Files\\n- `{{ $('Prepare GitHub Payload').first().json.filename }}` — Blog post HTML\\n- `{{ $('Prepare GitHub Payload').first().json.infographic_filename }}` — Sketchbook infographic\\n\\n---\\n*Generated automatically by the NeoSynapse paper-to-blog pipeline*\",\n  \"head\": \"{{ $('Prepare GitHub Payload').first().json.branchName }}\",\n  \"base\": \"main\"\n}",
++        "jsonBody": "={\n  \"title\": \"{{ $('Prepare GitHub Payload').first().json.pr_title }}\",\n  \"body\": \"## Auto-generated Article Summary\\n\\n{{ $('Prepare GitHub Payload').first().json.pr_body }}\\n\\n### Files\\n- `{{ $('Prepare GitHub Payload').first().json.filename }}` — Blog post HTML\\n- `{{ $('Prepare GitHub Payload').first().json.infographic_filename }}` — Sketchbook infographic\\n\\n---\\n*Generated automatically by the MDSynapse paper-to-blog pipeline*\",\n  \"head\": \"{{ $('Prepare GitHub Payload').first().json.branchName }}\",\n  \"base\": \"main\"\n}",
+         "options": {}
+       },
+       "id": "create-pr",
+@@ -479,7 +479,7 @@
+   "staticData": null,
+   "tags": [
+     {
+-      "name": "neosynapse",
++      "name": "mdsynapse",
+       "createdAt": "2026-03-02T00:00:00.000Z",
+       "updatedAt": "2026-03-02T00:00:00.000Z"
+     }
+diff --git a/n8n/prompts/blog-post-prompt.txt b/n8n/prompts/blog-post-prompt.txt
+index f3be843..0501159 100644
+--- a/n8n/prompts/blog-post-prompt.txt
++++ b/n8n/prompts/blog-post-prompt.txt
+@@ -1,6 +1,6 @@
+-You are a scientific communication expert writing for the NeoSynapse.md blog (mdsynapse.org), a site about medical AI and the future of clinical practice.
++You are a scientific communication expert writing for the MDSynapse.org blog (mdsynapse.org), a site about medical AI and the future of clinical practice.
+ 
+-Given the attached research paper, produce a complete blog-post style summary as a full HTML page. Follow the structure and tone of existing NeoSynapse articles: accessible but rigorous, engaging but accurate.
++Given the attached research paper, produce a complete blog-post style summary as a full HTML page. Follow the structure and tone of existing MDSynapse articles: accessible but rigorous, engaging but accurate.
+ 
+ ## ARTICLE STRUCTURE (3-5 pages, ~2500-3500 words total):
+ 
+@@ -33,7 +33,7 @@ Given the attached research paper, produce a complete blog-post style summary as
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="description" content="{{SEO_DESCRIPTION}}">
+-    <title>{{ARTICLE_TITLE}} | NeoSynapse.md</title>
++    <title>{{ARTICLE_TITLE}} | MDSynapse.org</title>
+     <link rel="canonical" href="https://mdsynapse.org/{{FILENAME}}.html">
+     <link rel="stylesheet" href="styles.css">
+     <link rel="stylesheet" href="article-styles.css">
+@@ -59,7 +59,7 @@ Given the attached research paper, produce a complete blog-post style summary as
+                             <line x1="19" y1="16" x2="21.5" y2="16" stroke="#3FD1C1" stroke-width="1.5"/>
+                         </svg>
+                     </div>
+-                    <span class="logo-text">NeoSynapse<span class="logo-ext">.md</span></span>
++                    <span class="logo-text">MDSynapse<span class="logo-ext">.org</span></span>
+                 </a>
+                 <div class="nav-links">
+                     <a href="index.html">Home</a>
+@@ -175,7 +175,7 @@ Given the attached research paper, produce a complete blog-post style summary as
+                     </div>
+                 </div>
+                 <div class="footer-copyright">
+-                    <p>&copy; 2025 NeoSynapse.md | Published at <a href="https://mdsynapse.org" style="color: var(--teal-primary); text-decoration: none;">mdsynapse.org</a></p>
++                    <p>&copy; 2025–2026 MDSynapse.org | Published at <a href="https://mdsynapse.org" style="color: var(--teal-primary); text-decoration: none;">mdsynapse.org</a></p>
+                 </div>
+             </div>
+         </div>
+diff --git a/papers-of-note.html b/papers-of-note.html
+index 5fc8b12..a9130e1 100644
+--- a/papers-of-note.html
++++ b/papers-of-note.html
+@@ -4,19 +4,19 @@
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="description" content="Expert reviews of landmark papers in medical AI and imaging informatics by Dr. Bradley J. Erickson at mdsynapse.org">
+-    <title>Papers of Note | NeoSynapse.md</title>
++    <title>Papers of Note | MDSynapse.org</title>
+ 
+     <!-- Open Graph / Facebook -->
+     <meta property="og:type" content="website">
+     <meta property="og:url" content="https://mdsynapse.org/papers-of-note.html">
+-    <meta property="og:title" content="Papers of Note | NeoSynapse.md">
++    <meta property="og:title" content="Papers of Note | MDSynapse.org">
+     <meta property="og:description" content="Expert reviews and insights on landmark papers in medical AI, imaging informatics, and clinical decision support.">
+     <meta property="og:image" content="https://mdsynapse.org/og-image-papers.png">
+ 
+     <!-- Twitter -->
+     <meta property="twitter:card" content="summary_large_image">
+     <meta property="twitter:url" content="https://mdsynapse.org/papers-of-note.html">
+-    <meta property="twitter:title" content="Papers of Note | NeoSynapse.md">
++    <meta property="twitter:title" content="Papers of Note | MDSynapse.org">
+     <meta property="twitter:description" content="Expert reviews and insights on landmark papers in medical AI, imaging informatics, and clinical decision support.">
+     <meta property="twitter:image" content="https://mdsynapse.org/og-image-papers.png">
+ 
+@@ -47,7 +47,7 @@
+                             <line x1="19" y1="16" x2="21.5" y2="16" stroke="#3FD1C1" stroke-width="1.5"/>
+                         </svg>
+                     </div>
+-                    <span class="logo-text">NeoSynapse<span class="logo-ext">.md</span></span>
++                    <span class="logo-text">MDSynapse<span class="logo-ext">.org</span></span>
+                 </a>
+                 <div class="nav-links">
+                     <a href="index.html">Home</a>
+@@ -296,7 +296,7 @@
+                     </div>
+                 </div>
+                 <div class="footer-copyright">
+-                    <p>&copy; 2025 NeoSynapse.md | Published at <a href="https://mdsynapse.org" style="color: var(--teal-primary); text-decoration: none;">mdsynapse.org</a></p>
++                    <p>&copy; 2025–2026 MDSynapse.org | Published at <a href="https://mdsynapse.org" style="color: var(--teal-primary); text-decoration: none;">mdsynapse.org</a></p>
+                 </div>
+             </div>
+         </div>
+diff --git a/publish.py b/publish.py
+index 945d6a0..05d9469 100644
+--- a/publish.py
++++ b/publish.py
+@@ -8,7 +8,7 @@
+ # ]
+ # ///
+ """
+-publish.py — Convert Google Docs into NeoSynapse HTML pages.
++publish.py — Convert Google Docs into MDSynapse HTML pages.
+ 
+ Two modes:
+   review  — paper reviews from the Reviews Drive folder, written to Reviews/{slug}.html,
+@@ -769,7 +769,7 @@ def run(args: argparse.Namespace) -> None:
+ 
+ def main() -> None:
+     parser = argparse.ArgumentParser(
+-        description="Publish Google Docs to NeoSynapse (reviews or blog posts).",
++        description="Publish Google Docs to MDSynapse (reviews or blog posts).",
+         formatter_class=argparse.RawDescriptionHelpFormatter,
+         epilog="""
+ examples:
+diff --git a/publish_review.py b/publish_review.py
+index a808010..5e72a65 100644
+--- a/publish_review.py
++++ b/publish_review.py
+@@ -8,7 +8,7 @@
+ # ]
+ # ///
+ """
+-publish_review.py — Convert Google Docs paper reviews into NeoSynapse HTML pages.
++publish_review.py — Convert Google Docs paper reviews into MDSynapse HTML pages.
+ 
+ Workflow:
+   1. Scan a Google Drive folder for Google Docs not yet published
+@@ -616,7 +616,7 @@ def run(args: argparse.Namespace) -> None:
+ 
+ def main() -> None:
+     parser = argparse.ArgumentParser(
+-        description="Publish Google Docs paper reviews to NeoSynapse.",
++        description="Publish Google Docs paper reviews to MDSynapse.",
+         formatter_class=argparse.RawDescriptionHelpFormatter,
+         epilog="""
+ examples:
+diff --git a/script.js b/script.js
+index 4d5b1cc..6631192 100644
+--- a/script.js
++++ b/script.js
+@@ -384,6 +384,6 @@ document.addEventListener('DOMContentLoaded', () => {
+ // CONSOLE EASTER EGG
+ // ==========================================
+ 
+-console.log('%c🧠 NeoSynapse.md', 'color: #8B5CF6; font-size: 24px; font-weight: bold;');
++console.log('%c🧠 MDSynapse.org', 'color: #8B5CF6; font-size: 24px; font-weight: bold;');
+ console.log('%cThink deep. Know more. Heal well.', 'color: #06B6D4; font-size: 14px;');
+ console.log('%cInterested in the code? Check out the repo!', 'color: #1E1B4B; font-size: 12px;');
+diff --git a/social-media-posts.md b/social-media-posts.md
+index 42e03c6..328d643 100644
+--- a/social-media-posts.md
++++ b/social-media-posts.md
+@@ -1,4 +1,4 @@
+-# Social Media Posts for NeoSynapse.md Articles
++# Social Media Posts for MDSynapse.org Articles
+ 
+ ## Article: "From Lab to Ward: Why Most Medical AI Fails at Deployment"
+ 
+@@ -301,7 +301,7 @@ Full breakdown of what deployment actually requires (link in bio)
+ 
+ Because the real test isn't the validation study—it's whether you're still using it 6 months later.
+ 
+-#MedicalAI #HealthcareInnovation #ClinicalAI #DigitalHealth #MedEd #FutureOfMedicine #AIinHealthcare #MedicalTechnology #HealthTech #NeoSynapse
++#MedicalAI #HealthcareInnovation #ClinicalAI #DigitalHealth #MedEd #FutureOfMedicine #AIinHealthcare #MedicalTechnology #HealthTech #MDSynapse
+ ```
+ 
+ **Image Suggestions:**
+@@ -375,7 +375,7 @@ What AI tools at your institution actually get used? Reply below 👇
+ 
+ **For newsletter signups:**
+ ```
+-Want more insights on medicine, AI, and the future clinician? Join the NeoSynapse newsletter: [link]
++Want more insights on medicine, AI, and the future clinician? Join the MDSynapse newsletter: [link]
+ ```
+ 
+ **For discussion:**
+@@ -390,4 +390,4 @@ If this resonates, share it with someone involved in AI procurement at your hosp
+ 
+ ---
+ 
+-*These posts are designed for the NeoSynapse.md brand voice: intelligent, direct, clinician-focused, and solutions-oriented rather than purely critical.*
++*These posts are designed for the MDSynapse.org brand voice: intelligent, direct, clinician-focused, and solutions-oriented rather than purely critical.*
+

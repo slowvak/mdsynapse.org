@@ -163,10 +163,12 @@ window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
 
     if (currentScroll > 100) {
-        nav.style.background = 'rgba(30, 27, 75, 0.98)';
+        nav.style.background = 'rgba(30, 27, 75, 0.85)';
+        nav.style.backdropFilter = 'blur(20px) saturate(180%)';
         nav.style.boxShadow = '0 4px 20px rgba(139, 92, 246, 0.15)';
     } else {
-        nav.style.background = 'rgba(30, 27, 75, 0.95)';
+        nav.style.background = 'rgba(30, 27, 75, 0.6)';
+        nav.style.backdropFilter = 'blur(16px) saturate(180%)';
         nav.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.05)';
     }
 
@@ -377,6 +379,52 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         });
+    });
+});
+
+// ==========================================
+// BACK TO TOP BUTTON
+// ==========================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    const backToTop = document.createElement('a');
+    backToTop.href = '#';
+    backToTop.innerHTML = '↑';
+    backToTop.setAttribute('aria-label', 'Back to top');
+    backToTop.style.cssText = [
+        'position: fixed',
+        'bottom: 2rem',
+        'right: 2rem',
+        'width: 44px',
+        'height: 44px',
+        'background: linear-gradient(135deg, #8B5CF6 0%, #06B6D4 100%)',
+        'color: white',
+        'border-radius: 50%',
+        'display: flex',
+        'align-items: center',
+        'justify-content: center',
+        'opacity: 0',
+        'transition: opacity 0.3s, transform 0.3s',
+        'z-index: 999',
+        'cursor: pointer',
+        'text-decoration: none',
+        'font-size: 1.25rem',
+        'font-weight: bold',
+        'box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4)',
+        'pointer-events: none',
+    ].join('; ');
+    document.body.appendChild(backToTop);
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+            backToTop.style.opacity = '0.85';
+            backToTop.style.transform = 'translateY(0)';
+            backToTop.style.pointerEvents = 'auto';
+        } else {
+            backToTop.style.opacity = '0';
+            backToTop.style.transform = 'translateY(8px)';
+            backToTop.style.pointerEvents = 'none';
+        }
     });
 });
 
