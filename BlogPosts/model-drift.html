@@ -87,7 +87,7 @@
                 <div class="article-content">
 
                     <p class="lead">
-                        A pneumonia detection AI system deployed at a hospital in 2019 demonstrated 87% sensitivity during internal validation studies, was successfully integrated into radiology department workflows, and rapidly gained the trust of clinical users who relied on its performance for diagnostic support. However, by 2025, this same algorithmic system now correctly identifies only 68% of pneumonia cases—a substantial degradation in diagnostic sensitivity that has occurred without triggering any alerts, appearing on any warning dashboards, or generating any performance reports to inform clinical users of the deterioration. The algorithmic code remains unchanged, the system continues to operate within normal technical parameters, and IT monitoring systems report nominal function. Yet the model's clinical performance has degraded significantly through a phenomenon known as model drift—the silent, gradual, and potentially dangerous erosion of predictive accuracy that occurs when the statistical properties of real-world data diverge from those of the training dataset on which the algorithm was originally developed.
+                        A pneumonia-detection system went live at a hospital in 2019 with 87% sensitivity on internal validation. It fit into the radiology workflow, and radiologists came to trust it. By 2025 the same system catches only 68% of pneumonia cases—yet nothing flagged the decline. No alert fired, no dashboard turned red, no report landed on anyone's desk. The code never changed and IT monitoring reports everything healthy; what changed is the world around the model. This is model drift: the quiet erosion of accuracy that occurs when real-world data slowly diverges from the data a model was trained on.
                     </p>
 
                     <h2>What Is Model Drift?</h2>
@@ -309,7 +309,7 @@
                     </ul>
 
                     <p>
-                        Example: FlowSigma's FlowSight performance analytics tracks workflow completion rates, task processing times, and success/failure rates over time—giving visibility into when automated processes start behaving differently.
+                        The same idea applies to the AI itself: track these metrics on a rolling basis—weekly or monthly—so a downward trend becomes visible long before it shows up as a missed diagnosis. The point is to monitor the model's clinical output over time the way IT already monitors uptime.
                     </p>
 
                     <h3>Periodic Recalibration</h3>
@@ -421,19 +421,19 @@
                     <h2>The Uncomfortable Reality</h2>
 
                     <p class="article-conclusion">
-                        Model drift is occurring at this moment in deployed AI systems across healthcare institutions—in electronic health record clinical decision support modules, in radiology department image analysis pipelines, in intensive care unit physiological monitoring and early warning systems, and in countless other applications where machine learning models operate continuously to support clinical decisions. This degradation is pervasive, ongoing, and largely unmonitored, creating a silent patient safety threat that receives inadequate attention from healthcare institutions, technology vendors, and regulatory agencies alike.
+                        Drift is happening right now in deployed systems—in EHR decision-support modules, radiology pipelines, ICU early-warning systems. It is ongoing and largely unmonitored, a quiet patient-safety threat that institutions, vendors, and regulators have all been slow to take seriously.
                     </p>
 
                     <p class="article-conclusion">
-                        Most institutions remain unaware of the extent to which their deployed models have drifted from their original validated performance levels. Most vendors do not implement systematic post-deployment performance monitoring or provide regular revalidation data to their customers. Most physicians operate under the reasonable but potentially incorrect assumption that "FDA approved" or "validated" designations indicate ongoing reliability rather than historical performance at a specific point in time. These knowledge gaps and misunderstandings create conditions where AI systems deployed and trusted in 2019 may have become substantially less trustworthy by 2025—not because the software has malfunctioned or the algorithms have changed, but because the clinical world has evolved while the models have remained static.
+                        Most institutions do not know how far their models have drifted from their validated baselines. Most vendors do not monitor post-deployment performance or send revalidation data. And most physicians reasonably—but wrongly—read "FDA approved" or "validated" as a statement about today rather than a snapshot from years ago. The result is that a system trusted in 2019 may be far less reliable in 2025, not because anything broke, but because the clinical world moved and the model stood still.
                     </p>
 
                     <p class="article-conclusion">
-                        Model drift represents a solvable rather than intractable problem, but addressing it effectively requires fundamental changes in how healthcare institutions and regulatory frameworks conceptualize medical AI systems. Rather than treating AI as a static tool analogous to a medical device that continues functioning unchanged after deployment, the field must recognize that AI represents a dynamic system whose performance depends critically on maintaining alignment between the statistical properties of operational data and training data. This recognition demands infrastructure and processes for continuous performance monitoring, periodic revalidation using current data, and systematic governance frameworks that specify responsibility for surveillance and define action thresholds when drift is detected. These are not optional enhancements but rather fundamental requirements for safe AI deployment in clinical practice.
+                        Drift is solvable, but only if we stop thinking about medical AI the way we think about a fixed piece of equipment. A model is not a static device that keeps working unchanged; it is a system whose accuracy depends on the operational data continuing to resemble its training data. Treating it that way means building the infrastructure to match: continuous performance monitoring, periodic revalidation on current data, and governance that assigns responsibility for surveillance and sets the threshold at which a drifting model is pulled or retrained. These are requirements for safe deployment, not optional extras.
                     </p>
 
                     <p class="article-conclusion">
-                        The critical question facing healthcare institutions is not whether their deployed models will experience drift—drift is inevitable in the face of healthcare's continuous evolution. Rather, the question is whether institutions will detect drift before substantial patient harm has occurred, and whether the field will develop the monitoring infrastructure, governance processes, and cultural recognition necessary to manage drift as an expected aspect of AI system lifecycle management rather than an unexpected failure mode that catches organizations unprepared.
+                        The question is not whether a deployed model will drift—it will. The question is whether you will catch it before a patient is harmed, and whether the field will come to treat drift as an expected part of an AI system's lifecycle rather than a surprise that catches everyone unprepared.
                     </p>
 
                     <hr class="article-divider-line">
@@ -557,7 +557,7 @@
                     </div>
                 </div>
                 <div class="footer-copyright">
-                    <p>&copy; 2025–2026 MDSynapse.org | Published at <a href="https://mdsynapse.org" style="color: var(--teal-primary); text-decoration: none;">mdsynapse.org</a></p>
+                    <p>&copy; 2025–2026 Bradley J. Erickson. All rights reserved.</p>
                 </div>
             </div>
         </div>

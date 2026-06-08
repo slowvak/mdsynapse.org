@@ -87,7 +87,7 @@
                 <div class="article-content">
 
                     <p class="lead">
-                        The implementation of artificial intelligence in clinical medicine has encountered a persistent and troubling pattern: systems that demonstrate exceptional performance in validation studies frequently fail to achieve meaningful adoption in clinical practice. This phenomenon represents a fundamental challenge in the translation of medical AI from research environments to operational healthcare settings. Three years ago, many hospitals invested substantial resources—often exceeding a million dollars—in AI-based sepsis prediction systems that promised to revolutionize early detection and intervention. Despite impressive demonstrations and validation studies reporting sensitivity metrics of 89% or higher, these systems now sit largely dormant in electronic health record (EHR) systems, reduced to yet another alert that clinicians routinely dismiss, another dashboard that remains unchecked, another AI tool that has failed the critical journey from laboratory validation to ward-level implementation.
+                        Medical AI has a recurring pattern: systems that perform brilliantly in validation studies often fail to gain any real foothold in clinical practice. The problem is rarely the algorithm—it is everything between a validated model and a working tool at the bedside. Three years ago, many hospitals spent upward of a million dollars on AI sepsis-prediction systems that promised earlier detection. The validation numbers were good—sensitivity of 89% or higher—yet many of those systems now sit dormant in the EHR: one more alert clinicians swipe past, one more dashboard nobody opens.
                     </p>
 
                     <p>
@@ -131,9 +131,9 @@
                     </p>
 
                     <div class="article-callout">
-                        <h4>Real-World Example: FlowSigma's Workflow Integration</h4>
+                        <h4>What Good Integration Looks Like</h4>
                         <p>
-                            Some systems demonstrate successful integration approaches that illustrate these principles in practice. FlowSigma, a clinical workflow automation platform, utilizes Business Process Model and Notation (BPMN) to map AI capabilities directly into clinical processes rather than creating separate tools that exist alongside existing workflows. Instead of bolting AI onto existing workflows as an add-on, the platform embeds intelligence into the actual steps clinicians already perform, incorporating FHIR queries for patient data retrieval, automated quality control checks, and decision support that triggers at contextually appropriate moments within the radiology workflow rather than generating alerts at arbitrary time intervals throughout the day. The distinction is fundamental: physicians do not experience themselves as "using an AI tool" that requires separate attention and action. Rather, they simply use their normal clinical workflow, which now presents AI-generated information integrated seamlessly with the other data sources they routinely review as part of standard practice. This represents deployment executed correctly—AI as an invisible enhancement to existing work rather than a visible addition requiring new behaviors.
+                            The integration approaches that work share a pattern. Rather than building a separate tool that runs alongside the clinical workflow, they map the AI's outputs onto the steps clinicians already perform—using standards like BPMN to model the process and FHIR to pull patient data—so that quality-control checks and decision support surface at the right moment instead of firing on a fixed timer. The physician never experiences "using an AI tool" as a distinct task; the AI's output simply appears among the other information they already review. That is the goal: AI as an invisible enhancement to existing work, not a visible addition that demands new behaviors.<sup><a href="#ref4" style="color: var(--teal-primary);">4</a></sup>
                         </p>
                     </div>
 
@@ -223,9 +223,9 @@
                     </p>
 
                     <div class="article-callout">
-                        <h4>How FlowSigma Handles Escalation</h4>
+                        <h4>Escalation by Design</h4>
                         <p>
-                            Some platforms demonstrate effective approaches to this challenge through systematic workflow design. FlowSigma addresses the escalation problem by enabling healthcare organizations to design structured workflows that route tasks to appropriate personnel at appropriate times based on AI outputs. When a quality control failure is detected in radiology, for example, the system does not merely generate an alert that appears on someone's dashboard. Instead, it automatically creates a task assigned to the specific quality control team members responsible for addressing such issues, and this task includes all relevant context automatically retrieved from clinical information systems: patient demographics and identifiers, imaging study metadata and findings, relevant allergies pulled from FHIR-compliant data sources, prior imaging for comparison, and any other information needed for informed decision-making. The radiologist who triggered the initial quality concern does not need to decide what to do with the AI output or whom to contact; the organization has defined its workflow for handling priority cases in advance, and the system executes that workflow automatically. This approach transforms predictions into actions systematically rather than relying on ad hoc responses from busy clinicians.
+                            The better-designed systems handle escalation structurally. When a quality-control failure is detected in radiology, the system does not just drop an alert on someone's dashboard; it creates a task assigned to the specific people responsible, pre-populated with the context they need—patient identifiers, the study's metadata and findings, relevant allergies from FHIR sources, prior imaging for comparison. The radiologist who raised the concern does not have to decide what to do or whom to contact, because the organization defined that pathway in advance and the system executes it. Predictions become actions by design, not by the ad hoc effort of a busy clinician.
                         </p>
                     </div>
 
@@ -286,11 +286,11 @@
                     <h2>The Hard Truth About Medical AI</h2>
 
                     <p class="article-conclusion">
-                        The predominant failure mode for medical AI is not algorithmic inadequacy but deployment failure. Most medical AI systems never achieve sustained clinical utilization at the bedside not because their predictive performance is insufficient, but because deployment proves substantially more challenging than the research community has generally acknowledged. Deployment is harder than algorithm development, harder than validation study design, harder than manuscript preparation and publication. The challenges are not primarily technical—they are organizational, workflow-related, and human-centered. Additionally, too many deployments rely on rigid, hard-coded integrations that make adaptation difficult or prohibitively expensive when clinical workflows evolve or when AI models require updating. This inflexibility creates brittleness that contributes to eventual abandonment even when initial deployment succeeds.
+                        The dominant failure mode for medical AI is not bad algorithms but failed deployment. Most systems never reach sustained use at the bedside, and usually not because their accuracy fell short—deployment is simply harder than the research literature lets on. It is harder than building the model, harder than designing the validation study, harder than writing the paper. The obstacles are organizational, workflow-related, and human, not mathematical. Many deployments also rely on rigid, hard-coded integrations that become expensive to change when a workflow shifts or a model needs updating—a brittleness that drives abandonment even after a successful launch.
                     </p>
 
                     <p class="article-conclusion">
-                        Building an accurate predictive model represents primarily a technical problem amenable to solution through data science expertise, computational resources, and algorithmic innovation. In contrast, deploying that model successfully in clinical practice represents fundamentally a human problem—one that requires deep understanding of clinical workflows and decision-making processes, effective management of organizational change, establishment of appropriate clinician trust through transparency and reliability, and thoughtful design that accommodates the messy, contingent, interruption-filled reality of clinical practice rather than the idealized workflows depicted in process diagrams. The skills required for successful deployment differ substantially from those required for successful algorithm development, and healthcare organizations often underestimate this distinction.
+                        Building an accurate model is mostly a technical problem—solvable with data, compute, and good methods. Deploying it is a human one. It demands a real understanding of how clinicians work and decide, management of organizational change, clinician trust earned through transparency and reliability, and a design that fits the interruption-filled reality of clinical practice rather than the tidy boxes of a process diagram. These are different skills from model development, and organizations consistently underestimate the gap.
                     </p>
 
                     <p class="article-conclusion">
@@ -331,8 +331,8 @@
                             <a href="https://doi.org/10.1056/NEJMra1814259" target="_blank" style="color: var(--teal-primary);">doi:10.1056/NEJMra1814259</a>
                         </li>
                         <li id="ref4">
-                            FlowSigma. <strong>Clinical Workflow Automation Platform.</strong>
-                            <a href="https://flowsigma.com" target="_blank" style="color: var(--teal-primary);">https://flowsigma.com</a>
+                            Shortliffe EH, Sepúlveda MJ. <strong>Clinical Decision Support in the Era of Artificial Intelligence.</strong> <em>JAMA.</em> 2018;320(21):2199-2200.
+                            <a href="https://doi.org/10.1001/jama.2018.17163" target="_blank" style="color: var(--teal-primary);">doi:10.1001/jama.2018.17163</a>
                         </li>
                         <li id="ref5">
                             Zhang Y, Saini N, Janus S, Swenson DW, Cheng T, Erickson BJ. <strong>United States Food and Drug Administration Review Process and Key Challenges for Radiologic Artificial Intelligence.</strong> <em>J Am Coll Radiol.</em> 2024;21(6):920-929.
@@ -425,7 +425,7 @@
                     </div>
                 </div>
                 <div class="footer-copyright">
-                    <p>&copy; 2025–2026 MDSynapse.org | Published at <a href="https://mdsynapse.org" style="color: var(--teal-primary); text-decoration: none;">mdsynapse.org</a></p>
+                    <p>&copy; 2025–2026 Bradley J. Erickson. All rights reserved.</p>
                 </div>
             </div>
         </div>
