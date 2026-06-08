@@ -155,7 +155,7 @@
 
                     <h2>Beyond the Black Box: A 2026 Perspective on Uncertainty Quantification in AI</h2>
 
-                    <h3>1. The Reliability Crisis: Why "Accuracy" Is No Longer Enough</h3>
+                    <h3>The Reliability Crisis: Why "Accuracy" Is No Longer Enough</h3>
                     <p>
                         For the better part of a decade, the artificial intelligence community has been locked in a
                         singular race: the pursuit of state-of-the-art (SOTA) accuracy. Whether pushing ImageNet scores
@@ -166,24 +166,20 @@
                         As we settle into 2026, the focus is shifting and I believe that is critical for adoption in
                         healthcare. The deployment of Large Language Models (LLMs) and autonomous vision systems into a
                         high-stakes environment like healthcare has exposed a critical shortcoming. These models are
-                        very good at some tasks and sound convincing, but they are also <strong>confident
-                            sycophants</strong>. They frequently hallucinate with convincing language but fail to
-                        recognize when data lies outside their training distribution, and struggle to communicate "I
-                        don't know."
-                    </p>
-                    <p>
-                        This post provides a deep dive into the current state of <strong>Uncertainty Quantification
-                            (UQ)</strong>. Drawing from the latest research, it explores how the field is moving beyond
-                        simple probability scores toward rigorous, distribution-free guarantees and semantic-aware
-                        reliability.
+                        often accurate and fluent, yet poorly calibrated: they frequently produce confident,
+                        convincing language even when wrong, fail to recognize when an input lies outside their
+                        training distribution, and struggle to communicate "I don't know." Closing that gap is where
+                        uncertainty quantification, and newer distribution-free methods such as conformal prediction,
+                        become relevant.
                     </p>
 
-                    <h3>2. The Computer Vision Revolution: Conformal Prediction Takes Center Stage</h3>
+                    <h3>Conformal Prediction and Distribution-Free Guarantees</h3>
                     <p>
-                        In the realm of computer vision, the era of heuristic calibration (like Temperature Scaling) is
-                        fading. A strong candidate for addressing certainty is <strong>Conformal Prediction
-                            (CP)</strong>. Unlike traditional Bayesian methods, which often rely on unprovable priors,
-                        CP offers mathematically rigorous, finite-sample coverage guarantees.
+                        Beyond heuristic calibration methods like temperature scaling, <strong>conformal prediction
+                            (CP)</strong> has drawn growing interest. Unlike Bayesian methods, which often depend on
+                        assumed priors, CP offers mathematically rigorous, finite-sample coverage guarantees: rather
+                        than a single label, it returns a prediction set guaranteed to contain the true label at a
+                        specified rate.
                     </p>
                     <p>
                         However, standard CP relies on the <strong>exchangeability assumption</strong>—the idea that
@@ -191,15 +187,17 @@
                         real world, this assumption rarely holds.
                     </p>
 
-                    <h4>Breaking the Exchangeability Barrier: WQLCP</h4>
+                    <h4>Breaking the Exchangeability Barrier</h4>
                     <p>
-                        One recent approach to solving this "distribution shift" problem is
-                        <strong>Weighted Quantile Loss-scaled Conformal Prediction (WQLCP)</strong>.<sup>1</sup>
+                        Recent variants extend CP to this "distribution shift" setting—for example, weighted conformal
+                        approaches that adjust the prediction sets according to how far an input departs from the
+                        calibration distribution.
                     </p>
                     <p>
-                        Standard Conformal Prediction fails when the test distribution drifts (e.g., a self-driving car
-                        moving from sunny California to snowy Toronto). WQLCP addresses this by dynamically scaling the
-                        prediction sets based on the "weirdness" of the input.
+                        This matters in medicine, where the deployed population rarely matches the calibration set
+                        exactly—a model calibrated at one hospital may encounter a different case mix, scanner, or
+                        referral pattern at another. Weighted conformal methods preserve coverage guarantees under such
+                        shift by giving more influence to calibration cases that resemble the new input.
                     </p>
 
                     <h2>Why Calibration Isn't Enough</h2>
@@ -210,16 +208,16 @@
                     </p>
 
                     <p>
-                        Calibration ensures probabilities match observed frequencies <strong></strong>in the calibration
-                        data set.</strong> If your model predicts 70% pneumonia for 100 cases, and 70 of those actually
-                        have pneumonia, the model is calibrated.
+                        Calibration ensures that predicted probabilities match observed frequencies <strong>in the
+                        calibration data set</strong>. If your model predicts 70% pneumonia for 100 cases, and 70 of those
+                        actually have pneumonia, the model is calibrated.
                     </p>
 
                     <p>
                         <strong>But calibration is population-level.</strong> It doesn't tell you whether <em>this
                             specific prediction</em> is reliable. Even a perfectly calibrated model can be highly
-                        uncertain or very confident about individual cases and that does not match the probability.<sup><a href="#ref1"
-                                style="color: var(--teal-primary);">1</a></sup>
+                        uncertain or very confident about individual cases in a way the aggregate probability cannot reveal.<sup><a href="#ref4"
+                                style="color: var(--teal-primary);">4</a></sup>
                     </p>
 
                     <p>
@@ -394,8 +392,7 @@
 
                     <p>
                         If they provide uncertainty at all, ask which method they use (ensemble, Bayesian, evidential,
-                        etc.). Often the vendor will equate the output of the penulatimate layer as a probability (it isnt), or 
-                        they will refer to the calibrated probability as the confidence (it isn't). Be sure youunderstand this.
+                        etc.). Vendors will often equate the output of the penultimate (softmax) layer with a probability—it isn't—or refer to a calibrated probability as the model's confidence, which it also isn't. Make sure you understand the distinction.
                     </p>
 
                     <h3>3. What's the positive predictive value stratified by confidence level?</h3>
@@ -419,7 +416,7 @@
                         customize this for your practice.
                     </p>
 
-                    <h3>6. How does the tool handle out-of-distribution cases?</h3>
+                    <h3>5. How does the tool handle out-of-distribution cases?</h3>
 
                     <p>
                         Ask: if the model sees a pediatric study but was trained on adults, does it flag high
