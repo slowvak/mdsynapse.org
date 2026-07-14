@@ -86,7 +86,7 @@
                     <a href="about.html">About</a>
                     <a href="#articles">Thoughts on Medical AI and Automation</a>
                     <a href="papers-of-note.html">Papers of Note</a>
-                    <a href="#connect" class="nav-cta">Stay Connected</a>
+                    <a href="#connect" class="nav-cta">Contact</a>
                 </div>
             </div>
         </div>
@@ -325,10 +325,25 @@
                     </div>
 
                     <div class="newsletter">
+                        <h3 class="newsletter-title">Get in Touch</h3>
+                        <p class="newsletter-description">Questions, feedback, or an idea worth exploring? Send a message directly.</p>
+                        <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/#connect">
+                            <input type="hidden" name="form-name" value="contact">
+                            <p style="display:none;"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
+                            <input type="text" name="name" placeholder="Your name" class="contact-input">
+                            <input type="email" name="email" placeholder="your.email@example.com" class="contact-input" required>
+                            <textarea name="message" placeholder="Your message" class="contact-textarea" required></textarea>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+
+                    <div class="newsletter">
                         <h3 class="newsletter-title">Stay Connected to the Future of Medicine</h3>
                         <p class="newsletter-description">Get thoughtful insights on AI, clinical reasoning, and the evolving practice of medicine.</p>
-                        <form class="newsletter-form">
-                            <input type="email" placeholder="your.email@example.com" class="newsletter-input" required>
+                        <form class="newsletter-form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/#connect">
+                            <input type="hidden" name="form-name" value="newsletter">
+                            <p style="display:none;"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
+                            <input type="email" name="email" placeholder="your.email@example.com" class="newsletter-input" required>
                             <button type="submit" class="btn btn-primary">Subscribe</button>
                         </form>
                     </div>
