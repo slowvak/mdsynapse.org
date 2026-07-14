@@ -679,20 +679,10 @@ body {
 
 .footer-main {
     display: grid;
-    grid-template-columns: 0.8fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr;
     gap: var(--spacing-xl);
     padding-bottom: var(--spacing-lg);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.footer-logo .logo-text {
-    color: var(--white-neural);
-}
-
-.footer-tagline {
-    color: var(--gray-silver);
-    margin-top: var(--spacing-sm);
-    font-size: 0.95rem;
 }
 
 .newsletter {
