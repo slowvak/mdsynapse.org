@@ -1,0 +1,97 @@
+# What the AI Efficiency Numbers in Radiology Actually Mean (And Don't)
+
+Every radiology conference now has a vendor booth promising to give you your time back. Every trade publication runs a headline about AI cutting reporting time by some double-digit percentage. If you're a radiologist wondering whether to trust the tool your department just piloted, or a department manager trying to decide whether next year's budget should include a six-figure line item for a "reporting AI," you've probably noticed that the numbers being thrown around don't always agree with each other — and that nobody selling you the tool is especially eager to explain why.
+
+Here I review the actual published evidence — not vendor white papers, not press releases, the underlying studies — to figure out what AI tools for radiologist efficiency have actually been shown to do, as opposed to what they're marketed as doing. The short version: the evidence is real, but it's a lot more specific and a lot more conditional than the pitch decks suggest. Getting the specifics right matters, because "AI makes radiology more efficient" is not one claim. It's at least four different claims, backed by four different kinds of evidence, with four different confidence levels — and treating them as one claim is exactly how a department ends up disappointed six months after a purchase.
+
+## The first thing to get straight: "AI in radiology" is not one thing
+
+Ask ten people what "AI efficiency tool" means and you'll get ten different answers. That vagueness is doing real work for vendors, because it lets a strong result in one narrow category borrow credibility for a much weaker result in another. So before anything else, it's worth separating out what's actually on the market and being studied:
+
+**Report drafting assistants** take an image (radiograph or CT scan) and produce a draft report — sometimes a complete draft which you accept, edit, or reject. Either way, you're editing AI-generated text rather than writing from a blank page and the clser it is to final, the greater the efficiency gain.
+
+**Triage and worklist tools** don't touch the report at all. They reorder your queue, moving the study most likely to contain the finding of interest (a stroke, a pneumothorax, or a pulmonary embolism) to the top of your worklist instead of leaving it to sit in arrival-time order.
+
+**Protocol and quantification tools** handle narrow, focused jobs — picking the right MRI protocol or measuring a nodule. No free text, no open-ended reasoning, just one well-defined task done the same way every time.
+
+And then there's the category that gets the most hype and, on the evidence, deserves the most caution: **general-purpose vision-language models** doing open-ended diagnostic reasoning across arbitrary pathology — the ChatGPT-style "look at this image and tell me what's wrong" use case.
+
+Here's the finding that should reshape how you read every efficiency claim you hear from now on: these categories are not equally reliable, and the gap isn't small. Studies of narrow, closed-set tools — protocol selection, single-finding detection — report accuracy in the 84-98% range. A rigorous study of a general-purpose vision-language model attempting open-ended diagnosis across 230 emergency-department cases found something very different: 35% accuracy on pathology identification, and a 47% overall hallucination rate — meaning the model confidently described findings that weren't there almost half the time. Interestingly, that same model nailed the easy parts: 100% correct on identifying the imaging modality, 87% correct on anatomical region. It just fell apart on the actual diagnostic judgment, which is the part that matters.
+
+That's not really a contradiction. It's the difference between a narrow, well-defined task and an open-ended one, and it means the accuracy figure your vendor quotes you is almost meaningless without knowing which category their tool falls into. A worklist-prioritization tool and a free-text drafting VLM are not making the same promise, and they shouldn't be evaluated with the same level of trust.
+
+## What the efficiency numbers actually show, category by category
+
+### Report drafting: real, modest, and possibly concentrated where it matters most
+
+The best-designed study I found had three radiologists report 50 chest X-rays twice — once alone, once with AI drafting assistance — and measured the difference directly. Overall writing time fell 7.8%, but with a sample that small, that number didn't reach statistical significance. Here's the interesting part: when the researchers looked specifically at complex reports, the AI-assisted reduction was 18.3%, and that result *was* statistically significant, with no drop in report quality.
+
+That's a genuinely useful finding: the benefit of drafting assistance might concentrate exactly where you'd want it to — on the harder cases, not the routine ones. But remember, it's one small study, and "the effect shows up more in the subgroup" is also what a lot of studies say right before they fail to replicate. Other studies point the same direction at different magnitudes: one single-site study found reporting time drop from about 9 minutes to 6.75 minutes per case (roughly 24%); a multicenter study on AI-generated brain MRI impressions found reading time drop from 61 to 53 seconds, with the benefit noticeably larger for junior radiologists than senior ones — which, if it holds up, has real implications for how these tools get deployed in training programs and understaffed departments.
+
+One point worth flagging because it's the kind of thing that's easy to assume without checking: a widely-cited 2025 Nature Medicine study on a vision-language model called Flamingo-CXR, run by a serious, well-resourced research team across 27 radiologists and 606 cases, found that AI-assisted reports were rated as good or better than AI-alone reports most of the time. It sounds like efficiency evidence. It isn't — the study's own authors explicitly say they didn't measure reporting time and that doing so "warrants another carefully designed human study." If a team with that much firepower didn't measure time savings, it's worth asking why every smaller vendor study claims to have nailed it.
+
+**Bottom line for drafting tools**: expect something in the ballpark of a modest, single-digit-to-low-double-digit percentage improvement in reporting time, probably concentrated in your more complex or time-consuming cases, and treat any specific number quoted to you with real skepticism until you've seen it hold up in your own workflow. Remember also this was for CXRs and that may not translate to other studies like CT scans.
+
+### Triage and worklist prioritization: the strongest evidence, with one big asterisk
+
+This is where the numbers get the most impressive, and where the caveat matters the most. A 2020 simulation study modeling AI-based worklist reordering against a first-in-first-out baseline found turnaround-time improvements of 32-56% depending on the finding — bigger gains for pneumothorax, smaller for pleural effusion. A 2024 study on AI-assisted detection of aortic dissection found scan-to-assessment time drop 68% for confirmed positive cases.
+
+Both of those are simulations, not live clinical deployments — a reasonable design choice, since you don't want to test an unproven triage algorithm on real patients before you've validated it. But it means the number you're hearing is "how fast would this have been in a simulated replay of our data," not "how fast was this in an actual functioning department." That distinction should change how much weight you put on the figure.
+
+It is also worth emphasizing that this illustrates how easily an inflated number gets passed around this field: a claim of "77% turnaround-time reduction, 99% specificity" for AI worklist triage circulates in secondary sources and vendor materials. Tracing it back to what appears to be its original source turns up a real study — the same 2020 simulation above — that reports 32-56% improvement and no 99% specificity figure anywhere. The 77%/99% number doesn't check out. If you've heard this stat in a sales pitch, ask for the primary source, not a summary of a summary. Importantly, while there was a 77% improvement in turnaround-time for cases with the index finding (e.g. pneumothorax) there presumably was a worsening of turnaround-time for all the other cases and those aren't necessarily negative. They may well have had a fractured kidney or liver mets. These cases are important too. Even knowing a case is negative can be important for an ED that is strapped for rooms.
+
+The one genuinely strong real-world data point in this entire space comes from a 2026 study of over 1.1 million examinations at a tertiary hospital in China, comparing outcomes before and after a scheduling-and-dispatch platform went live. Exam volume rose 66% with no increase in staffing, and the platform cut median time from order to appointment by 34-72% and order to examination by 35-51%, all statistically significant. That's real, that's large-scale, and it's the strongest efficiency evidence in the whole literature — but read the outcome carefully: it's measuring how fast a patient moves through scheduling and dispatch, not how much faster a radiologist reads and reports a case once it lands on their worklist. Those are related questions, and both matter to a department, but they are not the same question, and a lot of marketing material blurs them together.
+
+**Bottom line for triage tools**: the simulated evidence for shortening time-to-assessment on urgent findings is genuinely strong and consistent. The real-world evidence for genuinely faster patient throughput and scheduling is also strong. What's still missing is real-world evidence that a triage tool measurably speeds up the radiologist's own interpretation workflow, as opposed to just getting the study to them faster.
+
+### Workforce shortage and burnout: encouraging in aggregate, thin on the specifics
+
+A 2025 review pulling together 22 studies on AI's role in the radiologist shortage reports an eye-catching headline: roughly a 53% reduction in AI-assisted workload. But buried in that same review is a number that seems to run the other way — per-image interpretation time in the underlying studies actually *rose*, from 3-4 seconds to 6-7 seconds. Those two figures aren't necessarily contradictory (one plausibly reflects aggregate case throughput, the other the overhead of reviewing an AI-assisted second read), but the review doesn't give enough detail to reconcile them with real confidence, and neither should you without pushing your vendor for department-specific data.
+
+The burnout numbers are thinner still. One review cites a pilot AI-scribe deployment associated with a 40% drop in self-reported burnout — a promising number from a single, uncorroborated pilot study. It's the kind of statistic worth watching, not the kind worth building a wellness initiative around just yet.
+
+**Bottom line for shortage/burnout claims**: directionally plausible, genuinely under-evidenced. If a vendor cites a specific burnout-reduction percentage, ask how many sites and how many radiologists that number is actually based on — in the published literature right now, the honest answer is usually "one."
+
+## The question nobody's asking: does the AI's mistakes cancel out its time savings?
+
+Here's the gap in the evidence that should worry you more than any of the individual numbers above. Every efficiency study we found measures time saved. Not one measures the time cost of catching the AI's mistakes.
+
+We already know general-purpose diagnostic AI hallucinates at a high rate on open-ended tasks — that 47% figure from earlier isn't a fluke, it shows up whenever these models are pushed past narrow, well-defined tasks. If a radiologist saves two minutes on drafting but then spends three minutes double-checking a hallucinated finding, the net effect is negative, and right now, there is no published study that measures both halves of that equation in the same workflow. Efficiency research and diagnostic-accuracy research are, at this point, two separate literatures that don't talk to each other. Until someone runs a study that measures both together, every time-savings number in this piece — and every time-savings number in a vendor's pitch — should be read as "time saved, assuming the AI doesn't make a mistake you have to catch," which is a much weaker claim than it sounds.
+
+## Regulatory clearance is not the same thing as proof it works
+
+FDA-authorized AI medical devices have grown fast, and radiology dominates the list: over 1,450 total authorizations through the end of 2025, and radiology accounts for roughly three-quarters of them. That's a real, useful signal that the regulatory pathway is active and that vendors are moving products through it. It is not evidence of efficiency benefit. A 510(k) clearance shows a device is substantially equivalent to an existing predicate device — a safety and equivalence bar, not a "measurably improves your department's throughput" bar. If a vendor points to their FDA clearance as proof the tool will save you time, that's a category error worth calling out in the room.
+
+There's a real, unresolved tension between the fast pace of regulatory clearance and a separate strand of the research literature that describes AI's clinical validation as lagging well behind its technical capability. Nobody has fully reconciled those two pictures yet — how a device gets cleared quickly while genuine clinical validation is still catching up is a real open question, and reconciling it would take regulatory-science expertise most department managers (or radiologists) don't have time to develop on the side. The honest thing to do with that tension is notice it, not paper over it.
+
+## What this actually means if you're a radiologist
+
+None of this is an argument against using these tools. The directional signal toward genuine time savings, especially for drafting assistance on complex cases and for triage prioritization on urgent findings, shows up across independent studies from independent teams, and that kind of convergence doesn't happen by accident. But a few things are worth internalizing before you adopt a workflow change based on a vendor's efficiency claim:
+
+Ask which category the tool actually falls into, and hold it to the evidence standard that category has actually earned. A narrow protocol-automation tool with 90%+ accuracy on a well-defined task is a very different bet than a general-purpose AI reasoning across open-ended pathology. Don't let a strong number from one category vouch for a weak claim in another.
+
+Watch for the specific number, and ask where it came from. "77% reduction" sounds like a fact. Sometimes it's a fact that got separated from its source somewhere along the way and is now just a number people repeat. If a specific percentage matters to your decision, trace it back to the actual study, not the summary of the summary.
+
+Stay appropriately skeptical of anything that sounds like it eliminates verification work rather than reducing it. The tools that draft or suggest report content still need your judgment applied to them, and the studies showing time savings generally measured expert radiologists doing that verification carefully. If you find yourself skipping verification because the AI is "usually right," you're taking on exactly the kind of automation-bias risk the legal and safety literature is actively warning about — and that risk exists precisely because "usually right" and "right in this specific case" are not the same thing.
+
+In other posts on this website, I emphasize that the confidence (or conversely, uncertainty) is a critical element of models that is rarely leveraged. If high-confidence outputs can be identified and are correct at a high rate, it is likely that the benefits of all of the above tools can be magnified by removing the 'noise' outputs that lead to wasted effort. 
+
+## What this means if you're a department manager
+
+Pilot locally before you scale, and measure your own numbers rather than trusting the published ones. The single strongest lesson from this literature is how setting-dependent the results are — one review candidly noted that some published deployments found dramatic efficiency gains while other deployments of similar tools found no turnaround-time improvement at all, in the same document. Your case mix, your existing workflow, your staffing model, and your patient population will determine your result more than any published study will. A well-run 60-day pilot against your own current baseline will tell you more than any vendor's white paper.
+
+Separate the "should we buy this" question from the "does this actually solve our problem" question. A tool that speeds up patient scheduling and dispatch is solving a different problem than a tool that speeds up radiologist interpretation time, and a tool that reduces reported burnout is solving a third problem again. Get clear on which problem you're actually trying to fix before you evaluate a tool against it — a lot of procurement decisions get made because a demo was impressive, not because the tool's evidence base matches the department's actual bottleneck.
+
+Ask about cost-effectiveness explicitly, because the efficiency literature won't answer it for you. None of the studies above weigh time saved against licensing, integration, and maintenance costs — that's simply outside what they measured. A tool that saves five minutes per case is not automatically worth adopting if its licensing cost outweighs the value of that time in your specific staffing model. This is a distinct calculation your finance team needs to run, not something implied by an efficiency percentage.
+
+Don't assume regulatory clearance answers the efficiency question, because it doesn't and it isn't designed to. Ask your vendor directly for their efficiency evidence, ask what setting it was measured in (simulated or real, single-site or multi-site), and treat "FDA cleared" and "proven to save your department time" as two entirely separate claims that happen to both be true of the same product on a good day.
+
+## The field's homework, and yours
+
+The single most useful thing that could happen to this evidence base in the next two years is a prospective, multi-site, real-world trial that measures radiologist interpretation time and AI error-correction burden in the same study, on the same cases, at the same time. Until that exists, every efficiency claim you hear — ours included — is directionally informative and individually insufficient to bet a department's workflow on without your own pilot data behind it.
+
+That's not a reason to wait on the sidelines. It's a reason to run your own small, well-measured pilot before committing to scale, to ask vendors sharper questions than "how much time does this save," and to keep in mind that the radiologist reading the case, not the tool assisting them, is still the one accountable for what's in the final report.
+
+---
+
+*This post draws on a scoping review of 17 peer-reviewed and preprint sources examining AI and vision-language model tools for radiologist workflow efficiency, published 2020-2026. The full review, including detailed evidence tables, source verification tiers, and methodology, is available on request.*
