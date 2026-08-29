@@ -182,6 +182,33 @@
     color: var(--teal-light);
 }
 
+/* Callout lists: the generic .article-content list rules assume a light
+   background, which leaves <strong> lead-ins navy-on-navy (invisible) and
+   the items over-spaced inside the dark callout. */
+.article-callout ul,
+.article-callout ol {
+    margin: var(--spacing-sm) 0 0;
+    padding-left: 1.25rem;
+}
+
+.article-callout ul li,
+.article-callout ol li {
+    color: var(--gray-silver);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+.article-callout ul li:last-child,
+.article-callout ol li:last-child {
+    margin-bottom: 0;
+}
+
+.article-callout ul li strong,
+.article-callout ol li strong {
+    color: var(--teal-light);
+}
+
 /* Dividers */
 .article-divider-line {
     border: none;
@@ -203,29 +230,6 @@
     margin: var(--spacing-xl) auto 0;
     padding-top: var(--spacing-lg);
     border-top: 2px solid var(--gray-light);
-}
-
-/* Tags */
-.article-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-lg);
-}
-
-.article-tags .tag {
-    background: var(--gray-light);
-    color: var(--navy-dark);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.875rem;
-    font-weight: 500;
-    transition: var(--transition);
-}
-
-.article-tags .tag:hover {
-    background: var(--teal-primary);
-    color: var(--white-neural);
 }
 
 /* Share Buttons */

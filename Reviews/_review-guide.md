@@ -30,7 +30,6 @@ Put this as the very first content — a Google Docs table with two columns
 | `Read Time` | 12 | Estimated read time in minutes (integer). |
 | `Slug` | multimodal-learning-healthcare | URL-safe filename, no .html extension. |
 | `Meta Description` | A review of CareBench… | 150 chars max. Used for SEO meta tags. |
-| `Tags` | Multimodal AI, EHR, Fairness | Comma-separated list of article tags shown in footer. |
 
 ---
 

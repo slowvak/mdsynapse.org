@@ -263,14 +263,6 @@ def fill_template(template: str, values: dict[str, str]) -> str:
     return result
 
 
-def build_article_tag_spans(tags_csv: str) -> str:
-    if not tags_csv.strip():
-        return ""
-    return "\n".join(
-        f'<span class="tag">{t.strip()}</span>'
-        for t in tags_csv.split(",")
-        if t.strip()
-    )
 
 
 def slugify(text: str) -> str:
@@ -486,7 +478,6 @@ def process_review_doc(doc_html: str, dry_run: bool = False) -> str:
         "WHAT_THIS_MEANS"     : what_this_means,
         "BOTTOM_LINE"         : bottom_line,
         "REFERENCES"          : references,
-        "ARTICLE_TAGS"        : build_article_tag_spans(metadata.get("Tags", "")),
     }
 
     template_text = REVIEW_TEMPLATE_PATH.read_text(encoding="utf-8")

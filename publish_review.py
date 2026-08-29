@@ -384,15 +384,6 @@ def fill_template(template: str, values: dict[str, str]) -> str:
     return result
 
 
-def build_article_tag_spans(tags_csv: str) -> str:
-    """'AI, Fairness, EHR' → HTML spans for the article footer."""
-    if not tags_csv.strip():
-        return ""
-    return "\n".join(
-        f'<span class="tag">{t.strip()}</span>'
-        for t in tags_csv.split(",")
-        if t.strip()
-    )
 
 
 # ──────────────────────────────────────────────────────────────
@@ -537,7 +528,6 @@ def process_doc(doc_html: str, dry_run: bool = False) -> str:
         "WHAT_THIS_MEANS"  : what_this_means,
         "BOTTOM_LINE"      : bottom_line,
         "REFERENCES"       : references,
-        "ARTICLE_TAGS"     : build_article_tag_spans(metadata.get("Tags", "")),
     }
 
     # ── 6. Fill template ──
