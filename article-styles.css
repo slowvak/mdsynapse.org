@@ -384,3 +384,41 @@
     margin-top: var(--spacing-sm);
     font-style: italic;
 }
+
+/* Tables */
+.article-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--spacing-lg) 0;
+    font-size: 0.95rem;
+}
+
+.article-content table th,
+.article-content table td {
+    padding: var(--spacing-sm);
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--gray-light);
+}
+
+.article-content table th {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--navy-dark);
+    border-bottom: 2px solid var(--teal-primary);
+}
+
+.article-content table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Wide tables scroll rather than breaking the page */
+.article-content .table-scroll {
+    overflow-x: auto;
+    margin: var(--spacing-lg) 0;
+}
+
+.article-content .table-scroll table {
+    margin: 0;
+    min-width: 34rem;
+}

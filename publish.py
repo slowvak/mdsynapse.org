@@ -161,6 +161,7 @@ def mark_processed(state: dict, doc_id: str, slug: str, doc_type: str) -> None:
 KEEP_TAGS = {
     "p", "strong", "em", "a", "ul", "ol", "li", "h2", "h3", "h4",
     "sup", "sub", "br", "blockquote", "figure", "img", "figcaption", "hr",
+    "table", "thead", "tbody", "tr", "th", "td",
 }
 STRIP_ATTRS = {"style", "id", "class"}
 KEEP_IMG_ATTRS = {"src", "alt", "width", "height"}
@@ -197,8 +198,33 @@ def clean_element(el: Tag) -> str | None:
     for span in fresh_soup.find_all("span"):
         span.unwrap()
 
+    if root.name == "table":
+        # Markdown-imported tables arrive with an empty leading header row
+        # (`| | | |`) and Google-exported thead/tbody nesting that survives
+        # badly once that row is gone. Flatten to plain <tr>s and promote the
+        # first surviving row to header cells.
+        for row in root.find_all("tr"):
+            if not row.get_text(strip=True):
+                row.decompose()
+        for wrapper in root.find_all(["thead", "tbody"]):
+            wrapper.unwrap()
+        rows = root.find_all("tr")
+        if rows:
+            for cell in rows[0].find_all(["td", "th"]):
+                cell.name = "th"
+        for cell in root.find_all(["td", "th"]):
+            for attr in ("colspan", "rowspan"):
+                if cell.get(attr) == "1":
+                    del cell[attr]
+            # Google wraps every cell's text in a <p>; drop the wrapper.
+            for para in cell.find_all("p"):
+                para.unwrap()
+
     if root.name == "p" and not root.get_text(strip=True):
         return None
+
+    if root.name == "table":
+        return f'<div class="table-scroll">{root}</div>'
 
     return str(root)
 
@@ -302,8 +328,20 @@ REQUIRED_REVIEW_SECTIONS = [
 ]
 
 
-def parse_metadata_table(soup: BeautifulSoup) -> dict:
-    """Extract the first <table> as a key/value map and remove it from the tree."""
+BLOG_METADATA_KEYS = {
+    "Title", "Subtitle", "Slug", "Category",
+    "Tag Class", "Date", "Read Time", "Meta Description",
+}
+
+
+def parse_metadata_table(soup: BeautifulSoup, known_keys: set[str] | None = None) -> dict:
+    """
+    Extract the first <table> as a key/value map and remove it from the tree.
+
+    When `known_keys` is given, the table is only consumed if it actually looks
+    like a metadata table (at least one recognised key). Otherwise it is left
+    alone — a blog post's first table is usually real content.
+    """
     table = soup.find("table")
     if not table:
         return {}
@@ -315,6 +353,8 @@ def parse_metadata_table(soup: BeautifulSoup) -> dict:
             value = cells[1].get_text(strip=True)
             if key:
                 md[key] = value
+    if known_keys is not None and not (md.keys() & known_keys):
+        return {}
     table.decompose()
     return md
 
@@ -505,6 +545,26 @@ def process_review_doc(doc_html: str, dry_run: bool = False) -> str:
 # BLOG MODE — free-form prose
 # ══════════════════════════════════════════════════════════════
 
+def normalize_heading_levels(soup: BeautifulSoup) -> int:
+    """
+    Promote headings so the doc's top heading becomes <h1>.
+
+    Google Docs' markdown import maps `##` -> H2 and `###` -> H3, so a doc pasted
+    from markdown has no <h1> at all. Shift every heading up by the same offset,
+    preserving relative structure.
+    """
+    headings = soup.find_all(re.compile(r"^h[1-6]$"))
+    headings = [h for h in headings if h.get_text(strip=True)]
+    if not headings:
+        return 0
+    offset = int(headings[0].name[1]) - 1
+    if offset <= 0:
+        return 0
+    for h in headings:
+        h.name = f"h{max(1, int(h.name[1]) - offset)}"
+    return offset
+
+
 def collect_blog_body(soup: BeautifulSoup) -> tuple[str, str | None, list[Tag]]:
     """
     Extract (title, subtitle_or_None, body_elements) from the doc.
@@ -514,6 +574,8 @@ def collect_blog_body(soup: BeautifulSoup) -> tuple[str, str | None, list[Tag]]:
                OR text of the first <p> if it is fully italic.
     Body   = everything after the title (and subtitle if extracted).
     """
+    promoted = normalize_heading_levels(soup)
+
     body = soup.body or soup
     children = [c for c in body.children if isinstance(c, Tag)]
 
@@ -540,7 +602,9 @@ def collect_blog_body(soup: BeautifulSoup) -> tuple[str, str | None, list[Tag]]:
         if not text:
             body_start += 1
             continue
-        if el.name == "h2":
+        # A promoted doc had no <h1>, so its headings are all sections —
+        # there was never a title/subtitle pair to detect.
+        if el.name == "h2" and not promoted:
             subtitle = text
             body_start += 1
         elif el.name == "p":
@@ -604,7 +668,7 @@ def process_blog_doc(doc_html: str, doc_meta: dict | None, dry_run: bool = False
     soup = BeautifulSoup(doc_html, "html.parser")
 
     # Optional metadata table at the top — overrides defaults if present
-    md = parse_metadata_table(soup)
+    md = parse_metadata_table(soup, known_keys=BLOG_METADATA_KEYS)
     title_from_md = md.get("Title")
 
     # Title / subtitle / body from the document structure
