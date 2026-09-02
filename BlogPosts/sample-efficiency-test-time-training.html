@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DF1RRDME3B"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-DF1RRDME3B');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A small transformer trained from scratch at test time scored 44% on ARC-AGI-1 for 67 cents. What its ablations suggest about sample efficiency, priors, and annotation cost in medical AI.">
+    <title>Sixty-Seven Cents of Reasoning | MDSynapse.org</title>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://mdsynapse.org/BlogPosts/sample-efficiency-test-time-training.html">
+    <meta property="og:title" content="Sixty-Seven Cents of Reasoning">
+    <meta property="og:description" content="A small transformer trained from scratch at test time scored 44% on ARC-AGI-1 for 67 cents. What its ablations suggest about sample efficiency, priors, and annotation cost in medical AI.">
+    <meta property="og:image" content="https://mdsynapse.org/og-image.png">
+    <meta property="article:author" content="Dr. Bradley J. Erickson">
+    <meta property="article:published_time" content="2026-09-01">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://mdsynapse.org/BlogPosts/sample-efficiency-test-time-training.html">
+    <meta property="twitter:title" content="Sixty-Seven Cents of Reasoning">
+    <meta property="twitter:description" content="A small transformer trained from scratch at test time scored 44% on ARC-AGI-1 for 67 cents. What its ablations suggest about sample efficiency, priors, and annotation cost in medical AI.">
+    <meta property="twitter:image" content="https://mdsynapse.org/og-image.png">
+
+    <link rel="canonical" href="https://mdsynapse.org/BlogPosts/sample-efficiency-test-time-training.html">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../article-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="../index.html" class="logo">
+                    <div class="logo-mark">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="16" cy="8" r="2.5" fill="#3FD1C1"/>
+                            <circle cx="8" cy="16" r="2.5" fill="#3FD1C1" opacity="0.7"/>
+                            <circle cx="24" cy="16" r="2.5" fill="#3FD1C1" opacity="0.7"/>
+                            <circle cx="16" cy="24" r="2.5" fill="#3FD1C1"/>
+                            <circle cx="16" cy="16" r="3" fill="#3FD1C1" class="pulse"/>
+                            <line x1="16" y1="10.5" x2="16" y2="13" stroke="#3FD1C1" stroke-width="1.5"/>
+                            <line x1="16" y1="19" x2="16" y2="21.5" stroke="#3FD1C1" stroke-width="1.5"/>
+                            <line x1="10.5" y1="16" x2="13" y2="16" stroke="#3FD1C1" stroke-width="1.5"/>
+                            <line x1="19" y1="16" x2="21.5" y2="16" stroke="#3FD1C1" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">MDSynapse<span class="logo-ext">.org</span></span>
+                </a>
+                <div class="nav-links">
+                    <a href="../index.html">Home</a>
+                    <a href="../about.html">About</a>
+                    <a href="../index.html#articles">Thoughts on Medical AI and Automation</a>
+                    <a href="../papers-of-note.html">Papers of Note</a>
+                    <a href="../index.html#mission">Mission</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <article class="article">
+        <header class="article-header">
+            <div class="container">
+                <div class="article-header-content">
+                    <div class="article-tag tag-ai">AI</div>
+                    <h1 class="article-header-title">Sixty-Seven Cents of Reasoning</h1>
+                    
+                    <p class="article-header-subtitle">What test-time training on ARC-AGI suggests about sample efficiency in medical AI</p>
+                    
+                    <div class="article-meta-header">
+                        <span class="article-date">September 1, 2026</span>
+                        <span class="article-divider">&bull;</span>
+                        <span class="article-reading-time">11 min read</span>
+                        <span class="article-divider">&bull;</span>
+                        <span class="article-author">By <a href="../about.html" style="color: var(--teal-primary); text-decoration: none;">Dr. Bradley J. Erickson</a></span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Article Content -->
+        <div class="article-body">
+            <div class="container">
+                <div class="article-content">
+
+                    
+                                        <p class="lead">
+                        A small transformer, trained from scratch at inference time for ninety minutes on a single consumer graphics card, scored 44% on ARC-AGI-1. The result is interesting as an possible evidence for the value of sample, a question that is critical to the future of AI in medicine.
+                    </p>
+
+                    <p>
+                        The work in question is the third post in a series by Mithil Vakde describing his approach to the Abstraction and Reasoning Corpus.<sup><a href="#ref1">1</a></sup> ARC was proposed by Francois Chollet as a measure of skill-acquisition efficiency rather than of accumulated skill: each puzzle supplies three to five input-output demonstrations of a rule the solver has never seen, and asks for the rule to be applied to a held-out case.<sup><a href="#ref2">2</a></sup> The benchmark is deliberately hostile to the strategy that has driven most recent progress, which is to pre-train on a corpus large enough that few tasks are genuinely novel.
+                    </p>
+
+                    <p>
+                        Two qualifications belong at the front. ARC puzzles are small colored grids with discrete, noise-free ground truth, which not at all similar to medical imaging. And the conclusions below are drawn from a single well-documented set of experiments by an individual investigator, not from a peer-reviewed multi-site study. What follows should be read as a hypothesis about mechanism, not as evidence of clinical benefit. That said, I beliecve that in medicine, the value of a small number of carefully curated training examples is underestimated relative to the return on a large number of examples of variable quality, and this work bears directly on why that might be true.
+                    </p>
+
+                    <h2>What Was Actually Done</h2>
+
+                    <p>
+                        The method trains a small transformer, scaled to just eight layers, with random initialization at test time. There is no offline pre-training and no synthetic pre-training corpus. Puzzles from the training and evaluation sets are converted to token sequences and trained on autoregressively, with the evaluation test labels strictly withheld. Training runs approximately 1.5 hours on an RTX 5090.
+                    </p>
+
+                    <p>
+                        Three design choices carry most of the weight. Spatial structure is supplied through 3D rotary position embeddings, extending the rotary scheme of Su and colleagues to represent the two-dimensional grid rather than a one-dimensional sequence.<sup><a href="#ref3">3</a></sup> Each puzzle receives its own additive learned embedding, which separates task identity from task content and permits the shared weights to carry structure common across puzzles. Loss is computed on output tokens only. The remaining components are conventional modern practice: SwiGLU activations, RMSNorm, flash attention with variable-length batching, and color and dihedral augmentation with majority voting over inverse-augmented predictions at inference.
+                    </p>
+
+                    <p>
+                        The ablations are the part worth noting. Removing 3D RoPE drops the score from 44% to approximately 25%. Removing the per-task embeddings drops it to approximately the same place. Substituting one-dimensional positional encoding yields approximately 24%. Training each puzzle separately in the unsupervised, per-task style of CompressARC yields approximately 18%. Nearly half the performance of this system is attributable not to capacity, data, or optimization, but to how the problem is represented to the model.
+                    </p>
+
+                    <div class="article-callout">
+                        <h4>The Result in One Line</h4>
+                        <p>
+                            When a model is given "the right" structural priors and permitted to adapt to the specific problem in front of it, three to five examples per task are sufficient to learn a novel rule. Where those priors are removed, the same architecture on the same data loses roughly half its performance.
+                        </p>
+                    </div>
+
+                    <p>
+                        For calibration: the reported 44% on ARC-AGI-1 is comparable to the 45% reported for the 7M-parameter Tiny Recursive Model<sup><a href="#ref4">4</a></sup> and sits in the same neighborhood as the Hierarchical Reasoning Model,<sup><a href="#ref5">5</a></sup> both of which use similar batched test-time dynamics. It is below the 53% reported by Akyürek and colleagues for test-time training applied to an 8B-parameter pre-trained language model,<sup><a href="#ref6">6</a></sup> which is the relevant comparison for anyone tempted to read this as evidence that pre-training is unnecessary. It is not. It is evidence that pre-training is not the only route to sample efficiency.
+                    </p>
+
+                    <h2>Where the Author Is Appropriately Cautious</h2>
+
+                    <p>
+                        Several limitations are acknowledged in the original and should be carried forward rather than discarded in translation.
+                    </p>
+
+                    <p>
+                        The augmentation strategy is described by the author as an "anti-bitter-lesson cheat" that he has not found a way to remove without a substantial cost in accuracy or compute. Color and dihedral permutations are hand-specified invariances--essentially, hand-specified domain knowledge. This is not a criticism so much as a clarification of what is being claimed.
+                    </p>
+
+                    <p>
+                        The switch to computing loss on output tokens alone worsened test loss while improving the final score, from 40% to 44%. The author admits that he does not understand why. An unexplained inversion between the optimized quantity and the reported metric is the kind of finding that should lower confidence in any single number derived from the system.
+                    </p>
+
+                    <p>
+                        The system did not generalize well, scoring 7% on ARC-AGI-2. Whatever is being learned transfers poorly to a harder distribution of the same general kind, which is precisely the failure mode that matters clinically.
+                    </p>
+
+                    <p>
+                        Finally, all evaluation tasks are trained on simultaneously, which amortizes compute across tasks in a way that does not correspond to solving one problem at a time. The author accepts that this criticism has merit, and now reports total lifetime compute rather than cost per task, restricting direct comparison to systems with comparable batch dynamics.
+                    </p>
+
+                    <h2>Why This Might Matter in Medicine</h2>
+
+                    <h3>The data availability and annotation bottleneck is a structural constraint, not a temporary one</h3>
+
+                    <p>
+                        In medical imaging, the limiting factor is expert time. Ground truth for rare pathologies limits samples, and expert annotation and data sharing challenges further limits dataset size. Willemink and colleagues describe the curation and labeling pipeline in enough detail to make clear that this cost is not incidental to the process but constitutes most of it.<sup><a href="#ref7">7</a></sup> Active learning and human-in-the-loop approaches exist precisely because the bottleneck is structural.<sup><a href="#ref8">8</a></sup> A demonstration that a novel rule can be acquired from a handful of examples, provided the architecture already encodes the relevant structure, is therefore directly relevant, even if the demonstration domain is toy.
+                    </p>
+
+                    <p>
+                        The complementary point concerns label quality. Karimi and colleagues show that deep networks trained on medical images are substantially degraded by label noise and that mitigation is an active problem rather than a solved one.<sup><a href="#ref9">9</a></sup> Where truth is a matter of expert judgment, as it frequently is in imaging, more labels are not automatically more information. Five carefully adjudicated cases and five hundred rapidly annotated ones are not interchangeable, and an architecture that requires only the former is worth more than a comparable margin of accuracy.
+                    </p>
+
+                    <h3>Test-time adaptation maps onto the domain-shift problem</h3>
+
+                    <p>
+                        Distribution shift across institutions is another important challenge. AlBadawy and colleagues showed that brain tumor segmentation performance degrades measurably when training and testing institutions differ.<sup><a href="#ref10">10</a></sup> Zech and colleagues showed that a pneumonia classifier's performance varied by site and that models exploit site-specific confounders available in the image.<sup><a href="#ref11">11</a></sup> The conventional responses are broader training distributions, harmonization, or federated training across institutions.<sup><a href="#ref12">12</a></sup><sup>,</sup><sup><a href="#ref13">13</a></sup>
+                    </p>
+
+                    <p>
+                        Test-time training suggests a possible different arrangement: adapt to a hospital's data, using the unlabeled images actually present at that site, plus a small number of locally annotated examples. This is not a new idea in medical imaging. Karani and colleagues demonstrated test-time adaptable segmentation networks intended for exactly this problem, in which a normalization module is adapted per-scan while the segmentation network is held fixed.<sup><a href="#ref14">14</a></sup> The contribution of the ARC work is not the mechanism but the accounting: it makes visible how much of the achievable adaptation is attributable to representation rather than to data volume, and it does so at a compute cost that a department could absorb without discussion.
+                    </p>
+
+                    <h3>Representation engineering translates more readily than the architecture does</h3>
+
+                    <p>
+                        The single most transferable finding is the ablation result. Encoding the geometry of the problem in the positional scheme was worth nearly twenty percentage points. Medical images have far more exploitable structure than ARC grids do: three-dimensional volumes with known and often anisotropic voxel spacing, physical units, standard orientations, established anatomical priors, and known acquisition physics. A model that has been given this structure does not need to spend training examples discovering it.
+                    </p>
+
+                    <p>
+                        This is also the least surprising claim in the discussion, and it should be recognized as such. nnU-Net has been the most reliable segmentation baseline in the field for several years largely because it configures preprocessing, spacing, and patch geometry correctly for the dataset in front of it, without architectural novelty.<sup><a href="#ref15">15</a></sup> The ARC result is consistent with that experience and quantifies it in a setting where the ablation is clean.
+                    </p>
+
+                    <h3>Local compute is a governance argument as much as a cost argument</h3>
+
+                    <p>
+                        A method that trains in 1.5 hours on a single consumer GPU can run inside an institutional firewall. Transferring identifiable images to an external inference API raises privacy, contractual, and regulatory questions that many institutions resolve by declining. Federated approaches were developed to address the same constraint from the training side.<sup><a href="#ref12">12</a></sup> A model small enough to be trained or adapted locally sidesteps a portion of the problem rather than solving it, but sidestepping is frequently sufficient.
+                    </p>
+
+                    <h2>Test-Time Training Compared with Error-Driven Selection</h2>
+
+                    <p>
+                        Test-time training and uncertainty-driven methods such as active learning, hard-negative mining, and focal loss share an objective, which is to extract more from fewer examples. Their mechanisms differ enough that they should not be treated as alternatives to one another.
+                    </p>
+
+                    <p>
+                        Active learning is selective and inductive. It filters for the examples nearest the decision boundary, requests labels for them, and thereby concentrates optimization where the model is least certain. It assumes the target distribution is fixed and refines the boundary within it. It is correspondingly sensitive to label noise, since an irreducibly ambiguous case is indistinguishable from an informative one by the uncertainty criterion alone.
+                    </p>
+
+                    <p>
+                        Test-time training is comprehensive and transductive. It uses all available target inputs to construct a shared representation, discards nothing as too easy, and derives its efficiency from priors supplied before any data is seen. Its exposure is different: it depends on the target inputs being available in advance and on the structural priors being correct, and it offers no protection when they are not.
+                    </p>
+
+                    <p>
+                        Stated as questions, active learning asks which examples will teach the model the most, and test-time training asks how the model can reconfigure itself around the specific case in front of it. In a clinical setting where the relevant regularities vary by scanner, protocol, and population, both questions have answers worth having, and they are not the same answer. The combination — locally adapted, with expert annotation directed to the cases where the adapted model is least confident — is the arrangement we would expect to be most efficient with expert time, and we are not aware of it having been evaluated as such.
+                    </p>
+
+                    <h2>What Would Make This Actionable</h2>
+
+                    <p>
+                        The claim being made here is narrow. A 44% score on grid puzzles is not evidence about segmentation, and the 7% on ARC-AGI-2 is a reminder of how quickly this class of result degrades under a harder distribution. What would move the argument forward is a study in a real modality that reports the ablation as carefully as this one does: hold the architecture and data fixed, vary the spatial and acquisition priors supplied to the model, and report how many annotated cases are required to reach a fixed performance target under each condition. Sample efficiency reported as a function of the priors supplied, rather than accuracy reported at a fixed dataset size, is the number that would inform how an institution should spend its annotation budget.
+                    </p>
+
+                    <p>
+                        Meanwhile, the practical inference is unglamorous and probably correct. Before requesting another thousand annotations, it is worth establishing how much of the current performance gap is attributable to the model not having been told what the images are: their geometry, their spacing, their orientation, their physics. Based on the ablations reported here and on the sustained performance of methods that get this configuration right,<sup><a href="#ref15">15</a></sup> that fraction is frequently larger than expected.
+                    </p>
+
+                    <div class="article-callout">
+                        <h4>Key Takeaways</h4>
+                        <ul>
+                            <li><strong>Representation accounted for roughly half the performance:</strong> removing 3D RoPE or per-task embeddings dropped the score from 44% to approximately 25%, with data, architecture, and optimization unchanged.</li>
+                            <li><strong>Sample efficiency was obtained without pre-training:</strong> the model learned novel rules from three to five examples per task, trained from scratch in 1.5 hours on a single consumer GPU.</li>
+                            <li><strong>Generalization remains the limiting factor:</strong> the same system scored 7% on ARC-AGI-2, which is the failure mode that matters most for clinical deployment.</li>
+                            <li><strong>The medical translation is a hypothesis:</strong> ARC grids are discrete and noise-free; no claim about clinical performance follows from these results without direct evaluation in a real modality.</li>
+                            <li><strong>Transductive adaptation and active learning are complementary:</strong> one adapts to the local distribution, the other directs expert annotation to where it is most informative, and their combination appears unevaluated.</li>
+                        </ul>
+                    </div>
+
+                    <!-- References -->
+                    <h2>References</h2>
+
+                    <ol class="article-references" style="font-size: 0.95rem; line-height: 1.7; color: var(--gray-dark);">
+                        <li id="ref1">
+                            Vakde M. <strong>44% on ARC-AGI-1 with a small transformer trained from scratch at test time.</strong> 2026.
+                            <a href="https://mvakde.github.io/blog/44-on-arc-1/" target="_blank" style="color: var(--teal-primary);">mvakde.github.io/blog/44-on-arc-1</a>
+                        </li>
+                        <li id="ref2">
+                            Chollet F. <strong>On the Measure of Intelligence.</strong> <em>arXiv.</em> 2019;1911.01547.
+                            <a href="https://arxiv.org/abs/1911.01547" target="_blank" style="color: var(--teal-primary);">arXiv:1911.01547</a>
+                        </li>
+                        <li id="ref3">
+                            Su J, Ahmed M, Lu Y, Pan S, Bo W, Liu Y. <strong>RoFormer: Enhanced transformer with rotary position embedding.</strong> <em>Neurocomputing.</em> 2024;568:127063.
+                            <a href="https://doi.org/10.1016/j.neucom.2023.127063" target="_blank" style="color: var(--teal-primary);">doi:10.1016/j.neucom.2023.127063</a>
+                        </li>
+                        <li id="ref4">
+                            Jolicoeur-Martineau A. <strong>Less is More: Recursive Reasoning with Tiny Networks.</strong> <em>arXiv.</em> 2025;2510.04871.
+                            <a href="https://arxiv.org/abs/2510.04871" target="_blank" style="color: var(--teal-primary);">arXiv:2510.04871</a>
+                        </li>
+                        <li id="ref5">
+                            Wang G, Li J, Sun Y, et al. <strong>Hierarchical Reasoning Model.</strong> <em>arXiv.</em> 2025;2506.21734.
+                            <a href="https://arxiv.org/abs/2506.21734" target="_blank" style="color: var(--teal-primary);">arXiv:2506.21734</a>
+                        </li>
+                        <li id="ref6">
+                            Akyürek E, Damani M, Qiu L, Guo H, Kim Y, Andreas J. <strong>The Surprising Effectiveness of Test-Time Training for Few-Shot Learning.</strong> <em>arXiv.</em> 2024;2411.07279.
+                            <a href="https://arxiv.org/abs/2411.07279" target="_blank" style="color: var(--teal-primary);">arXiv:2411.07279</a>
+                        </li>
+                        <li id="ref7">
+                            Willemink MJ, Koszek WA, Hardell C, et al. <strong>Preparing Medical Imaging Data for Machine Learning.</strong> <em>Radiology.</em> 2020;295(1):4-15.
+                            <a href="https://doi.org/10.1148/radiol.2020192224" target="_blank" style="color: var(--teal-primary);">doi:10.1148/radiol.2020192224</a>
+                        </li>
+                        <li id="ref8">
+                            Budd S, Robinson EC, Kainz B. <strong>A survey on active learning and human-in-the-loop deep learning for medical image analysis.</strong> <em>Med Image Anal.</em> 2021;71:102062.
+                            <a href="https://doi.org/10.1016/j.media.2021.102062" target="_blank" style="color: var(--teal-primary);">doi:10.1016/j.media.2021.102062</a>
+                        </li>
+                        <li id="ref9">
+                            Karimi D, Dou H, Warfield SK, Gholipour A. <strong>Deep learning with noisy labels: Exploring techniques and remedies in medical image analysis.</strong> <em>Med Image Anal.</em> 2020;65:101759.
+                            <a href="https://doi.org/10.1016/j.media.2020.101759" target="_blank" style="color: var(--teal-primary);">doi:10.1016/j.media.2020.101759</a>
+                        </li>
+                        <li id="ref10">
+                            AlBadawy EA, Saha A, Mazurowski MA. <strong>Deep learning for segmentation of brain tumors: Impact of cross-institutional training and testing.</strong> <em>Med Phys.</em> 2018;45(3):1150-1158.
+                            <a href="https://doi.org/10.1002/mp.12752" target="_blank" style="color: var(--teal-primary);">doi:10.1002/mp.12752</a>
+                        </li>
+                        <li id="ref11">
+                            Zech JR, Badgeley MA, Liu M, Costa AB, Titano JJ, Oermann EK. <strong>Variable generalization performance of a deep learning model to detect pneumonia in chest radiographs: A cross-sectional study.</strong> <em>PLoS Med.</em> 2018;15(11):e1002683.
+                            <a href="https://doi.org/10.1371/journal.pmed.1002683" target="_blank" style="color: var(--teal-primary);">doi:10.1371/journal.pmed.1002683</a>
+                        </li>
+                        <li id="ref12">
+                            Rieke N, Hancox J, Li W, et al. <strong>The future of digital health with federated learning.</strong> <em>NPJ Digit Med.</em> 2020;3:119.
+                            <a href="https://doi.org/10.1038/s41746-020-00323-1" target="_blank" style="color: var(--teal-primary);">doi:10.1038/s41746-020-00323-1</a>
+                        </li>
+                        <li id="ref13">
+                            Sheller MJ, Edwards B, Reina GA, et al. <strong>Federated learning in medicine: facilitating multi-institutional collaborations without sharing patient data.</strong> <em>Sci Rep.</em> 2020;10(1):12598.
+                            <a href="https://doi.org/10.1038/s41598-020-69250-1" target="_blank" style="color: var(--teal-primary);">doi:10.1038/s41598-020-69250-1</a>
+                        </li>
+                        <li id="ref14">
+                            Karani N, Erdil E, Chaitanya K, Konukoglu E. <strong>Test-time adaptable neural networks for robust medical image segmentation.</strong> <em>Med Image Anal.</em> 2021;68:101907.
+                            <a href="https://doi.org/10.1016/j.media.2020.101907" target="_blank" style="color: var(--teal-primary);">doi:10.1016/j.media.2020.101907</a>
+                        </li>
+                        <li id="ref15">
+                            Isensee F, Jaeger PF, Kohl SAA, Petersen J, Maier-Hein KH. <strong>nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation.</strong> <em>Nat Methods.</em> 2021;18(2):203-211.
+                            <a href="https://doi.org/10.1038/s41592-020-01008-z" target="_blank" style="color: var(--teal-primary);">doi:10.1038/s41592-020-01008-z</a>
+                        </li>
+                    </ol>
+
+
+                </div>
+
+                <!-- Article Footer -->
+                <footer class="article-footer">
+                    <div class="article-share">
+                        <p>Share this article:</p>
+                        <div class="share-buttons">
+                            <a href="#" class="share-btn" aria-label="Copy link">Copy Link</a>
+                            <a href="../index.html#articles" class="share-btn">&larr; All Articles</a>
+                        </div>
+                    </div>
+
+                    <div class="article-cta">
+                        <h3>Want more insights like this?</h3>
+                        <p>Deep thinking on medicine, AI, and the future clinician&mdash;delivered to your inbox.</p>
+                        <a href="../index.html#connect" class="btn btn-primary">Contact</a>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-bottom">
+                    <div class="footer-links">
+                        <a href="../index.html">Home</a>
+                        <a href="../about.html">About</a>
+                        <a href="../index.html#articles">Thoughts on Medical AI and Automation</a>
+                        <a href="../papers-of-note.html">Papers of Note</a>
+                        <a href="../index.html#mission">Mission</a>
+                    </div>
+                </div>
+                <div class="footer-copyright">
+                    <p>&copy; 2025–2026 Bradley J. Erickson. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
