@@ -706,8 +706,79 @@ body {
     line-height: 1.6;
 }
 
+.newsletter-form {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.newsletter-input {
+    flex: 1;
+    padding: 0.875rem 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--white-neural);
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.newsletter-input:focus {
+    outline: none;
+    border-color: var(--teal-primary);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.newsletter-input::placeholder {
+    color: var(--gray-silver);
+}
+
+.newsletter .btn-primary {
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+    white-space: nowrap;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.contact-input,
+.contact-textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.875rem 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--white-neural);
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.contact-textarea {
+    resize: vertical;
+    min-height: 225px;
+}
+
+.contact-input:focus,
+.contact-textarea:focus {
+    outline: none;
+    border-color: var(--teal-primary);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.contact-input::placeholder,
+.contact-textarea::placeholder {
+    color: var(--gray-silver);
+}
+
 .contact-address {
-    font-size: 1.125rem;
+    margin-top: var(--spacing-sm);
+    font-size: 1rem;
     color: var(--white-neural);
     margin-bottom: var(--spacing-sm);
     word-break: break-word;
@@ -718,9 +789,22 @@ body {
     text-decoration: underline;
 }
 
-.contact-note {
-    font-size: 0.875rem;
+.copy-email {
+    margin-left: 0.5rem;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.05);
     color: var(--gray-silver);
+    font-family: var(--font-primary);
+    font-size: 0.8125rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.copy-email:hover {
+    color: var(--white-neural);
+    border-color: var(--teal-primary);
 }
 
 .footer-bottom {

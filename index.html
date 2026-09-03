@@ -320,14 +320,26 @@
                     <div class="newsletter">
                         <h3 class="newsletter-title">Get in Touch</h3>
                         <p class="newsletter-description">Questions, corrections, or proposed topics may be submitted directly.</p>
-                        <p class="contact-address">Email <a href="mailto:bje001@gmail.com?subject=MDSynapse.org%20inquiry">bje001@gmail.com</a></p>
-                        <p class="contact-note">If the link does not open your mail app, copy the address above.</p>
+                        <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/">
+                            <input type="hidden" name="form-name" value="contact">
+                            <p style="display:none;"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
+                            <input type="text" name="name" placeholder="Your name" class="contact-input">
+                            <input type="email" name="email" placeholder="your.email@example.com" class="contact-input" required>
+                            <textarea name="message" placeholder="Your message" class="contact-textarea" required></textarea>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                        <p class="contact-address">Or email <a href="mailto:bje001@gmail.com?subject=MDSynapse.org%20inquiry">bje001@gmail.com</a><button type="button" class="copy-email" data-copy="bje001@gmail.com">Copy</button></p>
                     </div>
 
                     <div class="newsletter">
                         <h3 class="newsletter-title">Notification of New Articles</h3>
                         <p class="newsletter-description">Notification when new analyses of medical AI, clinical reasoning, and imaging informatics are published.</p>
-                        <p class="contact-address">Email <a href="mailto:bje001@gmail.com?subject=Subscribe%3A%20new%20article%20notifications&amp;body=Please%20add%20me%20to%20the%20notification%20list.">bje001@gmail.com</a> with the subject &ldquo;Subscribe&rdquo;.</p>
+                        <form class="newsletter-form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/">
+                            <input type="hidden" name="form-name" value="newsletter">
+                            <p style="display:none;"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
+                            <input type="email" name="email" placeholder="your.email@example.com" class="newsletter-input" required>
+                            <button type="submit" class="btn btn-primary">Subscribe</button>
+                        </form>
                     </div>
                 </div>
 

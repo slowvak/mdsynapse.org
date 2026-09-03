@@ -377,3 +377,22 @@ document.addEventListener('DOMContentLoaded', () => {
 console.log('%c🧠 MDSynapse.org', 'color: #8B5CF6; font-size: 24px; font-weight: bold;');
 console.log('%cThink deep. Know more. Heal well.', 'color: #06B6D4; font-size: 14px;');
 console.log('%cInterested in the code? Check out the repo!', 'color: #1E1B4B; font-size: 12px;');
+
+// ==========================================
+// COPY EMAIL ADDRESS
+// ==========================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.copy-email').forEach(button => {
+        button.addEventListener('click', () => {
+            // ponytail: clipboard API only -- no execCommand fallback. The
+            // address is visible text right next to the button, so a failure
+            // still leaves the visitor able to select it by hand.
+            navigator.clipboard.writeText(button.dataset.copy).then(() => {
+                const original = button.textContent;
+                button.textContent = 'Copied';
+                setTimeout(() => { button.textContent = original; }, 2000);
+            });
+        });
+    });
+});
