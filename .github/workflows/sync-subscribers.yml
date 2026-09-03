@@ -1,0 +1,42 @@
+name: Sync Subscribers
+
+on:
+  schedule:
+    # 13:30 UTC, half an hour before the announcer routine's 14:00 run, so the
+    # committed list is current when the routine reads it.
+    - cron: '30 13 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Sync subscriber list
+        env:
+          NETLIFY_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
+          NETLIFY_SITE_ID: 'e9c4ebb0-9d37-40bd-bfa2-039e5583ae46'
+        run: python3 scripts/sync_subscribers.py
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- subscribers.txt; then
+            echo "No change."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add subscribers.txt
+          git commit -m "Update subscriber list"
+          git push
