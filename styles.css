@@ -706,10 +706,21 @@ body {
     line-height: 1.6;
 }
 
-.newsletter .btn-primary {
-    padding: 0.875rem 2rem;
-    font-size: 1rem;
-    white-space: nowrap;
+.contact-address {
+    font-size: 1.125rem;
+    color: var(--white-neural);
+    margin-bottom: var(--spacing-sm);
+    word-break: break-word;
+}
+
+.contact-address a {
+    color: var(--teal-primary);
+    text-decoration: underline;
+}
+
+.contact-note {
+    font-size: 0.875rem;
+    color: var(--gray-silver);
 }
 
 .footer-bottom {
