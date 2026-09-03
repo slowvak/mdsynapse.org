@@ -208,59 +208,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==========================================
-// NEWSLETTER FORM HANDLING
-// ==========================================
-
-const newsletterForm = document.querySelector('.newsletter-form');
-if (newsletterForm) {
-    newsletterForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        const emailInput = newsletterForm.querySelector('.newsletter-input');
-        const email = emailInput.value;
-
-        // Basic email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        if (emailRegex.test(email)) {
-            // Success feedback
-            const button = newsletterForm.querySelector('.btn');
-            const originalText = button.textContent;
-
-            button.textContent = 'Thank you!';
-            button.style.background = 'linear-gradient(135deg, #8B5CF6, #06B6D4)';
-            emailInput.value = '';
-
-            // Reset after 3 seconds
-            setTimeout(() => {
-                button.textContent = originalText;
-                button.style.background = '';
-            }, 3000);
-
-            // Here you would typically send the email to your backend
-            console.log('Newsletter subscription:', email);
-
-            // Example: Send to backend
-            // fetch('/api/subscribe', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify({ email })
-            // });
-
-        } else {
-            // Error feedback
-            emailInput.style.borderColor = '#EF4444';
-            emailInput.placeholder = 'Please enter a valid email';
-
-            setTimeout(() => {
-                emailInput.style.borderColor = '';
-                emailInput.placeholder = 'your.email@example.com';
-            }, 2000);
-        }
-    });
-}
-
-// ==========================================
 // ARTICLE CARD HOVER EFFECT
 // ==========================================
 
