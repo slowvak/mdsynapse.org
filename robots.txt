@@ -1,0 +1,10 @@
+# MyPubs-PDFs/ is 154 files, ~300 MB, and is linked from nowhere on the site.
+# Netlify meters bandwidth at 20 credits/GB against a 300-credit month, so one
+# full crawl costs ~6 credits and a scraper looping it can exhaust the plan --
+# which pauses the whole site, not just the PDFs.
+#
+# ponytail: advisory only; well-behaved crawlers honor this, bad ones ignore it.
+# If bandwidth still climbs, stop serving the directory (move it out of the
+# publish root, or host the PDFs off Netlify).
+User-agent: *
+Disallow: /MyPubs-PDFs/
