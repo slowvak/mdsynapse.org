@@ -41,3 +41,7 @@ This project is indexed by GitNexus as **mdsynapse.org** (515 symbols, 673 relat
 | Index, status, clean, wiki CLI commands | `.claude/skills/gitnexus/gitnexus-cli/SKILL.md` |
 
 <!-- gitnexus:end -->
+
+## Publishing
+
+- After publishing a blog post or review, remind Brad to notify the subscribers in `./subscribers.txt`.

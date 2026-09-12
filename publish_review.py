@@ -33,6 +33,7 @@ Setup (one-time):
   3. Share the Drive folder with the service account email
 """
 
+import pathlib
 import argparse
 import copy
 import json
@@ -629,6 +630,10 @@ examples:
     parser.add_argument("--verbose",   "-v", action="store_true", help="Print full tracebacks on error")
     args = parser.parse_args()
     run(args)
+    if not args.dry_run:
+        subs = pathlib.Path(__file__).parent / "subscribers.txt"
+        n = sum(1 for l in subs.read_text().splitlines() if l.strip()) if subs.exists() else 0
+        print(f"\n>> REMINDER: notify {n} subscribers in {subs}")
 
 
 if __name__ == "__main__":
