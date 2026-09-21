@@ -97,7 +97,7 @@
 
                     <p>Contemporary large language models perform fast pattern recognition and slow deliberation with the same autoregressive machinery, and consequently pay the cost of deliberation on every request. Two recently released systems, Jev (<a href="https://typesafe.ai" rel="noopener noreferrer" style="color: var(--teal-primary);" target="_blank">https://typesafe.ai</a>) and Laya (<a href="https://github.com/NandhaKishorM/laya" rel="noopener noreferrer" style="color: var(--teal-primary);" target="_blank">https://github.com/NandhaKishorM/laya</a>), separate the two by exposing fast, calibrated judgment as an explicit computational primitive. This post describes the theoretical basis for that separation, outlines an orchestrated architecture that exploits it, and reports an initial evaluation of Jev on note-level detection of protected health information (PHI) in synthetic clinical records.</p>
 
-<p><img src="fast-thinking-glyph.png" alt="A dense burst of parallel signals resolves in one node, passes a confidence gate, and either commits to an action or escalates to a slow serial chain of reasoning steps." style="width: 100%; height: auto; border-radius: 12px;"></p>
+<p><img src="System1Arch.jpeg" alt="An incoming clinical event enters a System 1 classifier engine that emits a calibrated probability. A confidence gate routes results at or above the threshold to fast automated execution, and results below it to a System 2 reasoning engine or a human in the loop." style="width: 100%; height: auto; border-radius: 12px;"></p>
 
 <p><em>Figure 1. An orchestrated dual-process pipeline. A single forward pass returns a calibrated probability; a confidence gate either commits to an action or escalates the case to serial deliberation.</em></p>
 
