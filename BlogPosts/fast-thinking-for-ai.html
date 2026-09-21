@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DF1RRDME3B"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-DF1RRDME3B');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A dual-process account of AI architecture, and a first evaluation of Jev on note-level PHI detection across 1000 synthetic clinical notes.">
+    <title>Fast Thinking for AI | MDSynapse.org</title>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://mdsynapse.org/BlogPosts/fast-thinking-for-ai.html">
+    <meta property="og:title" content="Fast Thinking for AI">
+    <meta property="og:description" content="A dual-process account of AI architecture, and a first evaluation of Jev on note-level PHI detection across 1000 synthetic clinical notes.">
+    <meta property="og:image" content="https://mdsynapse.org/og-image.png">
+    <meta property="article:author" content="Dr. Bradley J. Erickson">
+    <meta property="article:published_time" content="2026-09-21">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://mdsynapse.org/BlogPosts/fast-thinking-for-ai.html">
+    <meta property="twitter:title" content="Fast Thinking for AI">
+    <meta property="twitter:description" content="A dual-process account of AI architecture, and a first evaluation of Jev on note-level PHI detection across 1000 synthetic clinical notes.">
+    <meta property="twitter:image" content="https://mdsynapse.org/og-image.png">
+
+    <link rel="canonical" href="https://mdsynapse.org/BlogPosts/fast-thinking-for-ai.html">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../article-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="../index.html" class="logo">
+                    <div class="logo-mark">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="16" cy="8" r="2.5" fill="#3FD1C1"/>
+                            <circle cx="8" cy="16" r="2.5" fill="#3FD1C1" opacity="0.7"/>
+                            <circle cx="24" cy="16" r="2.5" fill="#3FD1C1" opacity="0.7"/>
+                            <circle cx="16" cy="24" r="2.5" fill="#3FD1C1"/>
+                            <circle cx="16" cy="16" r="3" fill="#3FD1C1" class="pulse"/>
+                            <line x1="16" y1="10.5" x2="16" y2="13" stroke="#3FD1C1" stroke-width="1.5"/>
+                            <line x1="16" y1="19" x2="16" y2="21.5" stroke="#3FD1C1" stroke-width="1.5"/>
+                            <line x1="10.5" y1="16" x2="13" y2="16" stroke="#3FD1C1" stroke-width="1.5"/>
+                            <line x1="19" y1="16" x2="21.5" y2="16" stroke="#3FD1C1" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">MDSynapse<span class="logo-ext">.org</span></span>
+                </a>
+                <div class="nav-links">
+                    <a href="../index.html">Home</a>
+                    <a href="../about.html">About</a>
+                    <a href="../index.html#articles">Thoughts on Medical AI and Automation</a>
+                    <a href="../papers-of-note.html">Papers of Note</a>
+                    <a href="../index.html#mission">Mission</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <article class="article">
+        <header class="article-header">
+            <div class="container">
+                <div class="article-header-content">
+                    <div class="article-tag tag-ai">AI</div>
+                    <h1 class="article-header-title">Fast Thinking for AI</h1>
+                    <p class="article-header-subtitle">Separating System 1 from System 2 in clinical decision pipelines</p>
+                    <div class="article-meta-header">
+                        <span class="article-date">September 21, 2026</span>
+                        <span class="article-divider">&bull;</span>
+                        <span class="article-reading-time">10 min read</span>
+                        <span class="article-divider">&bull;</span>
+                        <span class="article-author">By <a href="../about.html" style="color: var(--teal-primary); text-decoration: none;">Dr. Bradley J. Erickson</a></span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Article Content -->
+        <div class="article-body">
+            <div class="container">
+                <div class="article-content">
+
+                    <p class="lead">Separating System 1 from System 2 in clinical decision pipelines</p>
+
+                    <p>Contemporary large language models perform fast pattern recognition and slow deliberation with the same autoregressive machinery, and consequently pay the cost of deliberation on every request. Two recently released systems, Jev (<a href="https://typesafe.ai" rel="noopener noreferrer" style="color: var(--teal-primary);" target="_blank">https://typesafe.ai</a>) and Laya (<a href="https://github.com/NandhaKishorM/laya" rel="noopener noreferrer" style="color: var(--teal-primary);" target="_blank">https://github.com/NandhaKishorM/laya</a>), separate the two by exposing fast, calibrated judgment as an explicit computational primitive. This post describes the theoretical basis for that separation, outlines an orchestrated architecture that exploits it, and reports an initial evaluation of Jev on note-level detection of protected health information (PHI) in synthetic clinical records.</p>
+
+<p><img src="fast-thinking-glyph.png" alt="A dense burst of parallel signals resolves in one node, passes a confidence gate, and either commits to an action or escalates to a slow serial chain of reasoning steps." style="width: 100%; height: auto; border-radius: 12px;"></p>
+
+<p><em>Figure 1. An orchestrated dual-process pipeline. A single forward pass returns a calibrated probability; a confidence gate either commits to an action or escalates the case to serial deliberation.</em></p>
+
+<h2>Background: the dual-process account of cognition</h2>
+
+<p>Dual-process theory, as popularized by Kahneman in Thinking, Fast and Slow, holds that human judgment arises from two modes of processing. System 1 is fast, automatic, associative, and low-effort, and operates outside deliberate control; dodging an incoming object, reading a billboard, and recognizing an emotional expression are examples. System 2 is slow, serial, effortful, and rule-governed; multiplying 17 by 24, comparing two health insurance plans, and parking in a narrow space are examples.</p>
+
+<p>It should be noted that Kahneman presented System 1 and System 2 as expository fictions rather than anatomically distinct modules, and that the dichotomy has been criticized within medical education research as an oversimplification of expert reasoning (1, 2). The distinction nevertheless remains useful as an engineering abstraction, and it is in that sense that I use it here.</p>
+
+<p>In clinical medicine the framework was adapted by Croskerry into a model of diagnostic reasoning in which a recognized illness presentation engages the parallel, automatic processes of System 1, whereas an unrecognized presentation engages the slower analytical processes of System 2 (3, 4). The clinically important property of that model is not the superiority of either mode but the handoff between them: System 1 operates continuously at low cost and selectively triggers System 2.</p>
+
+<h2>The distinction is computational, not merely psychological</h2>
+
+<p>Machine learning practice has largely conflated the two modes, requiring a single autoregressive model to perform both. The cost asymmetry is substantial. To emit a short structured answer such as {"priority": "urgent"}, an autoregressive model must execute one sequential forward pass per generated token (a token is approximately 1 word), each pass traversing the full parameter set. An encoder-based classifier returns the same decision from a single forward pass by reading the logit distribution of a classification head directly; generation, and therefore the possibility of a fabricated answer outside the allowed set, is eliminated by construction.</p>
+
+<p>The reported latencies differ by roughly an order of magnitude. The Laya repository reports 32.8 to 39.5 ms per question on a Tesla T4 GPU for a 421M-parameter ModernBERT-large checkpoint, falling to 7.2 ms per question when ten questions are batched, compared with a reported p50 of 236 to 276 ms for Jev (5). These are developer-reported figures for one model against a competitor and have not been independently replicated; they are cited here as an indication of magnitude rather than as a benchmark result.</p>
+
+<h2>Calibration: correcting the WYSIATI failure mode</h2>
+
+<p>A central claim of Kahneman's work is WYSIATI (What You See Is All There Is): System 1 reaches conclusions from immediately available associative evidence and generates high subjective confidence even when empirical accuracy is low. Standard large language models inherit a version of this flaw. Because they are trained on next-token prediction and subsequently tuned with reinforcement learning from human feedback, their verbalized assertions of confidence correlate imperfectly with ground truth; larger models can be well calibrated on multiple-choice formats, but preference tuning has been shown to degrade that calibration (6).</p>
+
+<p>A probability is calibrated when, among all cases assigned probability p, the event occurs with relative frequency p:</p>
+
+<p>P(Y = 1 | p̂ = p) = p for all p ∈ [0, 1]</p>
+
+<p>Calibration of this kind is obtained by optimizing a strictly proper scoring rule, such as the Brier score or the ranked probability score, which is minimized in expectation only by the true probability (7, 8). The Laya documentation states that its checkpoints are trained by reinforcement learning against strictly proper scoring rules, with subsequent temperature fitting (5). The published TypeSafe documentation describes Jev's outputs as calibrated decisions but does not specify the training procedure, so for Jev the mechanism should be treated as a vendor claim pending disclosure. In either case the practical consequence is the same: the returned number is intended to be read as an empirical frequency rather than as a subjective confidence, and it should be validated on local data before it is trusted for local decisions.</p>
+
+<p>The clinical relevance of this property is not new. Calibration has been described as the Achilles heel of clinical predictive analytics, because a discriminating but miscalibrated model can be actively harmful when its output is used to set an action threshold (9).</p>
+
+<h2>An orchestrated dual-process architecture</h2>
+
+<p>The arrangement shown in Figure 1 maps the cognitive handoff onto a production pipeline. Four steps are required.</p>
+
+<p>1. Classify task typology. Assign pure categorization and gating decisions to System 1. Assign multi-constraint synthesis and free-form explanation to System 2.</p>
+
+<p>2. Define the escalation boundary (τ). For a binary judgment, escalate when the returned probability falls in an indeterminate band, for example when 0.05 &lt; p &lt; 0.95; a value near 0.5 indicates genuine uncertainty rather than a moderate degree of the property being judged. For a multi-class judgment, escalate when max(p) &lt; τ or when the predictive entropy H(P) = −∑i pi log pi exceeds a threshold θ. In either case, bypass automatic action and route the state to a System 2 model or to a human verification queue.</p>
+
+<p>3. Audit latency budgets. Verify that the System 1 evaluation layer consumes a small fraction of the end-to-end latency target, on the order of 5% or less, which is achievable at the tens-of-milliseconds latencies cited above.</p>
+
+<p>4. Enforce monotonic fallbacks. Ensure that the System 2 engine does not re-litigate structural assertions already settled by System 1, and reserve it for contextual resolution of the ambiguous cases that were escalated to it.</p>
+
+<p>It is worth noting that the threshold is a policy parameter, not a model property. Different actions within the same system should be gated at different levels according to the consequences of an error, and the values should be fitted on local data rather than adopted from a vendor example.</p>
+
+<h2>A worked clinical example</h2>
+
+<p>Calibrated binary judgments are common in medicine, and arguably constitute the majority of the routine decisions embedded in clinical workflow. A medication order safety check illustrates the pattern:</p>
+
+<p>from typesafe_sdk import Noul, TypeSafeClient<br/><br/>with TypeSafeClient() as client:<br/>    response = client.system_one(<br/>        state={<br/>            "patient_allergies": ["penicillin"],<br/>            "draft_order": "amoxicillin 500 mg PO TID",<br/>        },<br/>        questions={<br/>            "cross_reactive": Noul(<br/>                instructions=(<br/>                    "Does this order expose the patient to a documented "<br/>                    "anaphylactic or cross-reactive drug contraindication?"<br/>                )<br/>            ),<br/>        },<br/>    )<br/><br/>if response.nouls["cross_reactive"].noul &gt; 0.01:<br/>    route_to_pharmacist_review()</p>
+
+<p>Two design points are worth making explicit. First, the question asks one narrow thing. A compound question that simultaneously asks whether an order is safe, free of contraindications, and appropriate without physician override returns a single number that cannot be attributed to any one of those conditions; independent dimensions should be posed as separate questions, which are evaluated in parallel in the same request. Second, the threshold is deliberately asymmetric. For a safety interlock the cost of a false negative greatly exceeds the cost of a false positive, so the threshold is set to escalate on any appreciable probability of harm rather than at the midpoint.</p>
+
+<h2>Evaluation: note-level PHI detection in synthetic records</h2>
+
+<h3>Methods</h3>
+
+<p>I created a corpus of synthetic clinical notes and laboratory and imaging reports with known PHI spans, including synthetic but realistic patient names, medical record numbers, and dates. One thousand such notes were submitted to Jev with a single binary question asking whether the note contained PHI. I then randomly selected 500 of the 1000 notes and replaced every annotated PHI span with a type placeholder, for example PATIENTNAME in place of a name, and resubmitted the redacted versions. Notes retaining PHI were treated as positives (n = 500) and redacted notes as negatives (n = 500). Cases were classified at the default probability threshold of 0.50.</p>
+
+<h3>Results</h3>
+
+<p>Separation between the two classes was complete. All 500 PHI-positive notes were classified as containing PHI and none were missed; none of the 500 redacted notes were classified as containing PHI. Sensitivity was 100% (500/500; 95% CI 99.3–100%) and specificity was 100% (500/500; 95% CI 99.3–100%), with 0 false negatives and 0 false positives. Table 1 presents the distribution of the returned probabilities by class.</p>
+
+<div class="table-scroll"><table><tr><th>Class</th><th>Notes (n)</th><th>Minimum</th><th>Median</th><th>Maximum</th></tr><tr><td>PHI-positive</td><td>500</td><td>0.99</td><td>0.99</td><td>1.00</td></tr><tr><td>Redacted</td><td>500</td><td>0.11</td><td>0.20</td><td>0.45</td></tr></table></div>
+
+<p>Table 1. Distribution of the probability of PHI returned by Jev, by class. The two ranges do not overlap.</p>
+
+<p>The lowest probability assigned to a PHI-positive note was 0.99 and the highest assigned to a redacted note was 0.45, a margin of 0.54. Any threshold between 0.46 and 0.98 therefore yields identical classifications, and the 0.50 default is not load-bearing for this corpus.</p>
+
+<p>It is worth noting that the redacted notes were assigned probabilities of 0.11 to 0.45 rather than values near zero. This may be because placeholder tokens such as [PATIENTNAME] and [DATE] preserve the visible scaffolding of an identified record; the model appears to report residual identifiability rather than declaring the text clean. This behavior is consistent with a calibrated reading of the question, although the present design cannot distinguish it from a systematic offset.</p>
+
+<h3>Limitations</h3>
+
+<p>Several limitations constrain the interpretation of these results. First, the negatives were constructed by redacting the same annotations that define the positives, so the experiment measures whether Jev detects identifiers that were already known to the annotators, not whether it recovers identifiers the annotators missed. Second, the corpus is synthetic, and performance was not assessed on real clinical text with optical character recognition noise, inconsistent formatting, or institution-specific identifier conventions. Third, the task is note-level detection, which is substantially easier than the span-level detection and removal required for actual de-identification; the established shared-task systems are evaluated at the span level (10, 11). Fourth, no comparison against an established de-identification tool was performed (12). Finally, re-identification risk arising from quasi-identifiers that are not themselves listed identifiers, such as a rare diagnosis in combination with a small-population geography, cannot be scored by this corpus; that risk is precisely what separates the HIPAA Safe Harbor method from Expert Determination (13).</p>
+
+<h2>Discussion</h2>
+
+<p>Convolutional neural networks moved machine learning, and its application in medicine, forward by a large step. Transformers applied directly to image patches did so again (16). LLMs and autoregressive models were another. System 1 models may prove to be the next step. </p>
+
+<p>In my brief evaluation,  a non-generative classifier separated PHI-positive from redacted synthetic notes without error, with a probability margin wide enough that the decision threshold could be varied across more than half of its range without changing any classification. The result is best read as a sanity check on an easy version of the task rather than as evidence of de-identification performance, and the limitations above should be addressed before the approach is used on real records.</p>
+
+<p>The broader claim is architectural rather than empirical. If a fast, calibrated judgment can be obtained in tens of milliseconds and its probability can be trusted as a frequency, at substantially lower compute cost, then the expensive reasoning model need only be invoked for the minority of cases that fall inside the indeterminate band. The economics of that arrangement are favorable, and the failure mode it addresses, confident and uncalibrated assertion, is the failure mode that has most consistently obstructed the deployment of language models in clinical settings. We are still in the early stages of determining whether Jev and Laya can deliver calibrated decisions of the quality their documentation claims. But this is clearly a technology that has great promise and I suspect we will see many evaluations in the near future.</p>
+
+<h2>References</h2>
+
+<ol start="1"><li>Rotgans JI. It is time to progress beyond the System 1 versus System 2 dichotomy. Perspect Med Educ. 2015;4(4):163–164. PMID: 26183249.</li><li>De Houwer J. Moving beyond System 1 and System 2. Exp Psychol. 2019;66(4):257–265. PMID: 31530250.</li><li>Croskerry P. A universal model of diagnostic reasoning. Acad Med. 2009;84(8):1022–1028. PMID: 19638766.</li><li>Croskerry P. Clinical cognition and diagnostic error: applications of a dual process model of reasoning. Adv Health Sci Educ Theory Pract. 2009;14 Suppl 1:27–35. PMID: 19669918.</li><li>Laya: multilingual, non-autoregressive System 1 decision engine. (<a href="https://github.com/NandhaKishorM/laya" rel="noopener noreferrer" style="color: var(--teal-primary);" target="_blank">https://github.com/NandhaKishorM/laya</a>)</li><li>Kadavath S, Conerly T, Askell A, et al. Language models (mostly) know what they know. arXiv:2207.05221. (<a href="https://arxiv.org/abs/2207.05221" rel="noopener noreferrer" style="color: var(--teal-primary);" target="_blank">https://arxiv.org/abs/2207.05221</a>)</li><li>Brier GW. Verification of forecasts expressed in terms of probability. Mon Weather Rev. 1950;78(1):1–3.</li><li>Gneiting T, Raftery AE. Strictly proper scoring rules, prediction, and estimation. J Am Stat Assoc. 2007;102(477):359–378. (<a href="https://doi.org/10.1198/016214506000001437" rel="noopener noreferrer" style="color: var(--teal-primary);" target="_blank">https://doi.org/10.1198/016214506000001437</a>)</li><li>Van Calster B, McLernon DJ, van Smeden M, et al. Calibration: the Achilles heel of predictive analytics. BMC Med. 2019;17(1):230. PMID: 31842878.</li><li>Stubbs A, Kotfila C, Uzuner Ö. Automated systems for the de-identification of longitudinal clinical narratives: overview of 2014 i2b2/UTHealth shared task Track 1. J Biomed Inform. 2015;58 Suppl:S11–S19. PMID: 26225918.</li><li>Stubbs A, Uzuner Ö. Annotating longitudinal clinical narratives for de-identification: the 2014 i2b2/UTHealth corpus. J Biomed Inform. 2015;58 Suppl:S20–S29. PMID: 26319540.</li><li>Neamatullah I, Douglass MM, Lehman LW, et al. Automated de-identification of free-text medical records. BMC Med Inform Decis Mak. 2008;8:32. PMID: 18652655.</li><li>US Department of Health and Human Services. Guidance regarding methods for de-identification of protected health information in accordance with the HIPAA Privacy Rule. (<a href="https://www.hhs.gov/hipaa/for-professionals/special-topics/de-identification/index.html" rel="noopener noreferrer" style="color: var(--teal-primary);" target="_blank">https://www.hhs.gov/hipaa/for-professionals/special-topics/de-identification/index.html</a>)</li><li>Guo C, Pleiss G, Sun Y, Weinberger KQ. On calibration of modern neural networks. Proc ICML. 2017;70:1321–1330. (<a href="https://arxiv.org/abs/1706.04599" rel="noopener noreferrer" style="color: var(--teal-primary);" target="_blank">https://arxiv.org/abs/1706.04599</a>)</li><li>Kahneman D. Thinking, Fast and Slow. New York: Farrar, Straus and Giroux; 2011.</li><li>Dosovitskiy A, Beyer L, Kolesnikov A, et al. An image is worth 16x16 words: transformers for image recognition at scale. Proc ICLR. 2021. arXiv:2010.11929. (https://arxiv.org/abs/2010.11929)</li></ol>
+
+                </div>
+
+                <!-- Article Footer -->
+                <footer class="article-footer">
+                    <div class="article-share">
+                        <p>Share this article:</p>
+                        <div class="share-buttons">
+                            <a href="#" class="share-btn" aria-label="Copy link">Copy Link</a>
+                            <a href="../index.html#articles" class="share-btn">&larr; All Articles</a>
+                        </div>
+                    </div>
+
+                    <div class="article-cta">
+                        <h3>Want more insights like this?</h3>
+                        <p>Deep thinking on medicine, AI, and the future clinician&mdash;delivered to your inbox.</p>
+                        <a href="../index.html#connect" class="btn btn-primary">Contact</a>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-bottom">
+                    <div class="footer-links">
+                        <a href="../index.html">Home</a>
+                        <a href="../about.html">About</a>
+                        <a href="../index.html#articles">Thoughts on Medical AI and Automation</a>
+                        <a href="../papers-of-note.html">Papers of Note</a>
+                        <a href="../index.html#mission">Mission</a>
+                    </div>
+                </div>
+                <div class="footer-copyright">
+                    <p>&copy; 2025–2026 Bradley J. Erickson. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="1200" height="420" role="img"
+     aria-label="A dense burst of parallel signals resolves in one node, passes a confidence gate, and either commits to an action or escalates to a slow serial chain of reasoning steps.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1E1B4B"/>
+      <stop offset="60%" stop-color="#241F5E"/>
+      <stop offset="100%" stop-color="#312E81"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#22D3EE" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#22D3EE" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ray" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#06B6D4" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#22D3EE" stop-opacity="1"/>
+    </linearGradient>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8B5CF6"/>
+    </marker>
+    <marker id="ahc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#22D3EE"/>
+    </marker>
+    <style>
+      .lbl { font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif; font-weight: 600;
+             font-size: 19px; letter-spacing: .1em; text-transform: uppercase; fill: #94A3B8; }
+      .sub { font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; font-size: 15px; fill: #64748B; letter-spacing: .02em; }
+      .tau { font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif; font-size: 22px; fill: #22D3EE; font-style: italic; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="420" rx="20" fill="url(#bg)"/>
+
+  <!-- System 1: many signals, one simultaneous pass -->
+  <circle cx="300" cy="200" r="150" fill="url(#glow)"/>
+  <g stroke="url(#ray)" stroke-width="3" stroke-linecap="round">
+    <line x1="300" y1="60"  x2="300" y2="172"/>
+    <line x1="374" y1="74"  x2="316" y2="176"/>
+    <line x1="434" y1="116" x2="326" y2="188"/>
+    <line x1="456" y1="200" x2="332" y2="200"/>
+    <line x1="434" y1="284" x2="326" y2="212"/>
+    <line x1="374" y1="326" x2="316" y2="224"/>
+    <line x1="300" y1="340" x2="300" y2="228"/>
+    <line x1="226" y1="326" x2="284" y2="224"/>
+    <line x1="166" y1="284" x2="274" y2="212"/>
+    <line x1="144" y1="200" x2="268" y2="200"/>
+    <line x1="166" y1="116" x2="274" y2="188"/>
+    <line x1="226" y1="74"  x2="284" y2="176"/>
+  </g>
+  <g fill="#06B6D4" opacity="0.65">
+    <circle cx="300" cy="60" r="4"/><circle cx="374" cy="74" r="4"/><circle cx="434" cy="116" r="4"/>
+    <circle cx="456" cy="200" r="4"/><circle cx="434" cy="284" r="4"/><circle cx="374" cy="326" r="4"/>
+    <circle cx="300" cy="340" r="4"/><circle cx="226" cy="326" r="4"/><circle cx="166" cy="284" r="4"/>
+    <circle cx="144" cy="200" r="4"/><circle cx="166" cy="116" r="4"/><circle cx="226" cy="74" r="4"/>
+  </g>
+  <circle cx="300" cy="200" r="30" fill="#0B1236" stroke="#22D3EE" stroke-width="3"/>
+  <circle cx="300" cy="200" r="11" fill="#22D3EE"/>
+  <text class="lbl" x="300" y="392" text-anchor="middle">System 1</text>
+  <text class="sub" x="300" y="366" text-anchor="middle">one forward pass &#183; ~10&#8211;40 ms</text>
+
+  <!-- calibrated output -->
+  <line x1="332" y1="200" x2="486" y2="200" stroke="#22D3EE" stroke-width="3" marker-end="url(#ahc)"/>
+
+  <!-- confidence gate -->
+  <line x1="530" y1="42" x2="530" y2="330" stroke="#475569" stroke-width="2" stroke-dasharray="6 8"/>
+  <rect x="502" y="172" width="56" height="56" rx="8" transform="rotate(45 530 200)"
+        fill="#0B1236" stroke="#22D3EE" stroke-width="3"/>
+  <rect x="494" y="240" width="72" height="34" rx="6" fill="#221D55"/>
+  <text class="tau" x="530" y="265" text-anchor="middle">p &#8805; &#964;</text>
+
+  <!-- branch A: act -->
+  <path d="M566 214 C 610 268, 640 290, 690 290" fill="none" stroke="#22D3EE" stroke-width="3" marker-end="url(#ahc)"/>
+  <rect x="700" y="262" width="150" height="56" rx="28" fill="#06B6D4" fill-opacity="0.16" stroke="#22D3EE" stroke-width="2.5"/>
+  <path d="M726 290 l 13 14 l 26 -30" fill="none" stroke="#22D3EE" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text class="sub" x="797" y="296" text-anchor="middle" fill="#22D3EE">act</text>
+
+  <!-- branch B: escalate to slow serial reasoning -->
+  <path d="M566 186 C 610 132, 640 110, 690 110" fill="none" stroke="#8B5CF6" stroke-width="3" marker-end="url(#ah)"/>
+  <g stroke="#8B5CF6" stroke-width="3">
+    <line x1="738" y1="110" x2="788" y2="110" marker-end="url(#ah)"/>
+    <line x1="836" y1="110" x2="886" y2="110" marker-end="url(#ah)"/>
+    <line x1="934" y1="110" x2="984" y2="110" marker-end="url(#ah)"/>
+  </g>
+  <g fill="#0B1236" stroke="#8B5CF6" stroke-width="3">
+    <circle cx="714" cy="110" r="22"/><circle cx="812" cy="110" r="22"/>
+    <circle cx="910" cy="110" r="22"/><circle cx="1008" cy="110" r="22"/>
+  </g>
+  <g fill="#8B5CF6">
+    <circle cx="714" cy="110" r="7"/><circle cx="812" cy="110" r="7"/>
+    <circle cx="910" cy="110" r="7"/><circle cx="1008" cy="110" r="7"/>
+  </g>
+  <text class="lbl" x="861" y="46" text-anchor="middle">System 2</text>
+  <text class="sub" x="861" y="180" text-anchor="middle">serial deliberation &#183; escalate only when uncertain</text>
+</svg>

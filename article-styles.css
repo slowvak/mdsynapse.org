@@ -408,6 +408,18 @@
     border-bottom: 2px solid var(--teal-primary);
 }
 
+/* Google Docs exports every cell as <td>, so style the first row as the header */
+.article-content table tr:first-child td {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--navy-dark);
+    border-bottom: 2px solid var(--teal-primary);
+}
+
+.article-content table tbody tr:nth-child(even) td {
+    background: rgba(6, 182, 212, 0.04);
+}
+
 .article-content table tr:last-child td {
     border-bottom: none;
 }
