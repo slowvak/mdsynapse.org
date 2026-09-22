@@ -531,13 +531,13 @@ def process_review_doc(doc_html: str, dry_run: bool = False) -> str:
         print(f"  [DRY RUN] Would update : {PAPERS_PAGE}")
         print(f"\n  ── Card preview ──\n{card_html}")
         print(f"\n  ── URL it would publish to ──")
-        print(f"    {SITE_BASE_URL}/Reviews/{slug}.html")
+        print(f"    {SITE_BASE_URL}/reviews/{slug}")
     else:
         output_path.write_text(output_html, encoding="utf-8")
         print(f"  Written  : {output_path}")
         inject_review_card_into_papers_page(card_html, slug)
         print(f"  Updated  : {PAPERS_PAGE}")
-        print(f"  Live URL : {SITE_BASE_URL}/Reviews/{slug}.html")
+        print(f"  Live URL : {SITE_BASE_URL}/reviews/{slug}")
 
     return slug
 
@@ -747,13 +747,13 @@ def process_blog_doc(doc_html: str, doc_meta: dict | None, dry_run: bool = False
         print(f"  [DRY RUN] Would update : {INDEX_PAGE}")
         print(f"\n  ── Card preview ──\n{card_html}")
         print(f"\n  ── URL it would publish to ──")
-        print(f"    {SITE_BASE_URL}/BlogPosts/{slug}.html")
+        print(f"    {SITE_BASE_URL}/blogposts/{slug}")
     else:
         output_path.write_text(output_html, encoding="utf-8")
         print(f"  Written  : {output_path}")
         inject_blog_card_into_index(card_html, slug)
         print(f"  Updated  : {INDEX_PAGE}")
-        print(f"  Live URL : {SITE_BASE_URL}/BlogPosts/{slug}.html")
+        print(f"  Live URL : {SITE_BASE_URL}/blogposts/{slug}")
 
     return slug
 

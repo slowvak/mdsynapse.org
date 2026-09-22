@@ -84,7 +84,7 @@ Anything else falls back to `tag-ai` with a warning.
 
 ## Naming convention
 
-Output file: `BlogPosts/{slug}.html`. Live URL: `https://mdsynapse.org/BlogPosts/{slug}.html`.
+Output file: `BlogPosts/{slug}.html`. Live URL: `https://mdsynapse.org/blogposts/{slug}`.
 
 The slug must be unique across BlogPosts/. If you re-publish (with `--reprocess`),
 the existing file is overwritten and the index card is left as-is (duplicate-safe).
