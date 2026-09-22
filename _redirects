@@ -1,0 +1,12 @@
+# Netlify serves the repo root, so every file here is public by default.
+# Block the paths that should not be, before any bytes leave the edge.
+#
+# subscribers.txt lives in the repo because the announcer routine reads it
+# from git; it has no business being downloadable from the web.
+/subscribers.txt   /404.html   404
+
+# MyPubs-PDFs/ was 300 MB of unlinked PDFs and is no longer in the repo.
+# Kept as a guard so re-adding it does not silently put it back on the web:
+# bandwidth is metered at 20 credits/GB against a 300-credit month, so one
+# full crawl of that directory cost ~6 credits.
+/MyPubs-PDFs/*     /404.html   404

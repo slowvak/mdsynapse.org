@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Page Not Found | MDSynapse.org</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .notfound {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: var(--spacing-md);
+        }
+        .notfound-code {
+            font-family: var(--font-display);
+            font-size: clamp(4rem, 12vw, 7rem);
+            line-height: 1;
+            color: var(--teal-primary);
+            margin: 0;
+        }
+        .notfound h1 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            margin: var(--spacing-sm) 0;
+        }
+        .notfound p {
+            color: var(--gray-silver);
+            max-width: 34rem;
+            margin: 0 0 var(--spacing-md);
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="/index.html" class="logo">
+                    <div class="logo-mark">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="16" cy="8" r="2.5" fill="#3FD1C1"/>
+                            <circle cx="8" cy="16" r="2.5" fill="#3FD1C1" opacity="0.7"/>
+                            <circle cx="24" cy="16" r="2.5" fill="#3FD1C1" opacity="0.7"/>
+                            <circle cx="16" cy="24" r="2.5" fill="#3FD1C1"/>
+                            <circle cx="16" cy="16" r="3" fill="#3FD1C1" class="pulse"/>
+                            <line x1="16" y1="10.5" x2="16" y2="13" stroke="#3FD1C1" stroke-width="1.5"/>
+                            <line x1="16" y1="19" x2="16" y2="21.5" stroke="#3FD1C1" stroke-width="1.5"/>
+                            <line x1="10.5" y1="16" x2="13" y2="16" stroke="#3FD1C1" stroke-width="1.5"/>
+                            <line x1="19" y1="16" x2="21.5" y2="16" stroke="#3FD1C1" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">MDSynapse<span class="logo-ext">.org</span></span>
+                </a>
+                <div class="nav-links">
+                    <a href="/index.html">Home</a>
+                    <a href="/about.html">About</a>
+                    <a href="/index.html#articles">Thoughts on Medical AI and Automation</a>
+                    <a href="/papers-of-note.html">Papers of Note</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container notfound">
+        <p class="notfound-code">404</p>
+        <h1>That page is not here</h1>
+        <p>The link may be out of date, or the page may have moved. The writing is all indexed from the home page.</p>
+        <a href="/index.html" class="btn btn-primary">Back to MDSynapse</a>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-copyright">
+                <p>&copy; 2025&ndash;2026 Bradley J. Erickson. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
