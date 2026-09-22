@@ -861,7 +861,12 @@ examples:
     run(args)
     if not args.dry_run:
         subs = pathlib.Path(__file__).parent / "subscribers.txt"
-        n = sum(1 for l in subs.read_text().splitlines() if l.strip()) if subs.exists() else 0
+        # subscribers.txt carries a "# ..." header, so blank-line filtering
+        # alone counted the comments as subscribers.
+        n = sum(
+            1 for l in subs.read_text().splitlines()
+            if l.strip() and not l.lstrip().startswith("#")
+        ) if subs.exists() else 0
         print(f"\n>> REMINDER: notify {n} subscribers in {subs}")
 
 
