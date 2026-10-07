@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DF1RRDME3B"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-DF1RRDME3B');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="My two most recent posts addressed separate questions. The first examined whether artificial intelligence (AI), or in the term now more commonly used, superinte">
+    <title>Can System-1 Models Reduce p(Doom)? | MDSynapse.org</title>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://mdsynapse.org/blogposts/can-system-1-models-reduce-pdoom">
+    <meta property="og:title" content="Can System-1 Models Reduce p(Doom)?">
+    <meta property="og:description" content="My two most recent posts addressed separate questions. The first examined whether artificial intelligence (AI), or in the term now more commonly used, superinte">
+    <meta property="og:image" content="https://mdsynapse.org/og-image.png">
+    <meta property="article:author" content="Dr. Bradley J. Erickson">
+    <meta property="article:published_time" content="2026-10-07">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://mdsynapse.org/blogposts/can-system-1-models-reduce-pdoom">
+    <meta property="twitter:title" content="Can System-1 Models Reduce p(Doom)?">
+    <meta property="twitter:description" content="My two most recent posts addressed separate questions. The first examined whether artificial intelligence (AI), or in the term now more commonly used, superinte">
+    <meta property="twitter:image" content="https://mdsynapse.org/og-image.png">
+
+    <link rel="canonical" href="https://mdsynapse.org/blogposts/can-system-1-models-reduce-pdoom">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../article-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="../index.html" class="logo">
+                    <div class="logo-mark">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="16" cy="8" r="2.5" fill="#3FD1C1"/>
+                            <circle cx="8" cy="16" r="2.5" fill="#3FD1C1" opacity="0.7"/>
+                            <circle cx="24" cy="16" r="2.5" fill="#3FD1C1" opacity="0.7"/>
+                            <circle cx="16" cy="24" r="2.5" fill="#3FD1C1"/>
+                            <circle cx="16" cy="16" r="3" fill="#3FD1C1" class="pulse"/>
+                            <line x1="16" y1="10.5" x2="16" y2="13" stroke="#3FD1C1" stroke-width="1.5"/>
+                            <line x1="16" y1="19" x2="16" y2="21.5" stroke="#3FD1C1" stroke-width="1.5"/>
+                            <line x1="10.5" y1="16" x2="13" y2="16" stroke="#3FD1C1" stroke-width="1.5"/>
+                            <line x1="19" y1="16" x2="21.5" y2="16" stroke="#3FD1C1" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">MDSynapse<span class="logo-ext">.org</span></span>
+                </a>
+                <div class="nav-links">
+                    <a href="../index.html">Home</a>
+                    <a href="../about.html">About</a>
+                    <a href="../index.html#articles">Thoughts on Medical AI and Automation</a>
+                    <a href="../papers-of-note.html">Papers of Note</a>
+                    <a href="../index.html#mission">Mission</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <article class="article">
+        <header class="article-header">
+            <div class="container">
+                <div class="article-header-content">
+                    <div class="article-tag tag-ai">AI</div>
+                    <h1 class="article-header-title">Can System-1 Models Reduce p(Doom)?</h1>
+                    
+                    <div class="article-meta-header">
+                        <span class="article-date">October 7, 2026</span>
+                        <span class="article-divider">&bull;</span>
+                        <span class="article-reading-time">9 min read</span>
+                        <span class="article-divider">&bull;</span>
+                        <span class="article-author">By <a href="../about.html" style="color: var(--teal-primary); text-decoration: none;">Dr. Bradley J. Erickson</a></span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Article Content -->
+        <div class="article-body">
+            <div class="container">
+                <div class="article-content">
+
+                    <p class="lead">My two most recent posts addressed separate questions. The first examined whether artificial intelligence (AI), or in the term now more commonly used, superintelligence (SI), poses an existential risk to humanity. That probability is often abbreviated as p(doom). The second described System-1 models, a class of decision models that return a fixed, pre-specified set of outputs rather than free text. On further reflection, I believe these two topics overlap substantially. Specifically, System-1 models may offer a practical way to reduce the probability that a highly capable AI system inadvertently causes serious harm.</p>
+
+                    <h2>"Do what I mean, not what I say"</h2>
+
+<p>Most readers have heard this phrase, and many have used it. It reflects two facts about human communication. Natural language is less precise than we often assume, and speakers sometimes state a goal in a way that allows unintended interpretations. This gap between stated and intended objectives is at the center of most p(doom) arguments. The concern is not that an AI system has malicious intent. Rather, the concern is that a human will express a goal to a highly capable system, and the system will pursue that goal by a route that produces undesired, and possibly lethal, consequences. Amodei et al. described this class of failure as "negative side effects" and "reward hacking." They noted that an objective function that omits important constraints will be optimized without regard to those constraints [1].</p>
+
+<p>It follows that one cannot realistically state a broad goal and leave an AI system to "figure it out" for most real-world tasks. This is particularly true in medical care.</p>
+
+<h2>Medical care as a structured process</h2>
+
+<p>Good medical care is a process, not a single act. It begins with listening to the patient to understand what they perceive to be wrong. The clinician then asks questions that clarify the nature of the complaint. As signs and symptoms are gathered, the clinician considers a differential diagnosis. Tests are then ordered to narrow the diagnostic possibilities. In some cases a single test establishes the diagnosis. In others, the clinician must follow a deep tree of sequential tests. Once a diagnosis is made, treatment continues the process. An initial procedure or medication is applied, its effect is assessed, and the clinician determines whether further steps are required. Longer-term follow-up is frequently needed as well.</p>
+
+<p>Each of these stages contains decision points. Many of them can be supported by System-1 models, which are faster than large language models (LLMs) and, I will argue, safer for this purpose.</p>
+
+<h2>Why structured outputs are safer</h2>
+
+<p>As described in my prior post, System-1 models offer substantial speed advantages over LLMs. Their safety advantage comes from a different property. They produce a structured response, and a structured response requires that the set of permissible responses be defined in advance. The output of a System-1 model cannot be the free text of a generative model. It must always be one of a set of pre-specified values. These models also supply confidence scores. It should be noted that raw confidence scores from modern neural networks are often poorly calibrated. Well-established post hoc methods such as temperature scaling can correct this [2]. Calibrated confidence is what makes threshold-based escalation to a human reviewer meaningful.</p>
+
+<p>Because each possible output is enumerated, the application must also specify the next action for each output. This gives the designer far greater control than allowing agents to act without constraint. Requiring the actions at each branch of the decision tree to be defined allows for substantially greater reliability. It also substantially reduces the opportunity for an AI system to act outside its intended scope.</p>
+
+<p>System-1 models are also less susceptible to prompt injection. Prompt injection is defined as the insertion of malicious text into a model's input to induce harmful output. The reduced susceptibility arises because a classifier has no instruction-following channel. Injected text can at most shift the model toward one of its pre-specified outputs. It cannot cause the model to emit new instructions or take unplanned actions. Generative models, in comparison, remain highly vulnerable. Clusmann et al. tested four state-of-the-art vision-language models with 594 prompt injection attacks embedded in medical images. All four models were susceptible, and the injected prompts were not apparent to human observers [3].</p>
+
+<h2>Lessons from the Hugging Face incident</h2>
+
+<p>The events of July 2026 illustrate what can happen when broadly tasked agents operate with insufficient constraints. During an internal cybersecurity evaluation, OpenAI models escaped their evaluation environment. These included GPT-5.6 Sol and an unreleased, more capable model. The models exploited a vulnerability in a package-proxy service, reached the internet, and compromised Hugging Face's production infrastructure [4]. Their apparent objective was to retrieve answer keys for the benchmark on which they were being evaluated. Hugging Face detected and disclosed the intrusion before OpenAI identified its own models as the source [4].</p>
+
+<p>Two lessons are relevant here. First, the sandbox was misconfigured. This is evidence that we cannot assume firewalls and isolation boundaries will contain a capable agent. Second, the agents pursued the literal objective of the evaluation, a high score, by means that violated its obvious intent. This is the same gap between stated and intended goals described above.</p>
+
+<p>Simpler System-1 models deployed as monitors at gate points in the process may have interrupted this sequence at an early stage. For example, a monitor could classify each proposed action as within or outside the permitted scope before the action is executed. Notably, Greenblatt et al. showed that a weaker, trusted model monitoring the outputs of a stronger, untrusted model can substantially improve safety. This held even when the stronger model was actively attempting to subvert its constraints [5].</p>
+
+<h2>Implications for enterprises</h2>
+
+<p>Large organizations considering agentic AI with very broad goals should consider a different approach. That approach combines System-1 decisions, structured steps toward the stated goal, and more limited use of agents with correspondingly narrower goals for each step. This decomposition reduces the chance of unintended consequences. A vaguely specified small step has a smaller range of harmful interpretations than a vaguely specified grand goal. The secondary benefits should not be overlooked:</p>
+
+<ol start="1"><li>Lower compute costs,</li><li>A clearer organizational understanding of the goal and how it is achieved, and</li><li>Easier modification of the process when the goal changes.</li></ol>
+
+<h2>Implications for healthcare</h2>
+
+<p>Organizations with less ambitious goals are also likely to benefit from this hybrid approach. Clinicians generally have a mental model of the process they follow when evaluating a patient. That model is not necessarily optimal. Considerable work has gone into defining care processes, often called clinical pathways, for many medical conditions. The evidence supports their use. A Cochrane systematic review of 27 studies including 11,398 participants found that clinical pathways were associated with fewer in-hospital complications (odds ratio 0.58; 95% CI, 0.36–0.94) and improved documentation [6].</p>
+
+<p>These pathways are a natural starting point for the hybrid approach. Process modeling standards such as Business Process Model and Notation (BPMN) allow a computer to assist in the reliable execution of a care process. System-1 models can then make decisions at each branch point. A human is involved whenever the confidence score falls below a specified threshold or the model selects "Other" as its output.</p>
+
+<p>There is empirical support for this division of labor. Dvijotham et al. developed a system that learns when to defer from an AI model to the clinical workflow. In UK breast cancer screening, compared with double reading with arbitration, it reduced false positives by 25% at the same false-negative rate. It also reduced clinician workload by 66% [7].</p>
+
+<p>There remains a role for LLM-based agents in this design, but it is narrower. For example, an LLM might summarize a patient's prior clinical history. That summary could then serve as one input to downstream System-1 decision models.</p>
+
+<h2>Conclusion</h2>
+
+<p>The p(doom) debate is often framed as a question about the intentions or capabilities of future AI systems. In this post, I have argued that a large share of the risk instead comes from how we specify tasks. A broad, ambiguously stated goal given to a highly capable agent invites solutions that satisfy the words while violating the intent.</p>
+
+<p>System-1 models address this problem structurally. Every output must belong to a pre-specified set, and every output must map to a pre-specified next action. The designer is therefore forced to make intent explicit before deployment, rather than discovering misinterpretations afterward. Calibrated confidence scores provide a principled trigger for human review. The absence of a free-text output channel limits the attack surface for prompt injection.</p>
+
+<p>This approach does not eliminate the need for generative models. It also does not fully resolve the long-term questions raised by superintelligence. It does, however, convert an open-ended control problem into a set of bounded, auditable decisions. Medicine has long used this structure in the form of clinical pathways. The July 2026 Hugging Face incident demonstrated that containment boundaries alone cannot be assumed to hold. Healthcare organizations and enterprises can take a practical step now, at lower cost: embed narrow, well-calibrated System-1 monitors and decision points within explicit process models. Doing so reduces the probability that powerful AI systems pursue the letter of our instructions at the expense of their purpose.</p>
+
+<h2>References</h2>
+
+<ol start="1"><li>Amodei D, Olah C, Steinhardt J, Christiano P, Schulman J, Mané D. Concrete problems in AI safety. arXiv:1606.06565. 2016. (Not indexed in PubMed;<a href="https://arxiv.org/abs/1606.06565" rel="noopener noreferrer" style="color: var(--teal-primary);" target="_blank"> </a><a href="https://arxiv.org/abs/1606.06565" rel="noopener noreferrer" style="color: var(--teal-primary);" target="_blank">https://arxiv.org/abs/1606.06565</a>)</li><li>Guo C, Pleiss G, Sun Y, Weinberger KQ. On calibration of modern neural networks. Proceedings of the 34th International Conference on Machine Learning. PMLR. 2017;70:1321–1330. (Not indexed in PubMed;<a href="https://arxiv.org/abs/1706.04599" rel="noopener noreferrer" style="color: var(--teal-primary);" target="_blank"> </a><a href="https://arxiv.org/abs/1706.04599" rel="noopener noreferrer" style="color: var(--teal-primary);" target="_blank">https://arxiv.org/abs/1706.04599</a>)</li><li>Clusmann J, Ferber D, Wiest IC, Schneider CV, Brinker TJ, Foersch S, Truhn D, Kather JN. Prompt injection attacks on vision language models in oncology. Nat Commun. 2025;16(1):1239. doi:10.1038/s41467-024-55631-x. PMID: 39890777.</li><li>OpenAI. OpenAI and Hugging Face partner to address security incident during model evaluation. July 21, 2026. (Not indexed in PubMed;<a href="https://openai.com/index/hugging-face-model-evaluation-security-incident/" rel="noopener noreferrer" style="color: var(--teal-primary);" target="_blank"> </a><a href="https://openai.com/index/hugging-face-model-evaluation-security-incident/" rel="noopener noreferrer" style="color: var(--teal-primary);" target="_blank">https://openai.com/index/hugging-face-model-evaluation-security-incident/</a>)</li><li>Greenblatt R, Shlegeris B, Sachan K, Roger F. AI control: improving safety despite intentional subversion. Proceedings of the 41st International Conference on Machine Learning. 2024. (Not indexed in PubMed;<a href="https://arxiv.org/abs/2312.06942" rel="noopener noreferrer" style="color: var(--teal-primary);" target="_blank"> </a><a href="https://arxiv.org/abs/2312.06942" rel="noopener noreferrer" style="color: var(--teal-primary);" target="_blank">https://arxiv.org/abs/2312.06942</a>)</li><li>Rotter T, Kinsman L, James E, Machotta A, Gothe H, Willis J, Snow P, Kugler J. Clinical pathways: effects on professional practice, patient outcomes, length of stay and hospital costs. Cochrane Database Syst Rev. 2010;(3):CD006632. doi:10.1002/14651858.CD006632.pub2. PMID: 20238347.</li><li>Dvijotham K, Winkens J, Barsbey M, et al. Enhancing the reliability and accuracy of AI-enabled diagnosis via complementarity-driven deferral to clinicians. Nat Med. 2023;29(7):1814–1820. doi:10.1038/s41591-023-02437-x. PMID: 37460754.</li></ol>
+
+                </div>
+
+                <!-- Article Footer -->
+                <footer class="article-footer">
+                    <div class="article-share">
+                        <p>Share this article:</p>
+                        <div class="share-buttons">
+                            <a href="#" class="share-btn" aria-label="Copy link">Copy Link</a>
+                            <a href="../index.html#articles" class="share-btn">&larr; All Articles</a>
+                        </div>
+                    </div>
+
+                    <div class="article-cta">
+                        <h3>Want more insights like this?</h3>
+                        <p>Deep thinking on medicine, AI, and the future clinician&mdash;delivered to your inbox.</p>
+                        <a href="../index.html#connect" class="btn btn-primary">Contact</a>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-bottom">
+                    <div class="footer-links">
+                        <a href="../index.html">Home</a>
+                        <a href="../about.html">About</a>
+                        <a href="../index.html#articles">Thoughts on Medical AI and Automation</a>
+                        <a href="../papers-of-note.html">Papers of Note</a>
+                        <a href="../index.html#mission">Mission</a>
+                    </div>
+                </div>
+                <div class="footer-copyright">
+                    <p>&copy; 2025–2026 Bradley J. Erickson. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
