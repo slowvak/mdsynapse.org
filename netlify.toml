@@ -1,0 +1,6 @@
+# Netlify publishes the repo root, so by default every file in git is public.
+# The build step deletes everything that isn't part of the site from Netlify's
+# own checkout before publishing; git is untouched. See scripts/prune_private.py.
+[build]
+  publish = "."
+  command = "python3 scripts/prune_private.py"
