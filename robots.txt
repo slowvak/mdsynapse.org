@@ -8,3 +8,5 @@
 # publish root, or host the PDFs off Netlify).
 User-agent: *
 Disallow: /MyPubs-PDFs/
+
+Sitemap: https://mdsynapse.org/sitemap.xml

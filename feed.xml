@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>MDSynapse.org</title>
+    <link>https://mdsynapse.org/</link>
+    <description>Medical AI, imaging informatics, and clinical workflow automation, by Dr. Bradley J. Erickson.</description>
+    <language>en-us</language>
+    <atom:link href="https://mdsynapse.org/feed.xml" rel="self" type="application/rss+xml"/>
+    <image><url>https://mdsynapse.org/apple-touch-icon.png</url><title>MDSynapse.org</title><link>https://mdsynapse.org/</link></image>
+    <lastBuildDate>Thu, 05 Nov 2026 12:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Any Language Model Can Be a Decision Model</title>
+      <link>https://mdsynapse.org/blogposts/any-language-model-can-be-a-decision-model</link>
+      <guid isPermaLink="true">https://mdsynapse.org/blogposts/any-language-model-can-be-a-decision-model</guid>
+      <pubDate>Thu, 05 Nov 2026 12:00:00 +0000</pubDate>
+      <dc:creator>Bradley J. Erickson</dc:creator>
+      <category>AI</category>
+      <description>What a radiology benchmark taught me about small System 1 models and about getting decisions out of ordinary language models</description>
+    </item>
+    <item>
+      <title>Can System-1 Models Reduce p(Doom)?</title>
+      <link>https://mdsynapse.org/blogposts/can-system-1-models-reduce-pdoom</link>
+      <guid isPermaLink="true">https://mdsynapse.org/blogposts/can-system-1-models-reduce-pdoom</guid>
+      <pubDate>Wed, 07 Oct 2026 12:00:00 +0000</pubDate>
+      <dc:creator>Bradley J. Erickson</dc:creator>
+      <category>AI</category>
+      <description>My two most recent posts addressed separate questions. The first examined whether artificial intelligence (AI), or in the term now more commonly used, superinte</description>
+    </item>
+    <item>
+      <title>Fast Thinking for AI</title>
+      <link>https://mdsynapse.org/blogposts/fast-thinking-for-ai</link>
+      <guid isPermaLink="true">https://mdsynapse.org/blogposts/fast-thinking-for-ai</guid>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 +0000</pubDate>
+      <dc:creator>Bradley J. Erickson</dc:creator>
+      <category>AI</category>
+      <description>A dual-process account of AI architecture, and a first evaluation of Jev on note-level PHI detection across 1000 synthetic clinical notes.</description>
+    </item>
+    <item>
+      <title>P(Doom) and P(Boom): Is AI Too Risky (Part 1)</title>
+      <link>https://mdsynapse.org/blogposts/pdoom-and-pboom-is-ai-too-risky-part-1</link>
+      <guid isPermaLink="true">https://mdsynapse.org/blogposts/pdoom-and-pboom-is-ai-too-risky-part-1</guid>
+      <pubDate>Sat, 12 Sep 2026 12:00:00 +0000</pubDate>
+      <dc:creator>Bradley J. Erickson</dc:creator>
+      <category>AI</category>
+      <description>On September 9, 2026, Jacob Coxon, a pretraining researcher who had worked at both OpenAI and Anthropic, resigned and posted a thread on X stating that the two </description>
+    </item>
+    <item>
+      <title>Sixty-Seven Cents of Reasoning</title>
+      <link>https://mdsynapse.org/blogposts/sample-efficiency-test-time-training</link>
+      <guid isPermaLink="true">https://mdsynapse.org/blogposts/sample-efficiency-test-time-training</guid>
+      <pubDate>Tue, 01 Sep 2026 12:00:00 +0000</pubDate>
+      <dc:creator>Bradley J. Erickson</dc:creator>
+      <category>AI</category>
+      <description>A small transformer trained from scratch at test time scored 44% on ARC-AGI-1 for 67 cents. What its ablations suggest about sample efficiency, priors, and…</description>
+    </item>
+    <item>
+      <title>"AI" Is Like "Medicine"</title>
+      <link>https://mdsynapse.org/blogposts/ai-is-like-medicine</link>
+      <guid isPermaLink="true">https://mdsynapse.org/blogposts/ai-is-like-medicine</guid>
+      <pubDate>Sat, 29 Aug 2026 12:00:00 +0000</pubDate>
+      <dc:creator>Bradley J. Erickson</dc:creator>
+      <category>AI</category>
+      <description>The word "AI" is now applied to nearly all parts of life and science, including nucleic-acid classifiers, chatbots, robotic surgical arms. The challenge is that</description>
+    </item>
+    <item>
+      <title>AI Efficiency Claims in Radiology: What the Published Evidence Supports</title>
+      <link>https://mdsynapse.org/blogposts/ai-efficiency-radiology</link>
+      <guid isPermaLink="true">https://mdsynapse.org/blogposts/ai-efficiency-radiology</guid>
+      <pubDate>Wed, 22 Jul 2026 12:00:00 +0000</pubDate>
+      <dc:creator>Bradley J. Erickson</dc:creator>
+      <category>Clinical Use</category>
+      <description>A review of the published evidence for AI-associated efficiency gains in radiology, covering report drafting, worklist triage, and workforce claims, and the…</description>
+    </item>
+    <item>
+      <title>Deterministic Automation and Probabilistic AI: Designing for Complementarity</title>
+      <link>https://mdsynapse.org/blogposts/automation-and-ai-optimal-synergy</link>
+      <guid isPermaLink="true">https://mdsynapse.org/blogposts/automation-and-ai-optimal-synergy</guid>
+      <pubDate>Mon, 13 Jul 2026 12:00:00 +0000</pubDate>
+      <dc:creator>Bradley J. Erickson</dc:creator>
+      <category>Automation</category>
+      <description>LLMs are probabilistic components with a distinct failure signature. We argue that a deterministic automation backbone and an explicit exception-handling loop…</description>
+    </item>
+    <item>
+      <title>When Does EHR–Radiograph Fusion Improve Clinical Prediction? A Review of CareBench</title>
+      <link>https://mdsynapse.org/reviews/multimodal-learning-healthcare-benchmark</link>
+      <guid isPermaLink="true">https://mdsynapse.org/reviews/multimodal-learning-healthcare-benchmark</guid>
+      <pubDate>Sun, 26 Apr 2026 12:00:00 +0000</pubDate>
+      <dc:creator>Bradley J. Erickson</dc:creator>
+      <category>Multimodal AI</category>
+      <description>A review of CareBench, a benchmark of 14 EHR and chest radiograph fusion methods: when fusion helps, why modality balancing matters, and the effect on fairness.</description>
+    </item>
+    <item>
+      <title>Machine Learning in Molecular Biology: Protein Design, Gene Editing, and Data Storage</title>
+      <link>https://mdsynapse.org/blogposts/bio-ai</link>
+      <guid isPermaLink="true">https://mdsynapse.org/blogposts/bio-ai</guid>
+      <pubDate>Sat, 28 Feb 2026 12:00:00 +0000</pubDate>
+      <dc:creator>Bradley J. Erickson</dc:creator>
+      <category>AI</category>
+      <description>A review of machine learning applied to protein design, gene editing, and molecular data storage, and the implications for medicine and computation.</description>
+    </item>
+    <item>
+      <title>Hybrid Rule-Based and Agentic Workflows in Healthcare: A Reliability Argument</title>
+      <link>https://mdsynapse.org/blogposts/hybrid-ai-workflows</link>
+      <guid isPermaLink="true">https://mdsynapse.org/blogposts/hybrid-ai-workflows</guid>
+      <pubDate>Sat, 21 Feb 2026 12:00:00 +0000</pubDate>
+      <dc:creator>Bradley J. Erickson</dc:creator>
+      <category>Clinical Use</category>
+      <description>Error compounds multiplicatively across sequential agent steps, which constrains the use of purely agentic workflows in clinical care.</description>
+    </item>
+    <item>
+      <title>Uncertainty Quantification in Clinical AI: Beyond Binary Triage</title>
+      <link>https://mdsynapse.org/blogposts/uncertainty-quantification</link>
+      <guid isPermaLink="true">https://mdsynapse.org/blogposts/uncertainty-quantification</guid>
+      <pubDate>Thu, 01 Jan 2026 12:00:00 +0000</pubDate>
+      <dc:creator>Bradley J. Erickson</dc:creator>
+      <category>AI</category>
+      <description>Most FDA-cleared AI triage tools output a binary alert without any confidence estimate. We review what uncertainty quantification measures, why calibration…</description>
+    </item>
+    <item>
+      <title>Foundation Models in Medical Imaging: Scope, Data Efficiency, and Pre-Training Demographics</title>
+      <link>https://mdsynapse.org/blogposts/foundation-models</link>
+      <guid isPermaLink="true">https://mdsynapse.org/blogposts/foundation-models</guid>
+      <pubDate>Wed, 31 Dec 2025 12:00:00 +0000</pubDate>
+      <dc:creator>Bradley J. Erickson</dc:creator>
+      <category>AI</category>
+      <description>Medical foundation models are typically restricted to one modality and one anatomical region. We review why that narrowness follows from the data, what data…</description>
+    </item>
+    <item>
+      <title>Algorithmic Bias in Medical AI: Sources, Fairness Criteria, and Mitigation</title>
+      <link>https://mdsynapse.org/blogposts/algorithm-bias</link>
+      <guid isPermaLink="true">https://mdsynapse.org/blogposts/algorithm-bias</guid>
+      <pubDate>Sat, 27 Dec 2025 12:00:00 +0000</pubDate>
+      <dc:creator>Bradley J. Erickson</dc:creator>
+      <category>Ethics</category>
+      <description>A model with 92% accuracy in White patients and 78% in Black patients presents an adoption decision that aggregate accuracy cannot resolve.</description>
+    </item>
+    <item>
+      <title>From Validation to Deployment: Why Medical AI Fails to Reach Sustained Clinical Use</title>
+      <link>https://mdsynapse.org/blogposts/from-lab-to-ward</link>
+      <guid isPermaLink="true">https://mdsynapse.org/blogposts/from-lab-to-ward</guid>
+      <pubDate>Sat, 27 Dec 2025 12:00:00 +0000</pubDate>
+      <dc:creator>Bradley J. Erickson</dc:creator>
+      <category>AI</category>
+      <description>Medical AI systems that perform well in validation frequently fail to achieve sustained clinical use.</description>
+    </item>
+    <item>
+      <title>Model Drift in Clinical AI: Mechanisms, Consequences, and Monitoring</title>
+      <link>https://mdsynapse.org/blogposts/model-drift</link>
+      <guid isPermaLink="true">https://mdsynapse.org/blogposts/model-drift</guid>
+      <pubDate>Sat, 27 Dec 2025 12:00:00 +0000</pubDate>
+      <dc:creator>Bradley J. Erickson</dc:creator>
+      <category>AI</category>
+      <description>Model drift is the progressive loss of accuracy that occurs when operational data diverge from a model's training distribution.</description>
+    </item>
+  </channel>
+</rss>

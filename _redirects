@@ -34,6 +34,16 @@
 /social-media-posts.md          /404.html   404!
 /rebrand.patch                  /404.html   404!
 
+# --- Page templates and authoring guides ------------------------------------
+# publish.py reads these from the repo; on the web they are half-empty pages
+# full of {{PLACEHOLDERS}} that search engines would otherwise index.
+/BlogPosts/_blog-template.html  /404.html   404!
+/BlogPosts/_blog-template       /404.html   404!
+/BlogPosts/_blog-guide.md       /404.html   404!
+/Reviews/_review-template.html  /404.html   404!
+/Reviews/_review-template       /404.html   404!
+/Reviews/_review-guide.md       /404.html   404!
+
 # --- Retired -------------------------------------------------------------
 # MyPubs-PDFs/ was 300 MB of unlinked PDFs and is no longer in the repo.
 # Kept as a guard so re-adding it does not silently put it back on the web:
