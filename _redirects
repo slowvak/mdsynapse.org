@@ -1,3 +1,8 @@
+# Primary protection is now scripts/prune_private.py, which netlify.toml runs
+# as the build command to delete non-site files from the deploy. Netlify
+# matches these rules case-sensitively but serves files case-insensitively,
+# so the rules below are only a second layer.
+#
 # Netlify serves the repo root, so every file here is public by default.
 # Block what should not be, before any bytes leave the edge.
 #
