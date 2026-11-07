@@ -124,3 +124,18 @@ is a strict superset:
 
 Once you're happy, you can `rm publish_review.py`. (Keeping it around won't
 break anything — the two scripts read different state-file paths after migration.)
+
+## Search and social metadata (`scripts/seo_build.py`)
+
+After a successful publish, `publish.py` runs `scripts/seo_build.py`, which:
+
+- regenerates `sitemap.xml` and `feed.xml` (RSS) at the site root,
+- draws a branded 1200x630 social card at `og/<slug>.png` for any page that lacks one,
+- rewrites the `<!-- seo:start --> … <!-- seo:end -->` block in each page's `<head>`
+  (JSON-LD structured data, favicon and RSS links, any missing Open Graph/Twitter tags),
+- drops the " | MDSynapse.org" title suffix when a title would exceed 60 characters,
+  and trims meta descriptions over 160.
+
+Run it by hand any time with `uv run scripts/seo_build.py` (`--check` to preview,
+`--force-images` to redraw all cards). Don't hand-edit the managed block; it is
+overwritten on every run. To change a card's title, change the page's `og:title`.

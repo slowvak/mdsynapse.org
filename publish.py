@@ -42,6 +42,9 @@ Doc formats: see Reviews/_review-guide.md and BlogPosts/_blog-guide.md
 
 import pathlib
 import argparse
+import shutil
+import subprocess
+from html import escape as html_escape
 import json
 import re
 import sys
@@ -436,7 +439,7 @@ def build_papers_card(metadata: dict, first_sentence: str) -> str:
                             {first_sentence}
                         </p>
                         <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <a href="Reviews/{slug}.html" style="color: var(--teal-primary); text-decoration: none; font-size: 0.875rem; font-weight: 600;">
+                            <a href="/reviews/{slug}" style="color: var(--teal-primary); text-decoration: none; font-size: 0.875rem; font-weight: 600;">
                                 Read Full Review →
                             </a>
                             <a href="{paper_url}" target="_blank" rel="noopener noreferrer" style="color: var(--gray-silver); text-decoration: none; font-size: 0.875rem; font-weight: 500;">
@@ -451,7 +454,7 @@ _PAPERS_CARD_MARKER = '<div style="display: grid; gap: 2rem;">'
 
 def inject_review_card_into_papers_page(card_html: str, slug: str) -> None:
     content = PAPERS_PAGE.read_text(encoding="utf-8")
-    if f"Reviews/{slug}.html" in content:
+    if f"/reviews/{slug}\"" in content or f"Reviews/{slug}.html" in content:
         print(f"  Card for '{slug}' already in {PAPERS_PAGE.name} — skipping injection.")
         return
     idx = content.find(_PAPERS_CARD_MARKER)
@@ -498,20 +501,20 @@ def process_review_doc(doc_html: str, dry_run: bool = False) -> str:
     first_sentence = sentences[0].rstrip(".") + "." if sentences else ""
 
     values = {
-        "META_DESCRIPTION"    : metadata["Meta Description"],
-        "REVIEW_TITLE"        : metadata["Review Title"],
+        "META_DESCRIPTION"    : html_escape(metadata["Meta Description"]),
+        "REVIEW_TITLE"        : html_escape(metadata["Review Title"]),
         "SLUG"                : slug,
         "ISO_DATE"            : iso_date,
         "TAG_CLASS"           : metadata.get("Tag Class", DEFAULT_TAG_CLASS),
-        "CATEGORY"            : metadata["Category"],
-        "SUBTITLE"            : metadata["Subtitle"],
+        "CATEGORY"            : html_escape(metadata["Category"]),
+        "SUBTITLE"            : html_escape(metadata["Subtitle"]),
         "DISPLAY_DATE"        : display_date,
         "READ_TIME"           : metadata["Read Time"],
-        "PAPER_TITLE"         : metadata["Paper Title"],
-        "AUTHORS"             : metadata["Authors"],
-        "VENUE"               : metadata["Venue"],
-        "YEAR"                : metadata["Year"],
-        "PAPER_URL"           : metadata["Paper URL"],
+        "PAPER_TITLE"         : html_escape(metadata["Paper Title"]),
+        "AUTHORS"             : html_escape(metadata["Authors"]),
+        "VENUE"               : html_escape(metadata["Venue"]),
+        "YEAR"                : html_escape(metadata["Year"]),
+        "PAPER_URL"           : html_escape(metadata["Paper URL"]),
         "WHY_IT_MATTERS_LEAD" : why_lead,
         "WHY_IT_MATTERS_BODY" : why_body,
         "WHAT_THEY_DID"       : what_they_did,
@@ -634,7 +637,7 @@ def build_index_card(values: dict, excerpt: str) -> str:
         f'                    <p class="article-excerpt">{excerpt}</p>\n'
         '                    <div class="article-meta">\n'
         f'                        <span class="read-time">{read_time} min read</span>\n'
-        f'                        <a href="BlogPosts/{slug}.html" class="article-link">Read more →</a>\n'
+        f'                        <a href="/blogposts/{slug}" class="article-link">Read more →</a>\n'
         '                    </div>\n'
         '                </article>'
     )
@@ -645,7 +648,7 @@ _INDEX_GRID_OPEN  = '<div class="articles-grid">'
 
 def inject_blog_card_into_index(card_html: str, slug: str) -> None:
     content = INDEX_PAGE.read_text(encoding="utf-8")
-    if f'BlogPosts/{slug}.html' in content:
+    if f'/blogposts/{slug}"' in content or f'BlogPosts/{slug}.html' in content:
         print(f"  Card for '{slug}' already in {INDEX_PAGE.name} — skipping injection.")
         return
     idx = content.find(_INDEX_GRID_OPEN)
@@ -724,22 +727,22 @@ def process_blog_doc(doc_html: str, doc_meta: dict | None, dry_run: bool = False
     print(f"  Read time: {read_time} min")
 
     values = {
-        "TITLE"            : title,
-        "SUBTITLE"         : subtitle,
+        "TITLE"            : html_escape(title),
+        "SUBTITLE"         : html_escape(subtitle),
         "SLUG"             : slug,
         "CATEGORY"         : category,
         "TAG_CLASS"        : tag_class,
         "ISO_DATE"         : iso_date,
         "DISPLAY_DATE"     : display_date,
         "READ_TIME"        : read_time,
-        "META_DESCRIPTION" : meta_description,
-        "LEAD"             : lead_text,
+        "META_DESCRIPTION" : html_escape(meta_description),
+        "LEAD"             : html_escape(lead_text),
         "BODY"             : body_html,
     }
 
     template_text = BLOG_TEMPLATE_PATH.read_text(encoding="utf-8")
     output_html   = fill_template(template_text, values)
-    card_html     = build_index_card(values, excerpt)
+    card_html     = build_index_card(values, html_escape(excerpt))
     output_path   = BLOGPOSTS_DIR / f"{slug}.html"
 
     if dry_run:
@@ -821,6 +824,22 @@ def run(args: argparse.Namespace) -> None:
 
     print(f"\n{'─'*60}")
     print(f"Done. {success} published, {failed} failed.")
+
+    if success and not args.dry_run:
+        run_seo_build()
+
+
+SEO_BUILD_SCRIPT = SITE_ROOT / "scripts" / "seo_build.py"
+
+
+def run_seo_build() -> None:
+    """Refresh sitemap.xml, feed.xml, social cards and JSON-LD for the whole site."""
+    print("\nRefreshing sitemap, RSS feed, social cards and structured data...")
+    uv = shutil.which("uv")
+    cmd = [uv, "run", str(SEO_BUILD_SCRIPT)] if uv else [sys.executable, str(SEO_BUILD_SCRIPT)]
+    result = subprocess.run(cmd, cwd=SITE_ROOT)
+    if result.returncode != 0:
+        print(f"  WARNING: SEO build failed; run it by hand: uv run scripts/seo_build.py")
 
 
 def main() -> None:

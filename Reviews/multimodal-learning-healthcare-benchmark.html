@@ -1,5 +1,6 @@
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DF1RRDME3B"></script>
     <script>
@@ -8,145 +9,380 @@
       gtag('js', new Date());
       gtag('config', 'G-DF1RRDME3B');
     </script>
-    <title>When Does EHR&ndash;Radiograph Fusion Improve Clinical Prediction? A Review of CareBench</title>
-    <style>
-      body { font-family: sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; }
-      h1, h2, h3 { color: #2c3e50; }
-      h1 { font-size: 2.5em; margin-bottom: 0.5em; }
-      h2 { font-size: 2em; border-bottom: 2px solid #eee; padding-bottom: 0.5em; margin-top: 1.5em; }
-      h3 { font-size: 1.5em; margin-top: 1em; }
-      p { margin-bottom: 1em; }
-      ul { list-style-type: disc; margin-left: 20px; margin-bottom: 1em; }
-      li { margin-bottom: 0.5em; }
-      .lead { font-size: 1.2em; font-weight: bold; color: #34495e; }
-      .article-quote { background-color: #f8f8f8; border-left: 5px solid #3498db; margin: 1.5em 0; padding: 1em 1.5em; font-style: italic; color: #555; }
-      .article-callout { background-color: #ecf0f1; border-left: 5px solid #2ecc71; margin: 1.5em 0; padding: 1em 1.5em; }
-      .article-callout h4 { color: #2c3e50; margin-top: 0; }
-    </style>
-  </head>
-  <body>
-    <h1>When Does EHR&ndash;Radiograph Fusion Improve Clinical Prediction? A Review of CareBench</h1>
-    <h2>1: The Promise and Perils of Multimodal AI in Healthcare</h2>
-    <p class="lead">Multimodal learning—combining different data types, such as electronic health records (EHR) and medical images—rests on the premise that a model with access to a patient's laboratory values, history, vital signs, and chest radiograph will form a more complete representation than any single source provides. Whether that premise holds under realistic clinical conditions has not been established systematically.</p>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A review of CareBench, a benchmark of 14 EHR and chest radiograph fusion methods: when fusion helps, why modality balancing matters, and the effect on fairness.">
+    <title>When Does EHR–Radiograph Fusion Improve Clinical Prediction? A Review of CareBench</title>
 
-    <p>The two modalities are complementary in principle. EHRs hold structured, longitudinal data—demographics, diagnoses, medications, lab results, and physiological measurements captured over time. Chest X-rays (CXR) add a view of anatomy and cardiopulmonary pathology that the record alone cannot supply. Fusion would in principle permit a model to weight each modality according to its informativeness for a given task.</p>
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://mdsynapse.org/reviews/multimodal-learning-healthcare-benchmark">
+    <meta property="og:title" content="When Does EHR&ndash;Radiograph Fusion Improve Clinical Prediction? A Review of CareBench">
+    <meta property="og:description" content="A review of CareBench, a benchmark of 14 EHR and chest radiograph fusion methods: when fusion helps, why modality balancing matters, and the effect on fairness.">
+    <meta property="og:image" content="https://mdsynapse.org/og/multimodal-learning-healthcare-benchmark.png">
+    <meta property="article:author" content="Dr. Bradley J. Erickson">
+    <meta property="article:published_time" content="2026-04-26">
 
-    <p>In practice, though, most evidence comes from proof-of-concept studies, and existing clinical ML benchmarks evaluate performance under near-ideal conditions, assuming every modality is present and well-structured. The complete-modality assumption rarely holds in operational settings, and the question of when fusion confers benefit therefore remains largely unresolved.</p>
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://mdsynapse.org/reviews/multimodal-learning-healthcare-benchmark">
+    <meta name="twitter:title" content="When Does EHR&ndash;Radiograph Fusion Improve Clinical Prediction? A Review of CareBench">
+    <meta name="twitter:description" content="A review of CareBench, a benchmark of 14 EHR and chest radiograph fusion methods: when fusion helps, why modality balancing matters, and the effect on fairness.">
+    <meta name="twitter:image" content="https://mdsynapse.org/og/multimodal-learning-healthcare-benchmark.png">
 
-    <p>Clinical data are frequently incomplete. Missing modalities are common: a patient may have extensive EHR data without a recent radiograph, or the converse. The modalities also differ substantially in information density, comprising hourly vital signs on one hand and a single static image on the other, which may bias the learning process. Three questions follow, none of which has been addressed systematically. First, do more complex fusion architectures outperform simpler ones? Second, how do these methods perform when a modality is absent? Third, does fusion increase or reduce performance differences across patient subgroups?</p>
+    <link rel="canonical" href="https://mdsynapse.org/reviews/multimodal-learning-healthcare-benchmark">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../article-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- seo:start (generated by scripts/seo_build.py; edits here are overwritten) -->
+    <meta property="og:site_name" content="MDSynapse.org">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="When Does EHR–Radiograph Fusion Improve Clinical Prediction? A Review of CareBench | MDSynapse.org">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="alternate" type="application/rss+xml" title="MDSynapse.org" href="https://mdsynapse.org/feed.xml">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "@id": "https://mdsynapse.org/reviews/multimodal-learning-healthcare-benchmark#article",
+          "mainEntityOfPage": "https://mdsynapse.org/reviews/multimodal-learning-healthcare-benchmark",
+          "url": "https://mdsynapse.org/reviews/multimodal-learning-healthcare-benchmark",
+          "headline": "When Does EHR–Radiograph Fusion Improve Clinical Prediction? A Review of CareBench",
+          "description": "A review of CareBench, a benchmark of 14 EHR and chest radiograph fusion methods: when fusion helps, why modality balancing matters, and the effect on fairness.",
+          "image": [
+            "https://mdsynapse.org/og/multimodal-learning-healthcare-benchmark.png"
+          ],
+          "datePublished": "2026-04-26",
+          "dateModified": "2026-08-29",
+          "author": {
+            "@type": "Person",
+            "@id": "https://mdsynapse.org/#author",
+            "name": "Bradley J. Erickson",
+            "url": "https://mdsynapse.org/about.html"
+          },
+          "publisher": {
+            "@id": "https://mdsynapse.org/#author"
+          },
+          "isPartOf": {
+            "@id": "https://mdsynapse.org/#website"
+          },
+          "inLanguage": "en",
+          "articleSection": "Multimodal AI"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://mdsynapse.org/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Papers of Note",
+              "item": "https://mdsynapse.org/papers-of-note.html"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "When Does EHR–Radiograph Fusion Improve Clinical Prediction? A Review of CareBench"
+            }
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://mdsynapse.org/#author",
+          "name": "Bradley J. Erickson",
+          "honorificPrefix": "Dr.",
+          "honorificSuffix": "MD, PhD",
+          "url": "https://mdsynapse.org/about.html",
+          "jobTitle": "Professor of Radiology",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "Mayo Clinic"
+          },
+          "sameAs": [
+            "https://www.linkedin.com/in/bradleyerickson/",
+            "https://www.mayo.edu/research/faculty/erickson-bradley-j-m-d-ph-d/bio-00077505"
+          ]
+        }
+      ]
+    }
+    </script>
+    <!-- seo:end -->
+</head>
+<body>
 
-    <p>To address these gaps, researchers from Hong Kong Baptist University and collaborators built <span style="font-weight: bold;">CareBench</span>, a benchmark for systematically evaluating EHR–CXR fusion. Their paper, "When Does Multimodal Learning Help in Healthcare? A Benchmark on EHR and Chest X-Ray Fusion," sets out to answer four questions:</p>
-    <ul>
-      <li>When does multimodal fusion genuinely improve clinical prediction?</li>
-      <li>How do different fusion strategies compare against each other?</li>
-      <li>How robust are existing multimodal methods to missing modalities?</li>
-      <li>Does multimodal fusion preserve algorithmic fairness across patient subgroups?</li>
-    </ul>
-    <p>The work is released as an open-source framework, so the analyses below can be reproduced and extended.</p>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="../index.html" class="logo">
+                    <div class="logo-mark">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="16" cy="8" r="2.5" fill="#3FD1C1"/>
+                            <circle cx="8" cy="16" r="2.5" fill="#3FD1C1" opacity="0.7"/>
+                            <circle cx="24" cy="16" r="2.5" fill="#3FD1C1" opacity="0.7"/>
+                            <circle cx="16" cy="24" r="2.5" fill="#3FD1C1"/>
+                            <circle cx="16" cy="16" r="3" fill="#3FD1C1" class="pulse"/>
+                            <line x1="16" y1="10.5" x2="16" y2="13" stroke="#3FD1C1" stroke-width="1.5"/>
+                            <line x1="16" y1="19" x2="16" y2="21.5" stroke="#3FD1C1" stroke-width="1.5"/>
+                            <line x1="10.5" y1="16" x2="13" y2="16" stroke="#3FD1C1" stroke-width="1.5"/>
+                            <line x1="19" y1="16" x2="21.5" y2="16" stroke="#3FD1C1" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">MDSynapse<span class="logo-ext">.org</span></span>
+                </a>
+                <div class="nav-links">
+                    <a href="../index.html">Home</a>
+                    <a href="../about.html">About</a>
+                    <a href="../index.html#articles">Thoughts on Medical AI and Automation</a>
+                    <a href="../papers-of-note.html">Papers of Note</a>
+                    <a href="../index.html#mission">Mission</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-    <h2>2: Building CareBench: What They Did</h2>
-    <p>The researchers developed CareBench as a robust platform to systematically investigate multimodal learning by integrating Electronic Health Records (EHR) and Chest X-rays (CXR). Their methodology involved constructing standardized patient cohorts, extracting a rich set of features, implementing a diverse array of unimodal and multimodal models, and evaluating them across clinically relevant tasks under various conditions, including realistic data missingness and fairness considerations.</p>
+    <!-- Article Header -->
+    <article class="article">
+        <header class="article-header">
+            <div class="container">
+                <div class="article-header-content">
+                    <!-- Category tag — see tag classes: tag-ai, tag-clinical, tag-ethics, tag-future -->
+                    <div class="article-tag tag-ai">Multimodal AI</div>
+                    <h1 class="article-header-title">When Does EHR&ndash;Radiograph Fusion Improve Clinical Prediction? A Review of CareBench</h1>
+                    <p class="article-header-subtitle">What a systematic benchmark of EHR and chest X-ray fusion shows about when multimodal models are worth it</p>
+                    <div class="article-meta-header">
+                        <span class="article-date">April 26, 2026</span>
+                        <span class="article-divider">•</span>
+                        <span class="article-reading-time">12 min read</span>
+                        <span class="article-divider">•</span>
+                        <span class="article-author">By <a href="../about.html" style="color: var(--teal-primary); text-decoration: none;">Dr. Bradley J. Erickson</a></span>
+                    </div>
+                </div>
+            </div>
+        </header>
 
-    <h3>Data Sources and Cohort Construction</h3>
-    <p>The foundation of CareBench lies in two large-scale, real-world intensive care unit (ICU) databases: <span style="font-weight: bold;">MIMIC-IV</span> and <span style="font-weight: bold;">MIMIC-CXR</span>. MIMIC-IV contains de-identified records of adult patients admitted to Beth Israel Deaconess Medical Center (BIDMC) between 2008 and 2019, providing a wealth of structured EHR data. MIMIC-CXR is a publicly available dataset of chest radiographs from BIDMC, allowing for the matching of patients across both datasets.</p>
+        <!-- Article Content -->
+        <div class="article-body">
+            <div class="container">
+                <div class="article-content">
 
-    <p>To ensure clinical relevance and consistency, two distinct cohorts of ICU stays were constructed from MIMIC-IV:</p>
-    <ul>
-      <li><span style="font-weight: bold;">The Base Cohort:</span> This cohort began with 73,181 ICU stays from MIMIC-IV. Rigorous exclusion criteria were applied, removing stays with missing essential clinical documentation (e.g., discharge notes, diagnostic codes), implausible temporal records, stays shorter than 6 hours (often observational or step-down care), non-urgent/elective admissions, and repeated ICU episodes within the same hospitalization. To focus on acute, clinically meaningful episodes with sufficient longitudinal information for robust prediction, stays shorter than 48 hours were further excluded. This meticulous process resulted in a base cohort of <span style="font-weight: bold;">26,947 ICU stays</span>.</li>
-      <li><span style="font-weight: bold;">The Matched Subset:</span> For multimodal evaluation, a subset of the base cohort was identified where at least one chest radiograph was available within a specific temporal window (24 hours prior to 48 hours after ICU admission). This yielded a matched subset of <span style="font-weight: bold;">7,149 ICU stays</span>, representing patients with both structured EHR data and CXR images available. This complete-modality subset permitted evaluation of fusion under ideal conditions prior to evaluation under missingness.</li>
-    </ul>
+                    <!-- ── PAPER CITATION BLOCK ── -->
+                    <div style="background: var(--navy-dark); border-radius: var(--border-radius); padding: 1.75rem 2rem; margin-bottom: 2.5rem; border-left: 4px solid var(--teal-primary);">
+                        <p style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--teal-primary); margin-bottom: 0.75rem;">Paper Under Review</p>
+                        <p style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; color: var(--white-neural); line-height: 1.4; margin-bottom: 0.75rem;">When Does Multimodal Learning Help in Healthcare? A Benchmark on EHR and Chest X-Ray Fusion</p>
+                        <p style="font-size: 0.95rem; color: var(--gray-silver); margin-bottom: 0.5rem; font-style: italic;">Kejing Yin, Haizhou Xu, Wenfang Yao, Chen Liu, Zijie Chen, Yui Haang Cheung, William K. Cheung, Jing Qin</p>
+                        <p style="font-size: 0.875rem; color: var(--gray-silver); margin-bottom: 1.25rem;">arXiv &middot; 2026</p>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <a href="https://arxiv.org/abs/2602.23614" target="_blank" rel="noopener noreferrer"
+                               style="display: inline-block; padding: 0.5rem 1.25rem; background: var(--teal-primary); color: var(--navy-dark); border-radius: 6px; font-size: 0.875rem; font-weight: 600; text-decoration: none;">
+                                View Paper →
+                            </a>
+                        </div>
+                    </div>
 
-    <h3>Feature Extraction and Preprocessing</h3>
-    <p>A comprehensive set of structured EHR features was extracted from MIMIC-IV v2.2, encompassing clinically relevant variables across multiple physiological domains. These included vital signs (e.g., heart rate, respiratory rate, blood pressure, oxygen saturation, temperature, glucose), neurological status (Glasgow Coma Scale), cardiac rhythm, respiratory support parameters (O2 flow, FiO2), fluid balance (urine output), and body weight. Features with a missingness rate greater than 90% were empirically excluded, and treatment-related variables were removed to prevent label leakage. The EHR data was then resampled at an hourly resolution, missing values were imputed (forward filling and median imputation), and continuous variables were robustly normalized using median and interquartile range (IQR).</p>
-    <p>For CXR data, only frontal-view images with an Anterior-Posterior (AP) projection acquired during the patient's current ICU stay were included. The most recent CXR prior to the prediction timepoint was selected to best reflect the patient's latest cardiopulmonary status.</p>
+                    <h2>1: The Promise and Perils of Multimodal AI in Healthcare</h2>
+                    <p class="lead">Multimodal learning—combining different data types, such as electronic health records (EHR) and medical images—rests on the premise that a model with access to a patient's laboratory values, history, vital signs, and chest radiograph will form a more complete representation than any single source provides. Whether that premise holds under realistic clinical conditions has not been established systematically.</p>
 
-    <h3>Benchmark Models</h3>
-    <p>CareBench includes a broad spectrum of models, categorized to address various aspects of multimodal fusion:</p>
-    <ul>
-      <li><span style="font-weight: bold;">Uni-modal Baselines:</span> To establish a reference for each modality, the benchmark included Long Short-Term Memory networks (LSTM) and Transformer models for EHR (capturing temporal dependencies) and a ResNet-50 model (pretrained on ImageNet) for CXR.</li>
-      <li><span style="font-weight: bold;">Complete-Modality Multimodal Fusion Methods:</span> This group of models assumes all modalities are present during both training and inference. It includes simple strategies like <span style="font-weight: bold;">Late Fusion</span> (concatenating unimodal embeddings) and more advanced architectures such as UTDE, DAFT, MMTM, AUG, and InfoReg, which employ sophisticated mechanisms for cross-modal interaction.</li>
-      <li><span style="font-weight: bold;">Missing-Modality Multimodal Fusion Methods:</span> Crucially, the benchmark included models specifically designed to handle incomplete inputs, covering diverse paradigms like mixture-of-experts designs, disentangled representations, or latent-space imputation. These include HEALNet, Flex-MoE, DrFuse, UMSE, ShaSpec, M3Care, MedFuse, and SMIL. For models not explicitly designed for missing modalities, zero-imputation was applied to absent CXR features in experiments simulating missingness.</li>
-    </ul>
+                    <p>The two modalities are complementary in principle. EHRs hold structured, longitudinal data—demographics, diagnoses, medications, lab results, and physiological measurements captured over time. Chest X-rays (CXR) add a view of anatomy and cardiopulmonary pathology that the record alone cannot supply. Fusion would in principle permit a model to weight each modality according to its informativeness for a given task.</p>
 
-    <h3>Downstream Tasks and Evaluation Metrics</h3>
-    <p>Models were evaluated on three clinically relevant tasks:</p>
-    <ul>
-      <li><span style="font-weight: bold;">Phenotyping Classification:</span> Predicting 25 acute and chronic conditions (e.g., congestive heart failure, COPD) present during an ICU stay. This is a multi-label classification problem, assessed using Area Under the Receiver Operating Characteristic Curve (AUROC), Area Under the Precision-Recall Curve (AUPRC), and F1 score.</li>
-      <li><span style="font-weight: bold;">Mortality Prediction:</span> Predicting in-hospital mortality within the first 48 hours of ICU admission (binary classification). Metrics included AUROC, AUPRC, and F1 score.</li>
-      <li><span style="font-weight: bold;">Length-of-Stay (LoS) Prediction:</span> Estimating the remaining hospital stay (RLOS) in clinically meaningful intervals (e.g., 2-3 days, 14+ days). This is a multi-class classification problem with ordinal structure, evaluated using Accuracy (ACC), F1 score, and Cohen's Kappa weighted quadratic.</li>
-    </ul>
-    <p>All tasks used patient-level train/validation/test splits. To ensure fair comparison, Bayesian hyperparameter optimization was performed, and permutation tests were used to assess statistical significance of improvements over unimodal baselines.</p>
+                    <p>In practice, though, most evidence comes from proof-of-concept studies, and existing clinical ML benchmarks evaluate performance under near-ideal conditions, assuming every modality is present and well-structured. The complete-modality assumption rarely holds in operational settings, and the question of when fusion confers benefit therefore remains largely unresolved.</p>
 
-    <h2>3: Key Findings and Insights</h2>
-    <p>CareBench's rigorous evaluation yielded several critical insights into the behavior of multimodal learning, particularly concerning its benefits, the effectiveness of different fusion strategies, robustness to missing data, and algorithmic fairness.</p>
+                    <p>Clinical data are frequently incomplete. Missing modalities are common: a patient may have extensive EHR data without a recent radiograph, or the converse. The modalities also differ substantially in information density, comprising hourly vital signs on one hand and a single static image on the other, which may bias the learning process. Three questions follow, none of which has been addressed systematically. First, do more complex fusion architectures outperform simpler ones? Second, how do these methods perform when a modality is absent? Third, does fusion increase or reduce performance differences across patient subgroups?</p>
 
-    <h3>When Multimodal Fusion Helps (Q1)</h3>
-    <div class="article-callout">
-      <h4>Key Finding</h4>
-      <p>Multimodal fusion generally improves predictive performance when all data modalities are complete, with gains concentrated in diseases that require complementary information from both EHR and CXR. However, these benefits rapidly degrade under realistic missingness conditions unless models are explicitly designed to handle incomplete inputs.</p>
-    </div>
-    <p>The study found that under <span style="font-weight: bold;">complete-modality settings</span> (the matched subset), multimodal models consistently achieved the best performance across all tasks. For instance, in phenotyping, leading fusion approaches like <span style="font-weight: bold;">InfoReg</span> achieved an AUPRC of <span style="font-weight: bold;">0.495</span> and <span style="font-weight: bold;">AUG</span> an AUROC of <span style="font-weight: bold;">0.742</span>, significantly outperforming the best unimodal EHR Transformer (AUPRC <span style="font-weight: bold;">0.472</span>, AUROC <span style="font-weight: bold;">0.724</span>). Similarly, for mortality prediction, <span style="font-weight: bold;">DrFuse</span> achieved the strongest AUPRC of <span style="font-weight: bold;">0.481</span> compared to the LSTM's <span style="font-weight: bold;">0.451</span>, and <span style="font-weight: bold;">MedFuse</span> attained the highest AUROC of <span style="font-weight: bold;">0.851</span> (vs. Transformer's <span style="font-weight: bold;">0.821</span>). While gains for Length-of-Stay (LoS) prediction were more modest, <span style="font-weight: bold;">ShaSpec</span> still achieved the highest Kappa of <span style="font-weight: bold;">0.198</span> relative to the best unimodal model (LSTM, <span style="font-weight: bold;">0.192</span>). These results indicate that when both EHR and CXR data are available, radiographs contribute complementary information that improves predictive performance.</p>
+                    <p>To address these gaps, researchers from Hong Kong Baptist University and collaborators built <span style="font-weight: bold;">CareBench</span>, a benchmark for systematically evaluating EHR–CXR fusion. Their paper, "When Does Multimodal Learning Help in Healthcare? A Benchmark on EHR and Chest X-Ray Fusion," sets out to answer four questions:</p>
+                    <ul>
+                      <li>When does multimodal fusion genuinely improve clinical prediction?</li>
+                      <li>How do different fusion strategies compare against each other?</li>
+                      <li>How robust are existing multimodal methods to missing modalities?</li>
+                      <li>Does multimodal fusion preserve algorithmic fairness across patient subgroups?</li>
+                    </ul>
+                    <p>The work is released as an open-source framework, so the analyses below can be reproduced and extended.</p>
 
-    <p>Within phenotyping, the benefit was not uniform across conditions but <span style="font-weight: bold;">concentrated in "modality-distributed phenotypes."</span> Diseases such as congestive heart failure, coronary heart disease, COPD, and liver disease benefited most. These conditions are characterized by manifestations that require both structural insights from CXR (e.g., pulmonary infiltrates, cardiac enlargement) and longitudinal risk factors, lab measurements, and comorbidity history from EHR. This highlights how multimodal models can effectively leverage complementary signals that neither modality could access alone. In contrast, conditions like sepsis, primarily driven by acute physiological changes, showed more limited fusion benefits, as CXR offers only indirect or nonspecific cues for such rapidly evolving states.</p>
+                    <h2>2: Building CareBench: What They Did</h2>
+                    <p>The researchers developed CareBench as a robust platform to systematically investigate multimodal learning by integrating Electronic Health Records (EHR) and Chest X-rays (CXR). Their methodology involved constructing standardized patient cohorts, extracting a rich set of features, implementing a diverse array of unimodal and multimodal models, and evaluating them across clinically relevant tasks under various conditions, including realistic data missingness and fairness considerations.</p>
 
-    <h3>Comparing Fusion Strategies (Q2)</h3>
-    <div class="article-callout">
-      <h4>Key Finding</h4>
-      <p>Advanced cross-modal learning mechanisms that facilitate information exchange significantly outperform simple concatenation (late fusion), capturing clinically meaningful dependencies. However, the rich temporal structure of EHR often creates a strong modality imbalance that complex architectures alone cannot overcome; methods explicitly designed to balance modalities perform best.</p>
-    </div>
-    <p>The benchmark demonstrated that <span style="font-weight: bold;">cross-modal learning mechanisms capture clinically meaningful dependencies that simple concatenation misses</span>. Methods designed for tighter cross-modal interaction, such as <span style="font-weight: bold;">InfoReg</span> (0.495 AUPRC), <span style="font-weight: bold;">AUG</span> (0.493 AUPRC), <span style="font-weight: bold;">DrFuse</span> (0.493 AUPRC), and <span style="font-weight: bold;">UTDE</span> (0.492 AUPRC), all significantly surpassed naive <span style="font-weight: bold;">Late Fusion</span> (0.489 AUPRC) for phenotyping. This performance gap underscores the clinical reality that imaging findings must be interpreted in context with physiological state. For example, in pneumonia (PNA) diagnosis, advanced methods like DrFuse (0.500) and UTDE (0.495) showed further gains beyond late fusion (0.493), reflecting the clinical diagnostic process where CXR infiltrates have different implications depending on EHR indicators like fever or leukocytosis.</p>
-    <p>A consistent pattern was observed with respect to modality imbalance: <span style="font-weight: bold;">EHR's longitudinal richness creates a dominance that architectural complexity alone cannot overcome</span>. EHR provides dense, continuous signals (hourly vital signs, lab trends) capturing disease progression in granular detail. CXR, on the other hand, is a single, static snapshot. This inherent information asymmetry means EHR often dominates the learning process. Models that explicitly address this imbalance, such as <span style="font-weight: bold;">AUG</span> (iteratively boosting weaker modalities) and <span style="font-weight: bold;">InfoReg</span> (slowing learning from information-rich modalities), consistently achieved superior performance, even with relatively simpler fusion architectures. This finding suggests that effective multimodal fusion must prioritize balancing the information density differences between modalities.</p>
+                    <h3>Data Sources and Cohort Construction</h3>
+                    <p>The foundation of CareBench lies in two large-scale, real-world intensive care unit (ICU) databases: <span style="font-weight: bold;">MIMIC-IV</span> and <span style="font-weight: bold;">MIMIC-CXR</span>. MIMIC-IV contains de-identified records of adult patients admitted to Beth Israel Deaconess Medical Center (BIDMC) between 2008 and 2019, providing a wealth of structured EHR data. MIMIC-CXR is a publicly available dataset of chest radiographs from BIDMC, allowing for the matching of patients across both datasets.</p>
 
-    <blockquote class="article-quote">
-      <p>&#8220;EHR's rich temporal structure introduces strong modality imbalance that architectural complexity alone cannot overcome.&#8221;</p>
-      <p>&#8220;The success of InfoReg... and AUG... demonstrates that addressing this clinical data imbalance is more critical than architectural sophistication.&#8221;</p>
-    </blockquote>
+                    <p>To ensure clinical relevance and consistency, two distinct cohorts of ICU stays were constructed from MIMIC-IV:</p>
+                    <ul>
+                      <li><span style="font-weight: bold;">The Base Cohort:</span> This cohort began with 73,181 ICU stays from MIMIC-IV. Rigorous exclusion criteria were applied, removing stays with missing essential clinical documentation (e.g., discharge notes, diagnostic codes), implausible temporal records, stays shorter than 6 hours (often observational or step-down care), non-urgent/elective admissions, and repeated ICU episodes within the same hospitalization. To focus on acute, clinically meaningful episodes with sufficient longitudinal information for robust prediction, stays shorter than 48 hours were further excluded. This meticulous process resulted in a base cohort of <span style="font-weight: bold;">26,947 ICU stays</span>.</li>
+                      <li><span style="font-weight: bold;">The Matched Subset:</span> For multimodal evaluation, a subset of the base cohort was identified where at least one chest radiograph was available within a specific temporal window (24 hours prior to 48 hours after ICU admission). This yielded a matched subset of <span style="font-weight: bold;">7,149 ICU stays</span>, representing patients with both structured EHR data and CXR images available. This complete-modality subset permitted evaluation of fusion under ideal conditions prior to evaluation under missingness.</li>
+                    </ul>
 
-    <h3>Robustness to Modality Missingness (Q3)</h3>
-    <div class="article-callout">
-      <h4>Key Finding</h4>
-      <p>In real-world settings with prevalent missing modalities, naive application of complete-data models often fails. Specialized architectures explicitly designed for handling incomplete inputs are essential and significantly outperform both unimodal baselines and complete-data models in these scenarios. Severe missingness amplifies modality imbalance, highlighting the need for explicit balancing mechanisms.</p>
-    </div>
-    <p>Modality missingness is a pervasive issue in clinical practice, with approximately <span style="font-weight: bold;">75% of ICU stays in the base cohort lacking paired chest X-rays</span>. The study revealed that in this realistic base cohort, the EHR-only Transformer baseline often outperformed many multimodal models designed for complete data, such as MMTM (mortality F1 of <span style="font-weight: bold;">0.663</span> vs. Transformer's <span style="font-weight: bold;">0.679</span>, LoS Kappa of <span style="font-weight: bold;">0.1714</span> vs. Transformer's <span style="font-weight: bold;">0.204</span>). This result indicates that <span style="font-weight: bold;">naively applying models designed for complete-case scenarios does not guarantee a benefit and often fails once missingness is introduced</span>.</p>
-    <p>However, multimodal models <span style="font-weight: bold;">explicitly designed to handle incomplete inputs</span>, such as <span style="font-weight: bold;">MedFuse</span>, <span style="font-weight: bold;">M3Care</span>, and <span style="font-weight: bold;">HEALNet</span>, significantly outperformed both the unimodal baseline and complete-case fusion methods in the base cohort. For mortality prediction, MedFuse achieved the highest AUROC of <span style="font-weight: bold;">0.874</span>, and for LoS prediction, it led with the best Kappa (<span style="font-weight: bold;">0.213</span>) and F1-score (<span style="font-weight: bold;">0.203</span>), surpassing the strong EHR Transformer.</p>
-    <p>The pervasive missingness of CXR data (~25% availability in the base cohort) further <span style="font-weight: bold;">amplifies the inherent modality imbalance</span>, leading to EHR-driven gradients dominating the learning process. Controlled experiments varying CXR missingness from 0% to 80% showed that models like InfoReg and AUG degraded notably slower than others. This resilience stems from their explicit mechanisms to counteract modality imbalance, ensuring that CXR features still learn discriminative patterns even when scarce.</p>
+                    <h3>Feature Extraction and Preprocessing</h3>
+                    <p>A comprehensive set of structured EHR features was extracted from MIMIC-IV v2.2, encompassing clinically relevant variables across multiple physiological domains. These included vital signs (e.g., heart rate, respiratory rate, blood pressure, oxygen saturation, temperature, glucose), neurological status (Glasgow Coma Scale), cardiac rhythm, respiratory support parameters (O2 flow, FiO2), fluid balance (urine output), and body weight. Features with a missingness rate greater than 90% were empirically excluded, and treatment-related variables were removed to prevent label leakage. The EHR data was then resampled at an hourly resolution, missing values were imputed (forward filling and median imputation), and continuous variables were robustly normalized using median and interquartile range (IQR).</p>
+                    <p>For CXR data, only frontal-view images with an Anterior-Posterior (AP) projection acquired during the patient's current ICU stay were included. The most recent CXR prior to the prediction timepoint was selected to best reflect the patient's latest cardiopulmonary status.</p>
 
-    <h3>Algorithmic Fairness Across Subgroups (Q4)</h3>
-    <div class="article-callout">
-      <h4>Key Finding</h4>
-      <p>Multimodal fusion does not inherently improve algorithmic fairness; in fact, it can exacerbate subgroup disparities. These disparities primarily manifest as unequal sensitivity (under-detection) across demographic groups, rather than false positive rates.</p>
-    </div>
-    <p>Beyond predictive accuracy, the study rigorously assessed algorithmic fairness by stratifying model performance across racial subgroups using metrics like AUPRC gap, TPR gap, FPR gap, and ECE gap. Notably, and contrary to a common assumption, <span style="font-weight: bold;">multimodal fusion does not inherently improve algorithmic fairness</span>. Despite improving overall predictive performance, all multimodal models exhibited <span style="font-weight: bold;">larger AUPRC gaps</span> than the unimodal Transformer baseline, indicating increased performance disparity across race subgroups. Several high-performing multimodal methods, including DrFuse, ShaSpec, SMIL, and InfoReg, consistently demonstrated higher gaps across all fairness metrics compared to the unimodal Transformer.</p>
+                    <h3>Benchmark Models</h3>
+                    <p>CareBench includes a broad spectrum of models, categorized to address various aspects of multimodal fusion:</p>
+                    <ul>
+                      <li><span style="font-weight: bold;">Uni-modal Baselines:</span> To establish a reference for each modality, the benchmark included Long Short-Term Memory networks (LSTM) and Transformer models for EHR (capturing temporal dependencies) and a ResNet-50 model (pretrained on ImageNet) for CXR.</li>
+                      <li><span style="font-weight: bold;">Complete-Modality Multimodal Fusion Methods:</span> This group of models assumes all modalities are present during both training and inference. It includes simple strategies like <span style="font-weight: bold;">Late Fusion</span> (concatenating unimodal embeddings) and more advanced architectures such as UTDE, DAFT, MMTM, AUG, and InfoReg, which employ sophisticated mechanisms for cross-modal interaction.</li>
+                      <li><span style="font-weight: bold;">Missing-Modality Multimodal Fusion Methods:</span> Crucially, the benchmark included models specifically designed to handle incomplete inputs, covering diverse paradigms like mixture-of-experts designs, disentangled representations, or latent-space imputation. These include HEALNet, Flex-MoE, DrFuse, UMSE, ShaSpec, M3Care, MedFuse, and SMIL. For models not explicitly designed for missing modalities, zero-imputation was applied to absent CXR features in experiments simulating missingness.</li>
+                    </ul>
 
-    <blockquote class="article-quote">
-      <p>&#8220;Multimodal fusion does not inherently improve algorithmic fairness, with subgroup disparities primarily arising from unequal sensitivity across demographic groups.&#8221;</p>
-    </blockquote>
+                    <h3>Downstream Tasks and Evaluation Metrics</h3>
+                    <p>Models were evaluated on three clinically relevant tasks:</p>
+                    <ul>
+                      <li><span style="font-weight: bold;">Phenotyping Classification:</span> Predicting 25 acute and chronic conditions (e.g., congestive heart failure, COPD) present during an ICU stay. This is a multi-label classification problem, assessed using Area Under the Receiver Operating Characteristic Curve (AUROC), Area Under the Precision-Recall Curve (AUPRC), and F1 score.</li>
+                      <li><span style="font-weight: bold;">Mortality Prediction:</span> Predicting in-hospital mortality within the first 48 hours of ICU admission (binary classification). Metrics included AUROC, AUPRC, and F1 score.</li>
+                      <li><span style="font-weight: bold;">Length-of-Stay (LoS) Prediction:</span> Estimating the remaining hospital stay (RLOS) in clinically meaningful intervals (e.g., 2-3 days, 14+ days). This is a multi-class classification problem with ordinal structure, evaluated using Accuracy (ACC), F1 score, and Cohen's Kappa weighted quadratic.</li>
+                    </ul>
+                    <p>All tasks used patient-level train/validation/test splits. To ensure fair comparison, Bayesian hyperparameter optimization was performed, and permutation tests were used to assess statistical significance of improvements over unimodal baselines.</p>
 
-    <p>This suggests that performance gains from multimodal fusion do not automatically translate into improved fairness and may, in some cases, worsen subgroup disparities. Further analysis revealed that these <span style="font-weight: bold;">fairness violations are driven more by unequal sensitivity (under-detection) than false positives (over-detection)</span>. TPR gaps were consistently larger than FPR gaps across nearly all models, highlighting that certain demographic groups are more prone to under-detection of conditions. This has critical implications for clinical deployment, as under-detection can lead to delayed or missed diagnoses for vulnerable populations.</p>
+                    <h2>3: Key Findings and Insights</h2>
+                    <p>CareBench's rigorous evaluation yielded several critical insights into the behavior of multimodal learning, particularly concerning its benefits, the effectiveness of different fusion strategies, robustness to missing data, and algorithmic fairness.</p>
 
-    <h2>4: Strengths, Limitations, and Future Directions</h2>
-    <p>CareBench constitutes a systematic and well-controlled analysis of multimodal learning in healthcare. Its limitations, described below, also indicate the appropriate directions for subsequent work.</p>
+                    <h3>When Multimodal Fusion Helps (Q1)</h3>
+                    <div class="article-callout">
+                      <h4>Key Finding</h4>
+                      <p>Multimodal fusion generally improves predictive performance when all data modalities are complete, with gains concentrated in diseases that require complementary information from both EHR and CXR. However, these benefits rapidly degrade under realistic missingness conditions unless models are explicitly designed to handle incomplete inputs.</p>
+                    </div>
+                    <p>The study found that under <span style="font-weight: bold;">complete-modality settings</span> (the matched subset), multimodal models consistently achieved the best performance across all tasks. For instance, in phenotyping, leading fusion approaches like <span style="font-weight: bold;">InfoReg</span> achieved an AUPRC of <span style="font-weight: bold;">0.495</span> and <span style="font-weight: bold;">AUG</span> an AUROC of <span style="font-weight: bold;">0.742</span>, significantly outperforming the best unimodal EHR Transformer (AUPRC <span style="font-weight: bold;">0.472</span>, AUROC <span style="font-weight: bold;">0.724</span>). Similarly, for mortality prediction, <span style="font-weight: bold;">DrFuse</span> achieved the strongest AUPRC of <span style="font-weight: bold;">0.481</span> compared to the LSTM's <span style="font-weight: bold;">0.451</span>, and <span style="font-weight: bold;">MedFuse</span> attained the highest AUROC of <span style="font-weight: bold;">0.851</span> (vs. Transformer's <span style="font-weight: bold;">0.821</span>). While gains for Length-of-Stay (LoS) prediction were more modest, <span style="font-weight: bold;">ShaSpec</span> still achieved the highest Kappa of <span style="font-weight: bold;">0.198</span> relative to the best unimodal model (LSTM, <span style="font-weight: bold;">0.192</span>). These results indicate that when both EHR and CXR data are available, radiographs contribute complementary information that improves predictive performance.</p>
 
-    <h3>Strengths of CareBench</h3>
-    <ul>
-      <li><span style="font-weight: bold;">Comprehensive and Systematic Benchmark:</span> CareBench stands out as the first benchmark to systematically evaluate EHR-CXR fusion across a broad spectrum of models, clinical tasks, and, critically, real-world conditions like modality missingness and algorithmic fairness, rather than complete-data performance alone.</li>
-      <li><span style="font-weight: bold;">Rigorous Evaluation Protocol:</span> The study moves beyond aggregate predictive performance, incorporating detailed analyses of model behavior under varying degrees of modality missingness and across different patient subgroups. The use of permutation tests for statistical significance adds robustness to the findings, ensuring that observed gains are not merely due to chance.</li>
-      <li><span style="font-weight: bold;">Actionable Guidance for Clinical Deployment:</span> By clarifying *when* multimodal learning helps (complete data, modality-distributed diseases), *when it fails* (naive models with missingness), and *why* (modality imbalance, lack of fairness consideration), CareBench provides specific design constraints for teams implementing such systems.</li>
-      <li><span style="font-weight: bold;">Open-Source and Reproducible Toolkit:</span> The release of a flexible, open-source benchmarking toolkit, including a data extraction pipeline and a unified framework for integrating models, is a significant contribution. This fosters reproducibility, enables plug-and-play integration of new models and datasets, and supports future extensions, accelerating research in the field.</li>
-    </ul>
+                    <p>Within phenotyping, the benefit was not uniform across conditions but <span style="font-weight: bold;">concentrated in "modality-distributed phenotypes."</span> Diseases such as congestive heart failure, coronary heart disease, COPD, and liver disease benefited most. These conditions are characterized by manifestations that require both structural insights from CXR (e.g., pulmonary infiltrates, cardiac enlargement) and longitudinal risk factors, lab measurements, and comorbidity history from EHR. This highlights how multimodal models can effectively leverage complementary signals that neither modality could access alone. In contrast, conditions like sepsis, primarily driven by acute physiological changes, showed more limited fusion benefits, as CXR offers only indirect or nonspecific cues for such rapidly evolving states.</p>
 
-    <h3>Limitations and Future Directions</h3>
-    <ul>
-      <li><span style="font-weight: bold;">Dependency on MIMIC Data:</span> While MIMIC-IV and MIMIC-CXR are large, widely accepted, and de-identified datasets, they represent a specific patient population from a single US academic medical center. The generalizability of these findings to other diverse healthcare systems, different clinical contexts, or more varied demographics (e.g., pediatric populations) needs further investigation. Future benchmarks could incorporate data from multiple institutions and diverse geographical regions.</li>
-      <li><span style="font-weight: bold;">Limited Modality Scope:</span> The current benchmark focuses exclusively on EHR and chest X-ray images. Real-world clinical decision-making often involves a much wider array of data modalities, including free-text clinical notes, pathology reports, genomic data, waveforms (e.g., ECG), and other imaging types (e.g., CT scans, MRI). Expanding CareBench to include these additional modalities would offer a more complete picture of multimodal AI's potential and challenges.</li>
-      <li><span style="font-weight: bold;">Simulated Missingness Assumptions:</span> While the study rigorously evaluated robustness to missing modalities by systematically varying CXR missingness and applying zero-imputation, the underlying assumption of "missing at random" might not fully capture the complexities of real-world clinical data incompleteness. Missingness in clinical data is often non-random and clinically driven (for example, a radiograph may not be obtained because the clinical presentation does not indicate one, or because of logistical constraints). Future work could explore more sophisticated missing data mechanisms and their impact.</li>
-      <li><span style="font-weight: bold;">Narrow Focus on Fairness Attributes:</span> The fairness analysis primarily focused on racial subgroups and specific fairness metrics (AUPRC gap, TPR gap, FPR gap, ECE gap). Fairness is a multifaceted concept, and disparities can arise across other sensitive attributes such as age, gender, socioeconomic status, and different disease severities. Future research should broaden the scope of fairness evaluation to encompass a wider range of demographic factors and fairness definitions (e.g., equal opportunity, equalized odds).</li>
-      <li><span style="font-weight: bold;">Modality imbalance remains unsolved:</span> The finding that EHR's temporal richness dominates fusion—and that architectural complexity alone cannot fix it—points to a deeper problem than the current adaptive-learning fixes address. Integrating modalities with very different information densities and time structures may need new architectural or theoretical approaches, not just reweighting.</li>
-    </ul>
-    <p>The principal contribution of CareBench is to replace a general expectation that additional modalities improve performance with a set of specified conditions: fusion confers benefit under complete-modality conditions and for modality-distributed diseases, does not confer benefit when complete-data models are applied under missingness, and does not by itself improve algorithmic fairness. These conditions should inform the design of any system implementing EHR&ndash;CXR fusion.</p>
+                    <h3>Comparing Fusion Strategies (Q2)</h3>
+                    <div class="article-callout">
+                      <h4>Key Finding</h4>
+                      <p>Advanced cross-modal learning mechanisms that facilitate information exchange significantly outperform simple concatenation (late fusion), capturing clinically meaningful dependencies. However, the rich temporal structure of EHR often creates a strong modality imbalance that complex architectures alone cannot overcome; methods explicitly designed to balance modalities perform best.</p>
+                    </div>
+                    <p>The benchmark demonstrated that <span style="font-weight: bold;">cross-modal learning mechanisms capture clinically meaningful dependencies that simple concatenation misses</span>. Methods designed for tighter cross-modal interaction, such as <span style="font-weight: bold;">InfoReg</span> (0.495 AUPRC), <span style="font-weight: bold;">AUG</span> (0.493 AUPRC), <span style="font-weight: bold;">DrFuse</span> (0.493 AUPRC), and <span style="font-weight: bold;">UTDE</span> (0.492 AUPRC), all significantly surpassed naive <span style="font-weight: bold;">Late Fusion</span> (0.489 AUPRC) for phenotyping. This performance gap underscores the clinical reality that imaging findings must be interpreted in context with physiological state. For example, in pneumonia (PNA) diagnosis, advanced methods like DrFuse (0.500) and UTDE (0.495) showed further gains beyond late fusion (0.493), reflecting the clinical diagnostic process where CXR infiltrates have different implications depending on EHR indicators like fever or leukocytosis.</p>
+                    <p>A consistent pattern was observed with respect to modality imbalance: <span style="font-weight: bold;">EHR's longitudinal richness creates a dominance that architectural complexity alone cannot overcome</span>. EHR provides dense, continuous signals (hourly vital signs, lab trends) capturing disease progression in granular detail. CXR, on the other hand, is a single, static snapshot. This inherent information asymmetry means EHR often dominates the learning process. Models that explicitly address this imbalance, such as <span style="font-weight: bold;">AUG</span> (iteratively boosting weaker modalities) and <span style="font-weight: bold;">InfoReg</span> (slowing learning from information-rich modalities), consistently achieved superior performance, even with relatively simpler fusion architectures. This finding suggests that effective multimodal fusion must prioritize balancing the information density differences between modalities.</p>
 
-    <footer style="margin-top: 3em; padding-top: 1em; border-top: 1px solid #eee; font-size: 0.9em; color: #777;">
-      <p>&copy; 2025–2026 Bradley J. Erickson. All rights reserved.</p>
+                    <blockquote class="article-quote">
+                      <p>&#8220;EHR's rich temporal structure introduces strong modality imbalance that architectural complexity alone cannot overcome.&#8221;</p>
+                      <p>&#8220;The success of InfoReg... and AUG... demonstrates that addressing this clinical data imbalance is more critical than architectural sophistication.&#8221;</p>
+                    </blockquote>
+
+                    <h3>Robustness to Modality Missingness (Q3)</h3>
+                    <div class="article-callout">
+                      <h4>Key Finding</h4>
+                      <p>In real-world settings with prevalent missing modalities, naive application of complete-data models often fails. Specialized architectures explicitly designed for handling incomplete inputs are essential and significantly outperform both unimodal baselines and complete-data models in these scenarios. Severe missingness amplifies modality imbalance, highlighting the need for explicit balancing mechanisms.</p>
+                    </div>
+                    <p>Modality missingness is a pervasive issue in clinical practice, with approximately <span style="font-weight: bold;">75% of ICU stays in the base cohort lacking paired chest X-rays</span>. The study revealed that in this realistic base cohort, the EHR-only Transformer baseline often outperformed many multimodal models designed for complete data, such as MMTM (mortality F1 of <span style="font-weight: bold;">0.663</span> vs. Transformer's <span style="font-weight: bold;">0.679</span>, LoS Kappa of <span style="font-weight: bold;">0.1714</span> vs. Transformer's <span style="font-weight: bold;">0.204</span>). This result indicates that <span style="font-weight: bold;">naively applying models designed for complete-case scenarios does not guarantee a benefit and often fails once missingness is introduced</span>.</p>
+                    <p>However, multimodal models <span style="font-weight: bold;">explicitly designed to handle incomplete inputs</span>, such as <span style="font-weight: bold;">MedFuse</span>, <span style="font-weight: bold;">M3Care</span>, and <span style="font-weight: bold;">HEALNet</span>, significantly outperformed both the unimodal baseline and complete-case fusion methods in the base cohort. For mortality prediction, MedFuse achieved the highest AUROC of <span style="font-weight: bold;">0.874</span>, and for LoS prediction, it led with the best Kappa (<span style="font-weight: bold;">0.213</span>) and F1-score (<span style="font-weight: bold;">0.203</span>), surpassing the strong EHR Transformer.</p>
+                    <p>The pervasive missingness of CXR data (~25% availability in the base cohort) further <span style="font-weight: bold;">amplifies the inherent modality imbalance</span>, leading to EHR-driven gradients dominating the learning process. Controlled experiments varying CXR missingness from 0% to 80% showed that models like InfoReg and AUG degraded notably slower than others. This resilience stems from their explicit mechanisms to counteract modality imbalance, ensuring that CXR features still learn discriminative patterns even when scarce.</p>
+
+                    <h3>Algorithmic Fairness Across Subgroups (Q4)</h3>
+                    <div class="article-callout">
+                      <h4>Key Finding</h4>
+                      <p>Multimodal fusion does not inherently improve algorithmic fairness; in fact, it can exacerbate subgroup disparities. These disparities primarily manifest as unequal sensitivity (under-detection) across demographic groups, rather than false positive rates.</p>
+                    </div>
+                    <p>Beyond predictive accuracy, the study rigorously assessed algorithmic fairness by stratifying model performance across racial subgroups using metrics like AUPRC gap, TPR gap, FPR gap, and ECE gap. Notably, and contrary to a common assumption, <span style="font-weight: bold;">multimodal fusion does not inherently improve algorithmic fairness</span>. Despite improving overall predictive performance, all multimodal models exhibited <span style="font-weight: bold;">larger AUPRC gaps</span> than the unimodal Transformer baseline, indicating increased performance disparity across race subgroups. Several high-performing multimodal methods, including DrFuse, ShaSpec, SMIL, and InfoReg, consistently demonstrated higher gaps across all fairness metrics compared to the unimodal Transformer.</p>
+
+                    <blockquote class="article-quote">
+                      <p>&#8220;Multimodal fusion does not inherently improve algorithmic fairness, with subgroup disparities primarily arising from unequal sensitivity across demographic groups.&#8221;</p>
+                    </blockquote>
+
+                    <p>This suggests that performance gains from multimodal fusion do not automatically translate into improved fairness and may, in some cases, worsen subgroup disparities. Further analysis revealed that these <span style="font-weight: bold;">fairness violations are driven more by unequal sensitivity (under-detection) than false positives (over-detection)</span>. TPR gaps were consistently larger than FPR gaps across nearly all models, highlighting that certain demographic groups are more prone to under-detection of conditions. This has critical implications for clinical deployment, as under-detection can lead to delayed or missed diagnoses for vulnerable populations.</p>
+
+                    <h2>4: Strengths, Limitations, and Future Directions</h2>
+                    <p>CareBench constitutes a systematic and well-controlled analysis of multimodal learning in healthcare. Its limitations, described below, also indicate the appropriate directions for subsequent work.</p>
+
+                    <h3>Strengths of CareBench</h3>
+                    <ul>
+                      <li><span style="font-weight: bold;">Comprehensive and Systematic Benchmark:</span> CareBench stands out as the first benchmark to systematically evaluate EHR-CXR fusion across a broad spectrum of models, clinical tasks, and, critically, real-world conditions like modality missingness and algorithmic fairness, rather than complete-data performance alone.</li>
+                      <li><span style="font-weight: bold;">Rigorous Evaluation Protocol:</span> The study moves beyond aggregate predictive performance, incorporating detailed analyses of model behavior under varying degrees of modality missingness and across different patient subgroups. The use of permutation tests for statistical significance adds robustness to the findings, ensuring that observed gains are not merely due to chance.</li>
+                      <li><span style="font-weight: bold;">Actionable Guidance for Clinical Deployment:</span> By clarifying *when* multimodal learning helps (complete data, modality-distributed diseases), *when it fails* (naive models with missingness), and *why* (modality imbalance, lack of fairness consideration), CareBench provides specific design constraints for teams implementing such systems.</li>
+                      <li><span style="font-weight: bold;">Open-Source and Reproducible Toolkit:</span> The release of a flexible, open-source benchmarking toolkit, including a data extraction pipeline and a unified framework for integrating models, is a significant contribution. This fosters reproducibility, enables plug-and-play integration of new models and datasets, and supports future extensions, accelerating research in the field.</li>
+                    </ul>
+
+                    <h3>Limitations and Future Directions</h3>
+                    <ul>
+                      <li><span style="font-weight: bold;">Dependency on MIMIC Data:</span> While MIMIC-IV and MIMIC-CXR are large, widely accepted, and de-identified datasets, they represent a specific patient population from a single US academic medical center. The generalizability of these findings to other diverse healthcare systems, different clinical contexts, or more varied demographics (e.g., pediatric populations) needs further investigation. Future benchmarks could incorporate data from multiple institutions and diverse geographical regions.</li>
+                      <li><span style="font-weight: bold;">Limited Modality Scope:</span> The current benchmark focuses exclusively on EHR and chest X-ray images. Real-world clinical decision-making often involves a much wider array of data modalities, including free-text clinical notes, pathology reports, genomic data, waveforms (e.g., ECG), and other imaging types (e.g., CT scans, MRI). Expanding CareBench to include these additional modalities would offer a more complete picture of multimodal AI's potential and challenges.</li>
+                      <li><span style="font-weight: bold;">Simulated Missingness Assumptions:</span> While the study rigorously evaluated robustness to missing modalities by systematically varying CXR missingness and applying zero-imputation, the underlying assumption of "missing at random" might not fully capture the complexities of real-world clinical data incompleteness. Missingness in clinical data is often non-random and clinically driven (for example, a radiograph may not be obtained because the clinical presentation does not indicate one, or because of logistical constraints). Future work could explore more sophisticated missing data mechanisms and their impact.</li>
+                      <li><span style="font-weight: bold;">Narrow Focus on Fairness Attributes:</span> The fairness analysis primarily focused on racial subgroups and specific fairness metrics (AUPRC gap, TPR gap, FPR gap, ECE gap). Fairness is a multifaceted concept, and disparities can arise across other sensitive attributes such as age, gender, socioeconomic status, and different disease severities. Future research should broaden the scope of fairness evaluation to encompass a wider range of demographic factors and fairness definitions (e.g., equal opportunity, equalized odds).</li>
+                      <li><span style="font-weight: bold;">Modality imbalance remains unsolved:</span> The finding that EHR's temporal richness dominates fusion—and that architectural complexity alone cannot fix it—points to a deeper problem than the current adaptive-learning fixes address. Integrating modalities with very different information densities and time structures may need new architectural or theoretical approaches, not just reweighting.</li>
+                    </ul>
+                    <p>The principal contribution of CareBench is to replace a general expectation that additional modalities improve performance with a set of specified conditions: fusion confers benefit under complete-modality conditions and for modality-distributed diseases, does not confer benefit when complete-data models are applied under missingness, and does not by itself improve algorithmic fairness. These conditions should inform the design of any system implementing EHR&ndash;CXR fusion.</p>
+
+                </div>
+
+                <!-- Article Footer -->
+                <div class="article-footer">
+                    <div class="article-share">
+                        <p>Share this review</p>
+                        <div class="share-buttons">
+                            <a href="#" class="share-btn" aria-label="Copy link">Copy Link</a>
+                            <a href="../papers-of-note.html" class="share-btn">← All Reviews</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <!-- Related Content -->
+    <section class="related-articles">
+        <div class="container">
+            <h2 class="section-title">Recent Articles</h2>
+            <div class="articles-grid">
+                <article class="article-card">
+                    <div class="article-tag tag-ai">AI</div>
+                    <h3 class="article-title">Foundation Models in Medical Imaging: Scope, Data Efficiency, and Pre-Training Demographics</h3>
+                    <p class="article-excerpt">Despite their 'foundation' label, most medical AI models are remarkably narrow—one imaging modality, one body part. Here's why that matters.</p>
+                    <div class="article-meta">
+                        <span class="read-time">10 min read</span>
+                        <a href="/blogposts/foundation-models" class="article-link">Read more →</a>
+                    </div>
+                </article>
+                <article class="article-card">
+                    <div class="article-tag tag-ethics">Ethics</div>
+                    <h3 class="article-title">Algorithmic Bias in Medical AI: Sources, Fairness Criteria, and Mitigation</h3>
+                    <p class="article-excerpt">The algorithm is 92% accurate for white patients and 78% accurate for Black patients. Do you use it?</p>
+                    <div class="article-meta">
+                        <span class="read-time">9 min read</span>
+                        <a href="/blogposts/algorithm-bias" class="article-link">Read more →</a>
+                    </div>
+                </article>
+                <article class="article-card">
+                    <div class="article-tag tag-ai">AI</div>
+                    <h3 class="article-title">From Validation to Deployment: Why Medical AI Fails to Reach Sustained Clinical Use</h3>
+                    <p class="article-excerpt">The validation study was flawless. The deployment was a disaster. Here's why impressive AI tools never make it to the bedside.</p>
+                    <div class="article-meta">
+                        <span class="read-time">8 min read</span>
+                        <a href="/blogposts/from-lab-to-ward" class="article-link">Read more →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-bottom">
+                    <div class="footer-links">
+                        <a href="../index.html">Home</a>
+                        <a href="../about.html">About</a>
+                        <a href="../index.html#articles">Thoughts on Medical AI and Automation</a>
+                        <a href="../papers-of-note.html">Papers of Note</a>
+                        <a href="../index.html#mission">Mission</a>
+                    </div>
+                </div>
+                <div class="footer-copyright">
+                    <p>&copy; 2025–2026 Bradley J. Erickson. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
     </footer>
-  </body>
+
+    <script src="../script.js"></script>
+</body>
 </html>
