@@ -7,7 +7,16 @@
     <language>en-us</language>
     <atom:link href="https://mdsynapse.org/feed.xml" rel="self" type="application/rss+xml"/>
     <image><url>https://mdsynapse.org/apple-touch-icon.png</url><title>MDSynapse.org</title><link>https://mdsynapse.org/</link></image>
-    <lastBuildDate>Thu, 05 Nov 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 15 Nov 2026 12:00:00 +0000</lastBuildDate>
+    <item>
+      <title>The Best Documentation Request Is the One Nobody Has to Make</title>
+      <link>https://mdsynapse.org/blogposts/the-best-documentation-request-is-the-one-nobody-has-to-make</link>
+      <guid isPermaLink="true">https://mdsynapse.org/blogposts/the-best-documentation-request-is-the-one-nobody-has-to-make</guid>
+      <pubDate>Sun, 15 Nov 2026 12:00:00 +0000</pubDate>
+      <dc:creator>Bradley J. Erickson</dc:creator>
+      <category>AI</category>
+      <description>A recent study looked at what clinicians actually ask a hospital AI assistant to do. The answer was not what most AI benchmarks measure. Across 127,833 conversa</description>
+    </item>
     <item>
       <title>Any Language Model Can Be a Decision Model</title>
       <link>https://mdsynapse.org/blogposts/any-language-model-can-be-a-decision-model</link>
