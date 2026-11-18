@@ -60,7 +60,7 @@
             "https://mdsynapse.org/og/fast-thinking-for-ai.png"
           ],
           "datePublished": "2026-09-21",
-          "dateModified": "2026-11-07",
+          "dateModified": "2026-11-15",
           "author": {
             "@type": "Person",
             "@id": "https://mdsynapse.org/#author",
@@ -222,7 +222,7 @@
 
 <p>4. Enforce monotonic fallbacks. Ensure that the System 2 engine does not re-litigate structural assertions already settled by System 1, and reserve it for contextual resolution of the ambiguous cases that were escalated to it.</p>
 
-<p>It is worth noting that the threshold is a policy parameter, not a model property. Different actions within the same system should be gated at different levels according to the consequences of an error, and the values should be fitted on local data rather than adopted from a vendor example.</p>
+<p>The threshold is a policy parameter, not a model property. Different actions within the same system should be gated at different levels according to the consequences of an error, and the values should be fitted on local data rather than adopted from a vendor example.</p>
 
 <h2>A worked clinical example</h2>
 
@@ -248,7 +248,7 @@
 
 <p>The lowest probability assigned to a PHI-positive note was 0.99 and the highest assigned to a redacted note was 0.45, a margin of 0.54. Any threshold between 0.46 and 0.98 therefore yields identical classifications, and the 0.50 default is not load-bearing for this corpus.</p>
 
-<p>It is worth noting that the redacted notes were assigned probabilities of 0.11 to 0.45 rather than values near zero. This may be because placeholder tokens such as [PATIENTNAME] and [DATE] preserve the visible scaffolding of an identified record; the model appears to report residual identifiability rather than declaring the text clean. This behavior is consistent with a calibrated reading of the question, although the present design cannot distinguish it from a systematic offset.</p>
+<p>The redacted notes were assigned probabilities of 0.11 to 0.45 rather than values near zero. This may be because placeholder tokens such as [PATIENTNAME] and [DATE] preserve the visible scaffolding of an identified record; the model appears to report residual identifiability rather than declaring the text clean. This behavior is consistent with a calibrated reading of the question, although the present design cannot distinguish it from a systematic offset.</p>
 
 <h3>Limitations</h3>
 

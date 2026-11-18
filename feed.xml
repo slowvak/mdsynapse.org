@@ -18,13 +18,13 @@
       <description>A recent study looked at what clinicians actually ask a hospital AI assistant to do. The answer was not what most AI benchmarks measure. Across 127,833 conversa</description>
     </item>
     <item>
-      <title>Any Language Model Can Be a Decision Model</title>
-      <link>https://mdsynapse.org/blogposts/any-language-model-can-be-a-decision-model</link>
-      <guid isPermaLink="true">https://mdsynapse.org/blogposts/any-language-model-can-be-a-decision-model</guid>
-      <pubDate>Thu, 05 Nov 2026 12:00:00 +0000</pubDate>
+      <title>Any Language Model Can Be a Decision Model (Update)</title>
+      <link>https://mdsynapse.org/blogposts/any-language-model-can-be-a-decision-model-update</link>
+      <guid isPermaLink="true">https://mdsynapse.org/blogposts/any-language-model-can-be-a-decision-model-update</guid>
+      <pubDate>Sat, 14 Nov 2026 12:00:00 +0000</pubDate>
       <dc:creator>Bradley J. Erickson</dc:creator>
       <category>AI</category>
-      <description>What a radiology benchmark taught me about small System 1 models and about getting decisions out of ordinary language models</description>
+      <description>In two recent posts I argued that System 1 decision models, which return a probability for each of a fixed set of answers instead of writing free text in a sing</description>
     </item>
     <item>
       <title>Can System-1 Models Reduce p(Doom)?</title>

@@ -61,7 +61,7 @@
             "https://mdsynapse.org/og/automation-and-ai-optimal-synergy.png"
           ],
           "datePublished": "2026-07-13",
-          "dateModified": "2026-11-07",
+          "dateModified": "2026-11-15",
           "author": {
             "@type": "Person",
             "@id": "https://mdsynapse.org/#author",
@@ -178,7 +178,7 @@
                 <div class="article-content">
 
                     <p class="lead">
-                        Automation projects converge on a common difficulty: the intended execution path is comparatively straightforward to implement, whereas the cases that deviate from it determine whether the deployment succeeds. Large language models (LLMs) have altered the range of tasks that can be placed on the intended path, but they have not removed the deviation problem. In this article, we argue that a deterministic automation backbone, coupled with an explicit exception-handling loop, is a prerequisite for the safe use of probabilistic components in clinical and operational workflows.
+                        Automation projects converge on a common difficulty: the intended execution path is comparatively straightforward to implement, whereas the cases that deviate from it determine whether the deployment succeeds. Large language models (LLMs) have altered the range of tasks that can be placed on the intended path, but they have not removed the deviation problem. We argue that a deterministic automation backbone, coupled with an explicit exception-handling loop, is a prerequisite for the safe use of probabilistic components in clinical and operational workflows.
                     </p>
 
                     <h2>Probabilistic Components Are Not Deterministic Components</h2>
@@ -188,11 +188,11 @@
                     </p>
 
                     <p>
-                        This distinction has direct clinical consequences. A model that summarizes a discharge note incorrectly, misinterprets a laboratory trend, or fabricates a citation is not malfunctioning relative to its own objective; it is generating a highly plausible continuation that is, in this instance, incorrect. Notably, the failure does not present as a crash or an error code. It presents as a fluent, well-formatted, incorrect answer that is structurally indistinguishable from a correct one. Deterministic software tends to fail conspicuously, through null references, stack traces, or rejected input. Probabilistic software fails inconspicuously, in prose, and the resulting output may not prompt user verification.
+                        This distinction has direct clinical consequences. A model that summarizes a discharge note incorrectly, misinterprets a laboratory trend, or fabricates a citation is behaving as its objective specifies, generating a highly plausible continuation that is, in this instance, incorrect. Notably, the failure does not present as a crash or an error code. It presents as a fluent, well-formatted, incorrect answer that is structurally indistinguishable from a correct one. Deterministic software tends to fail conspicuously, through null references, stack traces, or rejected input. Probabilistic software fails inconspicuously, in prose, and the resulting output may not prompt user verification.
                     </p>
 
                     <p>
-                        This is not an argument against the use of LLMs in automation. It is an argument against deploying them as drop-in replacements for deterministic logic. They constitute a different class of component with a different failure signature, and the surrounding system must be designed with that signature in mind.
+                        This argues against deploying LLMs as drop-in replacements for deterministic logic. They constitute a different class of component with a different failure signature, and the surrounding system must be designed with that signature in mind.
                     </p>
 
                     <h2>Exception Handling as the Determinant of Automation Success</h2>

@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://mdsynapse.org/</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-15</lastmod>
   </url>
   <url>
     <loc>https://mdsynapse.org/about.html</loc>
@@ -14,59 +14,59 @@
   </url>
   <url>
     <loc>https://mdsynapse.org/blogposts/ai-efficiency-radiology</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-15</lastmod>
   </url>
   <url>
     <loc>https://mdsynapse.org/blogposts/ai-is-like-medicine</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-15</lastmod>
   </url>
   <url>
     <loc>https://mdsynapse.org/blogposts/algorithm-bias</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://mdsynapse.org/blogposts/any-language-model-can-be-a-decision-model</loc>
-    <lastmod>2026-11-07</lastmod>
+    <loc>https://mdsynapse.org/blogposts/any-language-model-can-be-a-decision-model-update</loc>
+    <lastmod>2026-11-18</lastmod>
   </url>
   <url>
     <loc>https://mdsynapse.org/blogposts/automation-and-ai-optimal-synergy</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-15</lastmod>
   </url>
   <url>
     <loc>https://mdsynapse.org/blogposts/bio-ai</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-15</lastmod>
   </url>
   <url>
     <loc>https://mdsynapse.org/blogposts/can-system-1-models-reduce-pdoom</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-15</lastmod>
   </url>
   <url>
     <loc>https://mdsynapse.org/blogposts/fast-thinking-for-ai</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-15</lastmod>
   </url>
   <url>
     <loc>https://mdsynapse.org/blogposts/foundation-models</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-15</lastmod>
   </url>
   <url>
     <loc>https://mdsynapse.org/blogposts/from-lab-to-ward</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-15</lastmod>
   </url>
   <url>
     <loc>https://mdsynapse.org/blogposts/hybrid-ai-workflows</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-15</lastmod>
   </url>
   <url>
     <loc>https://mdsynapse.org/blogposts/model-drift</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-15</lastmod>
   </url>
   <url>
     <loc>https://mdsynapse.org/blogposts/pdoom-and-pboom-is-ai-too-risky-part-1</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-15</lastmod>
   </url>
   <url>
     <loc>https://mdsynapse.org/blogposts/sample-efficiency-test-time-training</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-15</lastmod>
   </url>
   <url>
     <loc>https://mdsynapse.org/blogposts/the-best-documentation-request-is-the-one-nobody-has-to-make</loc>
@@ -74,10 +74,10 @@
   </url>
   <url>
     <loc>https://mdsynapse.org/blogposts/uncertainty-quantification</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-15</lastmod>
   </url>
   <url>
     <loc>https://mdsynapse.org/reviews/multimodal-learning-healthcare-benchmark</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-15</lastmod>
   </url>
 </urlset>

@@ -67,7 +67,7 @@
             "https://mdsynapse.org/og/uncertainty-quantification.png"
           ],
           "datePublished": "2026-01-01",
-          "dateModified": "2026-11-07",
+          "dateModified": "2026-11-15",
           "author": {
             "@type": "Person",
             "@id": "https://mdsynapse.org/#author",
@@ -204,7 +204,7 @@
                     <h3>Clinical Implications</h3>
 
                     <p>
-                        The implications of absent uncertainty quantification may be illustrated with two representative cases encountered by an automated pneumothorax detection system. In Case A, a large tension pneumothorax is present on an upright posteroanterior chest radiograph, with mediastinal shift, lung collapse, and tracheal deviation. The model's internal classification score is 0.95, reflecting high certainty on the basis of unambiguous imaging features. In Case B, a skin fold artifact is present on a supine portable chest radiograph obtained in an intensive care unit patient, in which the linear density resembles the pleural line displacement characteristic of pneumothorax. The model's internal score is 0.52, marginally above the classification threshold of 0.50. The output presented to the radiologist is identical in both cases: pneumothorax detected, examination moved to the top of the list. Without access to information distinguishing these scenarios, clinicians must treat both alerts equivalently. This may produce inappropriate workflow interruption, for example suspension of a procedure to review Case B, which represents artifact, while the absence of prioritization information may delay review of Case A, which requires immediate intervention. Moreover, accumulation of false positive alerts associated with low-confidence classifications contributes to alert fatigue, which may reduce responsiveness to all alerts from the system, including high-confidence detections of clinically critical findings.
+                        The implications of absent uncertainty quantification may be illustrated with two representative cases encountered by an automated pneumothorax detection system. In Case A, a large tension pneumothorax is present on an upright posteroanterior chest radiograph, with mediastinal shift, lung collapse, and tracheal deviation. The model's internal classification score is 0.95 (high certainty, based on unambiguous imaging features). In Case B, a skin fold artifact is present on a supine portable chest radiograph obtained in an intensive care unit patient, in which the linear density resembles the pleural line displacement characteristic of pneumothorax. The model's internal score is 0.52, marginally above the classification threshold of 0.50. The output presented to the radiologist is identical in both cases: pneumothorax detected, examination moved to the top of the list. Without access to information distinguishing these scenarios, clinicians must treat both alerts equivalently. This may produce inappropriate workflow interruption, for example suspension of a procedure to review Case B, which represents artifact, while the absence of prioritization information may delay review of Case A, which requires immediate intervention. Moreover, accumulation of false positive alerts associated with low-confidence classifications contributes to alert fatigue, which may reduce responsiveness to all alerts from the system, including high-confidence detections of clinically critical findings.
                     </p>
 
                     <h2>Definition of Uncertainty Quantification</h2>

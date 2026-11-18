@@ -61,7 +61,7 @@
             "https://mdsynapse.org/og/hybrid-ai-workflows.png"
           ],
           "datePublished": "2026-02-21",
-          "dateModified": "2026-11-07",
+          "dateModified": "2026-11-15",
           "author": {
             "@type": "Person",
             "@id": "https://mdsynapse.org/#author",
@@ -204,7 +204,7 @@
                     </p>
 
                     <p>
-                        Rule-based systems also have well-documented limitations. They are brittle: clinical scenarios not anticipated during rule authoring are not handled. They require substantial expert effort to author and maintain. They do not generalize, in that each new drug, care pathway, or variant presentation requires additional rules. Over time, large rule libraries become internally inconsistent, generating contradictory recommendations and, ultimately, the phenomenon that has arguably caused more harm to clinical decision support than any algorithmic limitation: <em>alert fatigue</em>.
+                        Rule-based systems also have well-documented limitations. They are brittle: clinical scenarios not anticipated during rule authoring are not handled. They require substantial expert effort to author and maintain. They do not generalize, in that each new drug, care pathway, or variant presentation requires additional rules. Over time, large rule libraries become internally inconsistent, generating contradictory recommendations and, the phenomenon that has arguably caused more harm to clinical decision support than any algorithmic limitation: <em>alert fatigue</em>.
                     </p>
 
                     <p>
@@ -280,7 +280,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <p style="margin-top: 0.75rem; font-size: 0.85rem; opacity: 0.8;">Note: This assumes independent errors. In practice, errors in multi-step systems are often correlated—a misunderstanding in step 2 propagates and amplifies through all subsequent steps—making the situation worse than these numbers suggest.</p>
+                        <p style="margin-top: 0.75rem; font-size: 0.85rem; opacity: 0.8;">Note: This assumes independent errors. In practice, errors in multi-step systems are often correlated: a misunderstanding in step 2 propagates and amplifies through all subsequent steps, making the situation worse than these numbers suggest.</p>
                     </div>
 
                     <p>
@@ -394,7 +394,7 @@
                     </p>
 
                     <p class="article-conclusion">
-                        Rule-based systems are brittle, require substantial maintenance, and do not accommodate the full complexity of clinical practice, and alert fatigue is a documented cost of rules deployed without governance. Agent-based systems are probabilistic, are difficult to audit, and exhibit failure probabilities that increase with workflow length. The compounding of error is not a defect that improved models will eliminate; it is a structural property of any system composed of uncertain sequential steps. No model achieves complete accuracy, and no multi-step pipeline constructed from uncertain components achieves end-to-end certainty.
+                        Rule-based systems are brittle, require substantial maintenance, and do not accommodate the full complexity of clinical practice, and alert fatigue is a documented cost of rules deployed without governance. Agent-based systems are probabilistic, are difficult to audit, and exhibit failure probabilities that increase with workflow length. The compounding of error is a structural property of any system composed of uncertain sequential steps, and improved models will not eliminate it. No model achieves complete accuracy, and no multi-step pipeline constructed from uncertain components achieves end-to-end certainty.
                     </p>
 
                     <p class="article-conclusion">
@@ -408,10 +408,10 @@
                         <h4>Key Takeaways</h4>
                         <ul>
                             <li><strong>Compound probability is the core safety problem:</strong> In a multi-step agent workflow, per-step accuracy of 95% yields only 60% end-to-end reliability at 10 steps. Healthcare cannot accept this failure rate.</li>
-                            <li><strong>Rules are irreplaceable for deterministic safety:</strong> Medication checks, allergy screening, critical value alerts, and hard eligibility criteria must be deterministic—not probabilistic. Agents cannot safely substitute here.</li>
+                            <li><strong>Rules are irreplaceable for deterministic safety:</strong> Medication checks, allergy screening, critical value alerts, and hard eligibility criteria must be deterministic, not probabilistic. Agents cannot safely substitute here.</li>
                             <li><strong>Agents excel where rules fail:</strong> Contextual reasoning, unstructured data synthesis, and novel clinical scenarios are where agent flexibility provides genuine value unreachable by rules alone.</li>
                             <li><strong>Historical failures confirm the risk:</strong> IBM Watson for Oncology and the Epic Sepsis Model both illustrate what happens when AI systems operate outside their validation domain or without deterministic guardrails.</li>
-                            <li><strong>Hybrid design requires explicit risk classification:</strong> Assign workflow steps to rules or agents based on consequence severity and reversibility—not convenience or capability.</li>
+                            <li><strong>Hybrid design requires explicit risk classification:</strong> Assign workflow steps to rules or agents based on consequence severity and reversibility, not convenience or capability.</li>
                             <li><strong>Auditability is non-negotiable:</strong> Every consequential step in a clinical AI workflow must be traceable. Multi-step agentic chains that cannot be audited fail the basic accountability requirements of safe clinical systems.</li>
                         </ul>
                     </div>
